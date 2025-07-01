@@ -8,7 +8,7 @@ export default function BestSellerSection() {
           <h1>I nostri Best-Seller</h1>
 
           <Link to={"/bestseller"}>
-            <button className="btn-box-info-bestseller">Scoprili</button>
+            <button className="btn-box-info-bestseller">SCOPRILI TUTTI</button>
           </Link>
         </div>
       </div>
