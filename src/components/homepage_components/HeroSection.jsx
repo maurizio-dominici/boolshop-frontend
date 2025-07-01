@@ -8,6 +8,10 @@ export default function HeroSection() {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = () => {
+    if (query.trim() === "") {
+      setResults([]);
+      return;
+    }
     setLoading(true);
 
     axios
@@ -59,6 +63,9 @@ export default function HeroSection() {
         {/* Risultati da inserire in un componente a parte passando results*/}
         <div className="row mt-5">
           {loading && <p className="text-white">Caricamento profumi...</p>}
+          {!loading && results.length === 0 && (
+            <p className="text-white">Nessun profumo trovato.</p>
+          )}
           {!loading &&
             results.map((perfume) => (
               <div className="col-md-4 mb-4" key={perfume.id}>
