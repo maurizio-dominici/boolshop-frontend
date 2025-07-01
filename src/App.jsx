@@ -4,6 +4,8 @@ import AboutUs from "./pages/AboutUs";
 import Homepage from "./pages/HomePage";
 import BestSellerSectionListPage from "./pages/section_pages.jsx/best_seller_pages/BestSellerSectionListPage";
 import BestSellerSectionDettailsPage from "./pages/section_pages.jsx/best_seller_pages/BestSellerSectionDettailsPage";
+import LatestArrivalsSectionDetailsPage from "./pages/section_pages.jsx/latest_sellers_pages/LatestArrivalsSectionDetailsPage";
+import LatestArrivalsSectionListPage from "./pages/section_pages.jsx/latest_sellers_pages/LatestArrivalsSectionListPage";
 
 export default function App() {
   return (
@@ -15,8 +17,16 @@ export default function App() {
           {/* Creazione rotte per la Best Seller page e la Best Seller Dettails Page */}
           <Route path="/bestseller" element={<BestSellerSectionListPage />} />
           <Route
+            path="/latestarrivals"
+            element={<LatestArrivalsSectionListPage />}
+          />
+          <Route
             path="/bestseller/dettails"
             element={<BestSellerSectionDettailsPage />}
+          />
+          <Route
+            path="/latestarrivals/details"
+            element={<LatestArrivalsSectionDetailsPage />}
           />
           {/* FINE Creazione rotte per la Best Seller page e la Best Seller Dettails Page */}
         </Route>
