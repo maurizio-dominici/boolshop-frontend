@@ -5,10 +5,12 @@ export const ParfumeAPIContext = createContext();
 
 export const ParfumeAPIProvider = ({ children }) => {
   const [parfumes, setParfumes] = useState([]);
+  const [recents, setRecents] = useState([]);
+  const [bestSellers, setBestSellers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_URL = "http://localhost:3000/parfumes";
+  const BASE_URL = "http://localhost:3000/parfumes";
 
   const searchParfumes = (query) => {
     if (query.trim() === "") {
@@ -20,7 +22,7 @@ export const ParfumeAPIProvider = ({ children }) => {
 
     setLoading(true);
     axios
-      .get(API_URL)
+      .get(BASE_URL)
       .then((response) => {
         const filtered = response.data.filter(
           (item) =>
@@ -38,9 +40,48 @@ export const ParfumeAPIProvider = ({ children }) => {
       });
   };
 
+  const getRecentsParfumes = () => {
+    setLoading(true);
+    axios
+      .get(`${BASE_URL}/recents`)
+      .then((res) => {
+        setRecents(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setRecents([]);
+        setLoading(false);
+      });
+  };
+
+  const getBestSellersParfumes = () => {
+    setLoading(true);
+    axios
+      .get(`${BASE_URL}/bestsellers`)
+      .then((res) => {
+        setBestSellers(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setBestSellers([]);
+        setLoading(false);
+      });
+  };
+
   return (
     <ParfumeAPIContext.Provider
-      value={{ parfumes, loading, error, searchParfumes }}
+      value={{
+        parfumes,
+        loading,
+        error,
+        searchParfumes,
+        recents,
+        getRecentsParfumes,
+        bestSellers,
+        getBestSellersParfumes,
+      }}
     >
       {children}
     </ParfumeAPIContext.Provider>
