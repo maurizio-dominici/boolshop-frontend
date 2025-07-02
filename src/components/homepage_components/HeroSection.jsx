@@ -1,34 +1,17 @@
 // IMPORTS
-import { useState } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
+import { ParfumeAPIContext } from "../../context/ParfumesContext";
 
 export default function HeroSection() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
 
+  // Prendo dal context i dati e la funzione di ricerca
+  const { parfumes, loading, error, searchParfumes } =
+    useContext(ParfumeAPIContext);
+
+  // La funzione handleSearch chiama la search nel context
   const handleSearch = () => {
-    if (query.trim() === "") {
-      setResults([]);
-      return;
-    }
-    setLoading(true);
-
-    axios
-      .get("http://localhost:3000/parfumes")
-      .then((response) => {
-        const filtered = response.data.filter(
-          (item) =>
-            item.name.toLowerCase().includes(query.toLowerCase()) ||
-            item.brand_name.toLowerCase().includes(query.toLowerCase())
-        );
-        setResults(filtered);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Errore durante la ricerca:", error);
-        setLoading(false);
-      });
+    searchParfumes(query);
   };
 
   return (
@@ -63,11 +46,11 @@ export default function HeroSection() {
         {/* Risultati da inserire in un componente a parte passando results*/}
         <div className="row mt-5">
           {loading && <p className="text-white">Caricamento profumi...</p>}
-          {!loading && results.length === 0 && (
+          {!loading && parfumes.length === 0 && (
             <p className="text-white">Nessun profumo trovato.</p>
           )}
           {!loading &&
-            results.map((perfume) => (
+            parfumes.map((perfume) => (
               <div className="col-md-4 mb-4" key={perfume.id}>
                 <div className="card h-100">
                   {perfume.image_url ? (
