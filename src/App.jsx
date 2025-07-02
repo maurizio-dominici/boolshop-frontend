@@ -19,7 +19,7 @@ export default function App() {
             {/* Creazione rotte per la Best Seller page e la Best Seller Dettails Page */}
             <Route path="/bestseller" element={<BestSellerSectionListPage />} />
             <Route
-              path="/latestarrivals"
+              path="/recents"
               element={<LatestArrivalsSectionListPage />}
             />
             <Route
@@ -27,9 +27,10 @@ export default function App() {
               element={<BestSellerSectionDettailsPage />}
             />
             <Route
-              path="/latestarrivals/details"
+              path="/recents/details/:id"
               element={<LatestArrivalsSectionDetailsPage />}
             />
+
             {/* FINE Creazione rotte per la Best Seller page e la Best Seller Dettails Page */}
           </Route>
         </Routes>
