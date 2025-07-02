@@ -1,5 +1,5 @@
 import HeroSection from "../components/homepage_components/HeroSection";
-import BestSellerSection from "../components/homepage_components/BestSellerSection";
+import BestSellersSection from "../components/homepage_components/BestSellersSection";
 import LatestArrivalSection from "../components/homepage_components/LatestArrivalsSection";
 
 export default function Homepage() {
@@ -9,7 +9,7 @@ export default function Homepage() {
 
       {/* Creazione Sezione Componenti della Homepage */}
       <HeroSection />
-      <BestSellerSection />
+      <BestSellersSection />
       <LatestArrivalSection />
     </div>
   );
