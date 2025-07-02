@@ -5,10 +5,10 @@ export default function BestSellerSectionDettailsPage() {
     <>
       <div className="card h-100">
         <img className="img-parfume" src="./vite.svg" alt="" />
-        <div className="card-title">
-          <h2>"ciao"</h2>
+        <div className="card-title my-2">
+          <h2 className="text-center">"Nome Profumo"</h2>
         </div>
-        <div className="card-body">
+        <div className="card-body text-center">
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga quae
             autem ipsam laudantium, aliquid pariatur nam, magni itaque
@@ -21,16 +21,16 @@ export default function BestSellerSectionDettailsPage() {
             eligendi vero. Deleniti, incidunt possimus tempore laboriosam vero,
             accusamus recusandae animi nisi soluta earum optio voluptatibus qui!
           </p>
-          <div className="box-info d-flex justify-content-between align-items-center">
-            <Link to={"/bestseller/dettails"}>
-              <button className="btn-box-info-bestseller">Scopri di più</button>
-            </Link>
-            <Link to={"/bestseller"}>
-              <button className="btn-box-info-bestseller">
-                Ritorna alla lista dei Best Seller
-              </button>
-            </Link>
-          </div>
+        </div>
+        <div className="box-info d-flex justify-content-between align-items-center mx-3">
+          <Link to={"/bestseller/dettails"}>
+            <button className="btn-box-info-bestseller">Scopri di più</button>
+          </Link>
+          <Link to={"/bestseller"}>
+            <button className="btn-box-info-bestseller">
+              Ritorna alla lista dei Best Seller
+            </button>
+          </Link>
         </div>
       </div>
     </>
