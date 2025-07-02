@@ -5,7 +5,7 @@ export default function BestSellerSectionListPage() {
   return (
     <div className="row">
       <Link to={"/"}>
-        <button className="btn-box-info-bestseller my-3">
+        <button className="btn btn-primary btn-box-info-bestseller my-3">
           Ritorna alla Hompage
         </button>
       </Link>
