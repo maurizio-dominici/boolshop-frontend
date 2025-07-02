@@ -1,9 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function BestSellerSectionDettailsPage() {
+export default function BestSellerSectionDetailsPage() {
   return (
     <>
-      <div className="card h-100">
+      <div className="card h-100 my-3">
         {/* {perfume.image_url ? ( }
             <img
               src={perfume.image_url}
@@ -35,13 +35,13 @@ export default function BestSellerSectionDettailsPage() {
           <p className="mb-0">Formato:75 {/*perfume.size_ml*/}ml</p>
         </div>
         <div className="box-info d-flex justify-content-between align-items-center mx-3">
-          <Link to={"/bestseller/dettails"}>
+          {/* <Link to={"/bestsellers"}>
             <button className="btn btn-primary btn-box-info-bestseller">
               Scopri di più
             </button>
-          </Link>
-          <Link to={"/bestseller"}>
-            <button className="btn btn-primary btn-box-info-bestseller">
+          </Link> */}
+          <Link to={"/bestsellers"}>
+            <button className="btn btn-primary btn-box-info-bestsellers my-3 ">
               Ritorna alla lista dei Best Seller
             </button>
           </Link>

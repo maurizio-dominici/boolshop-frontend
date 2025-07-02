@@ -1,23 +1,30 @@
+// IMPORTS
 import { useContext, useEffect } from "react";
 import { ParfumeAPIContext } from "../../../context/ParfumesContext";
+import { Link } from "react-router-dom";
 
-export default function LatestArrivalsSectionListPage() {
-  const { recents, getRecentsParfumes, loading, error } =
+export default function BestSellerSectionListPage() {
+  const { bestSellers, getBestSellersParfumes, loading, error } =
     useContext(ParfumeAPIContext);
 
   useEffect(() => {
-    getRecentsParfumes();
+    getBestSellersParfumes();
   }, []);
-
   return (
     <div className="container mt-4">
-      <h2 className="fw-bold mb-4">Tutti gli Ultimi Arrivi</h2>
+      <h2 className="fw-bold mb-4">Tutti i Best Seller</h2>
+
+      <Link to={"/"}>
+        <button className="btn btn-primary btn-box-info-bestseller my-3">
+          Ritorna all' Homepage
+        </button>
+      </Link>
 
       {loading && <p>Caricamento...</p>}
       {error && <p>Errore nel caricamento dei profumi.</p>}
 
       <div className="row">
-        {recents.map((item) => (
+        {bestSellers.map((item) => (
           <div key={item.id} className="col-md-4 mb-4">
             <div className="card h-100 text-center">
               <img
@@ -38,9 +45,11 @@ export default function LatestArrivalsSectionListPage() {
                 <p>
                   <strong>Formato:</strong> {item.size}
                 </p>
-                <button className="btn btn-outline-primary">
-                  Scopri di più
-                </button>
+                <Link to={"/bestsellers/" + item.id}>
+                  <button className="btn btn-primary btn-box-info-bestseller my-3">
+                    Scopri di più
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
