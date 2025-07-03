@@ -1,7 +1,7 @@
 // IMPORTS
 import { useState, useContext } from "react";
 import { ParfumeAPIContext } from "../../context/ParfumesContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const [query, setQuery] = useState("");
@@ -10,14 +10,14 @@ export default function HeroSection() {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
+    e.preventDefault();
     if (!query.trim()) {
       setErrorMsg("Inserisci una parola chiave per la ricerca.");
-      e.preventDefault(); // blocca la navigazione
       return;
     }
     setErrorMsg("");
     searchParfumes(query);
-    // La navigazione avviene tramite Link, quindi non serve altro qui
+    navigate(`/search?query=${encodeURIComponent(query)}`);
   };
 
   return (
@@ -38,14 +38,14 @@ export default function HeroSection() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
-              <Link
+              <button
                 to={"/search"}
                 className="btn btn-light btn-lg"
                 type="button"
                 onClick={handleSearch}
               >
                 Cerca
-              </Link>
+              </button>
             </div>
             {errorMsg && (
               <div className="alert alert-danger mt-3">{errorMsg}</div>
