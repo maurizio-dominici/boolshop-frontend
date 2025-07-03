@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { ParfumeAPIContext } from "../../../context/ParfumesContext";
+import { Link } from "react-router-dom";
 
 export default function LatestArrivalsSectionListPage() {
   const { recents, getRecentsParfumes, loading, error } =
@@ -38,9 +39,13 @@ export default function LatestArrivalsSectionListPage() {
                 <p>
                   <strong>Formato:</strong> {item.size}
                 </p>
-                <button className="btn btn-outline-primary">
-                  Scopri di più
-                </button>
+
+                {/* Link alla pagina di dettaglio */}
+                <Link to={`/product/${item.id}`}>
+                  <button className="btn btn-outline-primary">
+                    Dettagli prodotto
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
