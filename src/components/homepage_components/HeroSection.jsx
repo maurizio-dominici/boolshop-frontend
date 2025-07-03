@@ -1,17 +1,23 @@
 // IMPORTS
 import { useState, useContext } from "react";
 import { ParfumeAPIContext } from "../../context/ParfumesContext";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const [query, setQuery] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const { loading, searchParfumes } = useContext(ParfumeAPIContext);
+  const navigate = useNavigate();
 
-  // Prendo dal context i dati e la funzione di ricerca
-  const { parfumes, loading, error, searchParfumes } =
-    useContext(ParfumeAPIContext);
-
-  // La funzione handleSearch chiama la search nel context
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!query.trim()) {
+      setErrorMsg("Inserisci una parola chiave per la ricerca.");
+      return;
+    }
+    setErrorMsg("");
     searchParfumes(query);
+    navigate(`/search?query=${encodeURIComponent(query)}`);
   };
 
   return (
@@ -33,6 +39,7 @@ export default function HeroSection() {
                 onChange={(e) => setQuery(e.target.value)}
               />
               <button
+                to={"/search"}
                 className="btn btn-light btn-lg"
                 type="button"
                 onClick={handleSearch}
@@ -40,47 +47,15 @@ export default function HeroSection() {
                 Cerca
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Risultati da inserire in un componente a parte passando results*/}
-        <div className="row mt-5">
-          {loading && <p className="text-white">Caricamento profumi...</p>}
-          {!loading && parfumes.length === 0 && (
-            <p className="text-white">Nessun profumo trovato.</p>
-          )}
-          {!loading &&
-            parfumes.map((perfume) => (
-              <div className="col-md-4 mb-4" key={perfume.id}>
-                <div className="card h-100">
-                  {perfume.image_url ? (
-                    <img
-                      src={perfume.image_url}
-                      className="card-img-top"
-                      alt={perfume.name}
-                    />
-                  ) : (
-                    <div className="bg-secondary text-white py-5">
-                      <p className="mb-0">Nessuna immagine</p>
-                    </div>
-                  )}
-                  <div className="card-body">
-                    <h5 className="card-title">{perfume.name}</h5>
-                    <p className="card-text">{perfume.description}</p>
-                    <p className="fw-bold mb-1">Brand: {perfume.brand_name}</p>
-                    <p className="mb-1">
-                      Prezzo: €{perfume.price}
-                      {perfume.discount_amount > 0 && (
-                        <span className="text-success">
-                          (-{perfume.discount_amount}%)
-                        </span>
-                      )}
-                    </p>
-                    <p className="mb-0">Formato: {perfume.size_ml}ml</p>
-                  </div>
-                </div>
+            {errorMsg && (
+              <div className="alert alert-danger mt-3">{errorMsg}</div>
+            )}
+            {loading && (
+              <div className="alert alert-info mt-3">
+                Caricamento in corso...
               </div>
-            ))}
+            )}
+          </div>
         </div>
       </div>
     </section>

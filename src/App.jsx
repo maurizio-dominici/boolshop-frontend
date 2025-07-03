@@ -7,6 +7,7 @@ import BestSellersSectionDetailsPage from "./pages/section_pages/best_seller_pag
 import LatestArrivalsSectionDetailsPage from "./pages/section_pages/latest_sellers_pages/LatestArrivalsSectionDetailsPage";
 import LatestArrivalsSectionListPage from "./pages/section_pages/latest_sellers_pages/LatestArrivalsSectionListPage";
 import { ParfumeAPIProvider } from "./context/ParfumesContext";
+import SearchResults from "./pages/section_pages/hero_section_pages/SearchResults";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route index element={<Homepage />} />
+            <Route path="/search" element={<SearchResults />} />
             <Route path="/about-us" element={<AboutUs />} />
             {/* Creazione rotte per la Best Seller page e la Best Seller Dettails Page */}
             <Route
