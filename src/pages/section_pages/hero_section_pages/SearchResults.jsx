@@ -16,7 +16,6 @@ export default function SearchResults() {
     if (query) {
       searchParfumes(query);
     }
-    // eslint-disable-next-line
   }, [query]);
 
   return (
