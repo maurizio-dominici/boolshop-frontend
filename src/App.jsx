@@ -7,6 +7,7 @@ import LatestArrivalsSectionListPage from "./pages/section_pages/latest_sellers_
 import { ParfumeAPIProvider } from "./context/ParfumesContext";
 import SearchResults from "./pages/section_pages/hero_section_pages/SearchResults";
 import ProductDetailsPage from "./components/homepage_components/ProductDetailsPage";
+import Checkout from "./pages/section_pages/Checkout";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/search" element={<SearchResults />} />
+            <Route path="/checkout" element={<Checkout />} />
 
             {/* Sezioni prodotto */}
             <Route
