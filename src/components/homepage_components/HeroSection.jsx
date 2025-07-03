@@ -17,7 +17,7 @@ export default function HeroSection() {
     }
     setErrorMsg("");
     searchParfumes(query);
-    navigate(`/search?query=${encodeURIComponent(query)}`);
+    navigate(`/search?product_name=${encodeURIComponent(query)}`);
   };
 
   return (
