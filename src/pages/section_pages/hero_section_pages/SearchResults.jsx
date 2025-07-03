@@ -7,21 +7,27 @@ export default function SearchResults() {
     useContext(ParfumeAPIContext);
   const location = useLocation();
 
-  // Prendi la query dalla URL
-  const params = new URLSearchParams(location.search);
-  const query = params.get("query") || "";
+  console.log(parfumes);
 
-  // Esegui la ricerca quando cambia la query
+  // Prendi tutti i parametri dalla URL
+  const params = new URLSearchParams(location.search);
+  const product_name = params.get("product_name") || "";
+  const brand_id = params.get("brand_id") || "";
+  const gender = params.get("gender") || "";
+  const min_price = params.get("min_price") || "";
+  const max_price = params.get("max_price") || "";
+
+  // Esegui la ricerca quando cambia uno dei parametri
   useEffect(() => {
-    if (query) {
-      searchParfumes(query);
+    if (product_name) {
+      searchParfumes(product_name, brand_id, gender, min_price, max_price);
     }
-  }, [query]);
+  }, [product_name, brand_id, gender, min_price, max_price]);
 
   return (
     <div className="container mt-4">
       <h2 className="fw-bold mb-4">
-        Risultati della ricerca{query ? ` per "${query}"` : ""}
+        Risultati della ricerca{product_name ? ` per "${product_name}"` : ""}
       </h2>
       {loading && <p>Caricamento...</p>}
       {error && <p>Errore nel caricamento dei profumi.</p>}
@@ -42,7 +48,10 @@ export default function SearchResults() {
                 <h5 className="card-title">{item.name}</h5>
                 <p className="card-text">{item.description}</p>
                 <p>
-                  <strong>Brand:</strong> {item.brand_name}
+                  <strong>Brand:</strong> {item.brand.brand_name}
+                </p>
+                <p>
+                  <strong>Gender</strong> {item.gender}
                 </p>
                 <p>
                   <strong>Prezzo:</strong> {item.price}€

@@ -12,8 +12,8 @@ export const ParfumeAPIProvider = ({ children }) => {
 
   const BASE_URL = "http://localhost:3000/parfumes";
 
-  const searchParfumes = (query) => {
-    if (query.trim() === "") {
+  const searchParfumes = (query, brandId, gender, minPrice, maxPrice) => {
+    if (!query.trim()) {
       setParfumes([]);
       setLoading(false);
       setError(null);
@@ -21,15 +21,17 @@ export const ParfumeAPIProvider = ({ children }) => {
     }
 
     setLoading(true);
+    const params = new URLSearchParams();
+    params.append("product_name", query);
+    if (brandId) params.append("brand_id", brandId);
+    if (gender) params.append("gender", gender);
+    if (minPrice) params.append("min_price", minPrice);
+    if (maxPrice) params.append("max_price", maxPrice);
+
     axios
-      .get(BASE_URL)
+      .get(`${BASE_URL}?${params.toString()}`)
       .then((response) => {
-        const filtered = response.data.filter(
-          (item) =>
-            item.name.toLowerCase().includes(query.toLowerCase()) ||
-            item.brand_name.toLowerCase().includes(query.toLowerCase())
-        );
-        setParfumes(filtered);
+        setParfumes(response.data);
         setError(null);
         setLoading(false);
       })

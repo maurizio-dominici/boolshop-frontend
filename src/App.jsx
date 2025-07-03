@@ -16,7 +16,7 @@ export default function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route index element={<Homepage />} />
-            <Route path="/search" element={<SearchResults />} />
+            <Route path="/parfumes" element={<SearchResults />} />
             <Route path="/about-us" element={<AboutUs />} />
             {/* Creazione rotte per la Best Seller page e la Best Seller Dettails Page */}
             <Route
