@@ -9,9 +9,11 @@ export default function ProductDetailsPage() {
   useEffect(() => {
     axios
       .get(`http://localhost:3000/parfumes/${id}`)
-      .then((res) => setProduct(res.data))
+      .then((res) => setProduct(res.data[0]))
       .catch((err) => console.error("Errore nel caricamento:", err));
   }, [id]);
+
+  console.debug("ProductDetailsPage product", product);
 
   if (!product) return <p>Caricamento in corso...</p>;
 
@@ -34,7 +36,7 @@ export default function ProductDetailsPage() {
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           <p>
-            <strong>Brand:</strong> {product.brand_name}
+            <strong>Brand:</strong> {product.brand.brand_name}
           </p>
           <p>
             <strong>Prezzo:</strong> €{product.price}
