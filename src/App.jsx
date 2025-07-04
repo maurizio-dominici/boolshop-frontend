@@ -16,7 +16,7 @@ export default function App() {
           <Route element={<DefaultLayout />}>
             <Route index element={<HomePage />} />
             <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/search" element={<SearchResults />} />
+            <Route path="/parfumes" element={<SearchResults />} />
 
             {/* Sezioni prodotto */}
             <Route
