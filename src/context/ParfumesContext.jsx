@@ -31,11 +31,14 @@ export const ParfumeAPIProvider = ({ children }) => {
     axios
       .get(`${BASE_URL}?${params.toString()}`)
       .then((response) => {
+        console.log(response);
+
         setParfumes(response.data);
         setError(null);
         setLoading(false);
       })
       .catch((err) => {
+        console.log(err);
         setError(err);
         setParfumes([]);
         setLoading(false);

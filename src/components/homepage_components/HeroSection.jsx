@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const [query, setQuery] = useState("");
-  const [brandId, setBrandId] = useState("");
+  // const [brandId, setBrandId] = useState("");
   // const [gender, setGender] = useState("");
   // const [minPrice, setMinPrice] = useState("");
   // const [maxPrice, setMaxPrice] = useState("");
@@ -22,7 +22,7 @@ export default function HeroSection() {
     setErrorMsg("");
     const params = new URLSearchParams();
     params.append("product_name", query);
-    if (brandId) params.append("brand_id", brandId);
+    // if (brandId) params.append("brand_id", brandId);
     navigate(`/parfumes?${params.toString()}`);
   };
 
@@ -43,18 +43,7 @@ export default function HeroSection() {
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>
-          <div className="input-group mb-2">
-            <select
-              className="form-select"
-              value={brandId}
-              onChange={(e) => setBrandId(e.target.value)}
-            >
-              <option value="">Tutte le marche</option>
-              <option value="1">Dior</option>
-              <option value="2">Chanel</option>
-              {/* aggiungere altre marche */}
-            </select>
-          </div>
+
           <button className="btn btn-light btn-lg w-100" type="submit">
             Cerca
           </button>

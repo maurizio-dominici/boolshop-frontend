@@ -11,23 +11,27 @@ export default function SearchResults() {
   // Leggi i parametri dalla URL
   const params = new URLSearchParams(location.search);
   const [productName] = useState(params.get("product_name") || "");
+  const [brandId, setBrandId] = useState(params.get("brand_id") || "");
   const [gender, setGender] = useState(params.get("gender") || "");
   const [minPrice, setMinPrice] = useState(params.get("min_price") || "");
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
 
   // Stati temporanei per i filtri
+  const [tempBrandId, setTempBrandId] = useState(brandId);
   const [tempGender, setTempGender] = useState(gender);
   const [tempMinPrice, setTempMinPrice] = useState(minPrice);
   const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
 
   // Aggiorna la ricerca quando cambiano i filtri effettivi
   useEffect(() => {
-    searchParfumes(productName, gender, minPrice, maxPrice);
-  }, [productName, gender, minPrice, maxPrice]);
+    searchParfumes(productName, brandId, gender, minPrice, maxPrice);
+  }, [productName, brandId, gender, minPrice, maxPrice]);
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
     const newParams = new URLSearchParams(location.search);
+    if (tempBrandId) newParams.set("brand_id", tempBrandId);
+    else newParams.delete("brand_id");
     if (tempGender) newParams.set("gender", tempGender);
     else newParams.delete("gender");
     if (tempMinPrice) newParams.set("min_price", tempMinPrice);
@@ -36,6 +40,7 @@ export default function SearchResults() {
     else newParams.delete("max_price");
 
     navigate(`/parfumes?${newParams.toString()}`);
+    setBrandId(tempBrandId);
     setGender(tempGender);
     setMinPrice(tempMinPrice);
     setMaxPrice(tempMaxPrice);
@@ -45,6 +50,18 @@ export default function SearchResults() {
     <div className="container mt-4">
       {/* Filtri */}
       <div className="row mb-3">
+        <div className="col">
+          <select
+            className="form-select"
+            value={tempBrandId}
+            onChange={(e) => setTempBrandId(e.target.value)}
+          >
+            <option value="">Tutte le marche</option>
+            <option value="1">Dior</option>
+            <option value="2">Chanel</option>
+            {/* aggiungere altre marche */}
+          </select>
+        </div>
         <div className="col">
           <select
             className="form-select"
