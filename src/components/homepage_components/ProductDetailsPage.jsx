@@ -17,17 +17,14 @@ export default function ProductDetailsPage() {
 
   if (!product) return <p>Caricamento in corso...</p>;
 
-
-
   const cartAdd = (product) => {
     // # DEBUG
     // window.localStorage.clear();
 
     // console.log("product", product);
     // console.log("window.localStorage.getItem('cart')", window.localStorage.getItem("cart"));
-    
+
     const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
-    
 
     const isProductInCart =
       cart.find((cartItem) => cartItem.id === product.id) === undefined
@@ -46,23 +43,25 @@ export default function ProductDetailsPage() {
     }
     // console.log("cart", JSON.stringify(cart));
 
-    
     window.localStorage.setItem("cart", JSON.stringify(cart));
     // console.log(window.localStorage.getItem("cart"));
-    
-    console.log("LOG FINALE CARRELLO", JSON.parse(window.localStorage.getItem("cart")));
+
+    console.log(
+      "LOG FINALE CARRELLO",
+      JSON.parse(window.localStorage.getItem("cart"))
+    );
 
     // window.localStorage.setItem(key, value);
     // window.localStorage.getItem(key);
     // window.localStorage.removeItemItem(key);
-  }
+  };
 
   return (
     <div className="container mt-5">
       <div className="card shadow">
-        {product.image_url ? (
+        {product.image ? (
           <img
-            src={product.image_url}
+            src={product.image}
             alt={product.name}
             className="card-img-top"
           />
@@ -75,28 +74,32 @@ export default function ProductDetailsPage() {
         <div className="card-body">
           <h2>{product.name}</h2>
           <p>{product.description}</p>
+
           <p>
-            <strong>Brand:</strong> {product.brand.brand_name}
+            <strong>Brand:</strong> {product.brand?.brand_name || "Sconosciuto"}
           </p>
+
           <p>
             <strong>Prezzo:</strong> €{product.price}
           </p>
           <p>
             <strong>Formato:</strong> {product.size_ml}ml
           </p>
-          {product.discount_amount > 0 && (
-            <p className="text-success">Sconto: -{product.discount_amount}%</p>
+
+          {product.discount?.discount_amount > 0 && (
+            <p className="text-success">
+              Sconto: -{product.discount.discount_amount}%
+            </p>
           )}
         </div>
-
 
         <button onClick={() => cartAdd(product)} className="btn btn-success">
           Aggiungi al carrello
         </button>
 
         <div className="card-footer d-flex justify-content-between">
-          <Link to="/recents" className="btn btn-outline-secondary">
-            Torna agli Ultimi Arrivi
+          <Link to={-1} className="btn btn-outline-secondary">
+            Torna indietro
           </Link>
           <Link to="/" className="btn btn-primary">
             Vai alla Home

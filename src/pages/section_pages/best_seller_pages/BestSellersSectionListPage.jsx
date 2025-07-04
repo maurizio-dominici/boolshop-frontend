@@ -1,24 +1,18 @@
-// IMPORTS
 import { useContext, useEffect } from "react";
 import { ParfumeAPIContext } from "../../../context/ParfumesContext";
 import { Link } from "react-router-dom";
 
-export default function BestSellerSectionListPage() {
+export default function BestSellersSectionListPage() {
   const { bestSellers, getBestSellersParfumes, loading, error } =
     useContext(ParfumeAPIContext);
 
   useEffect(() => {
     getBestSellersParfumes();
   }, []);
+
   return (
     <div className="container mt-4">
-      <h2 className="fw-bold mb-4">Tutti i Best Seller</h2>
-
-      <Link to={"/"}>
-        <button className="btn btn-primary btn-box-info-bestseller my-3">
-          Ritorna all' Homepage
-        </button>
-      </Link>
+      <h2 className="fw-bold mb-4">Tutti i nostri Best Seller</h2>
 
       {loading && <p>Caricamento...</p>}
       {error && <p>Errore nel caricamento dei profumi.</p>}
@@ -45,9 +39,9 @@ export default function BestSellerSectionListPage() {
                 <p>
                   <strong>Formato:</strong> {item.size}
                 </p>
-                <Link to={"/bestsellers/" + item.id}>
-                  <button className="btn btn-primary btn-box-info-bestseller my-3">
-                    Scopri di più
+                <Link to={`/product/${item.id}`}>
+                  <button className="btn btn-outline-primary">
+                    Dettagli prodotto
                   </button>
                 </Link>
               </div>
