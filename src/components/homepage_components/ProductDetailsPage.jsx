@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function ProductDetailsPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/parfumes/${id}`)
+      .get(`http://localhost:3000/parfumes/${slug}`)
       .then((res) => setProduct(res.data[0]))
       .catch((err) => console.error("Errore nel caricamento:", err));
-  }, [id]);
+  }, [slug]);
 
   console.debug("ProductDetailsPage product", product);
 
@@ -30,13 +30,13 @@ export default function ProductDetailsPage() {
     
 
     const isProductInCart =
-      cart.find((cartItem) => cartItem.id === product.id) === undefined
+      cart.find((cartItem) => cartItem.slug === product.slug) === undefined
         ? false
         : true;
 
     let addedItem = {};
     if (isProductInCart) {
-      addedItem = cart.find((cartItem) => cartItem.id === product.id);
+      addedItem = cart.find((cartItem) => cartItem.slug === product.slug);
       // console.log("addedItem", addedItem);
       addedItem.quantity += 1;
     } else {

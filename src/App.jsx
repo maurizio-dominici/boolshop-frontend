@@ -31,7 +31,7 @@ export default function App() {
             />
 
             {/* Dettaglio prodotto */}
-            <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/product/:slug" element={<ProductDetailsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

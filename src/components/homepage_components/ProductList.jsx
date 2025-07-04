@@ -36,7 +36,7 @@ export default function ProductList({
                 <p>
                   <strong>Formato:</strong> {item.size || item.size_ml}ml
                 </p>
-                <Link to={`/product/${item.id}`}>
+                <Link to={`/product/${item.slug}`}>
                   <button className="btn btn-outline-primary">
                     Dettagli prodotto
                   </button>
