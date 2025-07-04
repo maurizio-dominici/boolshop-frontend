@@ -17,6 +17,46 @@ export default function ProductDetailsPage() {
 
   if (!product) return <p>Caricamento in corso...</p>;
 
+
+
+  const cartAdd = (product) => {
+    // # DEBUG
+    // window.localStorage.clear();
+
+    // console.log("product", product);
+    // console.log("window.localStorage.getItem('cart')", window.localStorage.getItem("cart"));
+    
+    const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
+    
+
+    const isProductInCart =
+      cart.find((cartItem) => cartItem.id === product.id) === undefined
+        ? false
+        : true;
+
+    let addedItem = {};
+    if (isProductInCart) {
+      addedItem = cart.find((cartItem) => cartItem.id === product.id);
+      // console.log("addedItem", addedItem);
+      addedItem.quantity += 1;
+    } else {
+      addedItem = product;
+      addedItem.quantity = 1;
+      cart.push(addedItem);
+    }
+    // console.log("cart", JSON.stringify(cart));
+
+    
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+    // console.log(window.localStorage.getItem("cart"));
+    
+    console.log("LOG FINALE CARRELLO", JSON.parse(window.localStorage.getItem("cart")));
+
+    // window.localStorage.setItem(key, value);
+    // window.localStorage.getItem(key);
+    // window.localStorage.removeItemItem(key);
+  }
+
   return (
     <div className="container mt-5">
       <div className="card shadow">
@@ -48,6 +88,11 @@ export default function ProductDetailsPage() {
             <p className="text-success">Sconto: -{product.discount_amount}%</p>
           )}
         </div>
+
+
+        <button onClick={() => cartAdd(product)} className="btn btn-success">
+          Aggiungi al carrello
+        </button>
 
         <div className="card-footer d-flex justify-content-between">
           <Link to="/recents" className="btn btn-outline-secondary">
