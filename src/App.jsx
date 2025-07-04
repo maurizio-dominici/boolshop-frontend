@@ -8,6 +8,7 @@ import { ParfumeAPIProvider } from "./context/ParfumesContext";
 import SearchResults from "./pages/section_pages/hero_section_pages/SearchResults";
 import ProductDetailsPage from "./components/homepage_components/ProductDetailsPage";
 import Checkout from "./pages/section_pages/Checkout";
+import CartPage from "./pages/section_pages/CartPage";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
               path="/recents"
               element={<LatestArrivalsSectionListPage />}
             />
+            <Route path="/cart" element={<CartPage />} />
 
             {/* Dettaglio prodotto */}
             <Route path="/product/:id" element={<ProductDetailsPage />} />
