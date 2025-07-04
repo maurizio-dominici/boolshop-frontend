@@ -26,6 +26,21 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink to={"/bestsellers"} className="nav-link">
+                Best Sellers
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to={"/recents"} className="nav-link">
+                Ultimi Arrivi
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to={"/cart"} className="nav-link">
+                Carrello
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink to={"/about-us"} className="nav-link">
                 About us
               </NavLink>
