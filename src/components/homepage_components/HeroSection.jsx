@@ -43,6 +43,9 @@ export default function HeroSection() {
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>
+          {errorMsg && (
+            <div className="alert alert-danger mb-2">{errorMsg}</div>
+          )}
 
           <button className="btn btn-light btn-lg w-100" type="submit">
             Cerca

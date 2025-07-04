@@ -17,6 +17,7 @@ export default function SearchResults() {
   const [gender, setGender] = useState(params.get("gender") || "");
   const [minPrice, setMinPrice] = useState(params.get("min_price") || "");
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
+  const [orderBy, setOrderBy] = useState(params.get("order_by") || "");
 
   // Stati temporanei per i filtri
   const [tempProductName, setTempProductName] = useState(productName);
@@ -24,11 +25,12 @@ export default function SearchResults() {
   const [tempGender, setTempGender] = useState(gender);
   const [tempMinPrice, setTempMinPrice] = useState(minPrice);
   const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
+  const [tempOrderBy, setTempOrderBy] = useState(orderBy);
 
   // Aggiorna la ricerca quando cambiano i filtri effettivi
   useEffect(() => {
-    searchParfumes(productName, brandId, gender, minPrice, maxPrice);
-  }, [productName, brandId, gender, minPrice, maxPrice]);
+    searchParfumes(productName, brandId, gender, minPrice, maxPrice, orderBy);
+  }, [productName, brandId, gender, minPrice, maxPrice, orderBy]);
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
@@ -43,6 +45,8 @@ export default function SearchResults() {
     else newParams.delete("min_price");
     if (tempMaxPrice) newParams.set("max_price", tempMaxPrice);
     else newParams.delete("max_price");
+    if (tempOrderBy) newParams.set("order_by", tempOrderBy);
+    else newParams.delete("order_by");
 
     navigate(`/parfumes?${newParams.toString()}`);
     setProductName(tempProductName);
@@ -50,12 +54,26 @@ export default function SearchResults() {
     setGender(tempGender);
     setMinPrice(tempMinPrice);
     setMaxPrice(tempMaxPrice);
+    setOrderBy(tempOrderBy);
   };
 
   return (
     <div className="container mt-4">
       {/* Filtri */}
       <div className="row mb-3">
+        <div className="col">
+          <select
+            className="form-select"
+            value={tempOrderBy}
+            onChange={(e) => setTempOrderBy(e.target.value)}
+          >
+            <option value="">Ordina per...</option>
+            <option value="price_asc">Prezzo crescente</option>
+            <option value="price_desc">Prezzo decrescente</option>
+            <option value="name_asc">Nome A-Z</option>
+            <option value="name_desc">Nome Z-A</option>
+          </select>
+        </div>
         <div className="col">
           <input
             type="text"
