@@ -18,7 +18,8 @@ export const ParfumeAPIProvider = ({ children }) => {
     gender,
     minPrice,
     maxPrice,
-    orderBy
+    orderBy,
+    size
   ) => {
     if (!query.trim()) {
       setParfumes([]);
@@ -35,6 +36,7 @@ export const ParfumeAPIProvider = ({ children }) => {
     if (minPrice) params.append("min_price", minPrice);
     if (maxPrice) params.append("max_price", maxPrice);
     if (orderBy) params.append("order_by", orderBy);
+    if (size) params.append("size", size);
 
     axios
       .get(`${BASE_URL}?${params.toString()}`)

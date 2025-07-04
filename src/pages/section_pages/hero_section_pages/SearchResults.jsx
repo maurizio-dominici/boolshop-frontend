@@ -18,6 +18,7 @@ export default function SearchResults() {
   const [minPrice, setMinPrice] = useState(params.get("min_price") || "");
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
   const [orderBy, setOrderBy] = useState(params.get("order_by") || "");
+  const [size, setSize] = useState(params.get("size") || "");
 
   // Stati temporanei per i filtri
   const [tempProductName, setTempProductName] = useState(productName);
@@ -26,11 +27,20 @@ export default function SearchResults() {
   const [tempMinPrice, setTempMinPrice] = useState(minPrice);
   const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
   const [tempOrderBy, setTempOrderBy] = useState(orderBy);
+  const [tempSize, setTempSize] = useState(size);
 
   // Aggiorna la ricerca quando cambiano i filtri effettivi
   useEffect(() => {
-    searchParfumes(productName, brandId, gender, minPrice, maxPrice, orderBy);
-  }, [productName, brandId, gender, minPrice, maxPrice, orderBy]);
+    searchParfumes(
+      productName,
+      brandId,
+      gender,
+      minPrice,
+      maxPrice,
+      orderBy,
+      size
+    );
+  }, [productName, brandId, gender, minPrice, maxPrice, orderBy, size]);
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
@@ -47,6 +57,8 @@ export default function SearchResults() {
     else newParams.delete("max_price");
     if (tempOrderBy) newParams.set("order_by", tempOrderBy);
     else newParams.delete("order_by");
+    if (tempSize) newParams.set("size", tempSize);
+    else newParams.delete("size");
 
     navigate(`/parfumes?${newParams.toString()}`);
     setProductName(tempProductName);
@@ -55,6 +67,7 @@ export default function SearchResults() {
     setMinPrice(tempMinPrice);
     setMaxPrice(tempMaxPrice);
     setOrderBy(tempOrderBy);
+    setSize(tempSize);
   };
 
   return (
@@ -68,12 +81,31 @@ export default function SearchResults() {
             onChange={(e) => setTempOrderBy(e.target.value)}
           >
             <option value="">Ordina per...</option>
-            <option value="price_asc">Prezzo crescente</option>
-            <option value="price_desc">Prezzo decrescente</option>
-            <option value="name_asc">Nome A-Z</option>
-            <option value="name_desc">Nome Z-A</option>
+            <option value="products.price ASC">Prezzo crescente</option>
+            <option value="products.price DESC">Prezzo decrescente</option>
+            <option value="products.name ASC">Nome A-Z</option>
+            <option value="products.name DESC">Nome Z-A</option>
+            <option value="products.size_ml ASC">Min Size</option>
+            <option value="products.size_ml DESC">Max Size</option>
           </select>
         </div>
+
+        <div className="col">
+          <select
+            className="form-select"
+            value={tempSize}
+            onChange={(e) => setTempSize(e.target.value)}
+          >
+            <option value="">Filtra per Size</option>
+            <option value="xs">xs</option>
+            <option value="s">s</option>
+            <option value="m">m</option>
+            <option value="l">l</option>
+            <option value="xl">xl</option>
+            <option value="xxl">xxl</option>
+          </select>
+        </div>
+
         <div className="col">
           <input
             type="text"
