@@ -20,55 +20,7 @@ export default function Checkout() {
     user_discount_code: "",
 
     // DATI DEL CARRELLO DA PRENDERE TRAMITE LOCAL STORAGE, PER ORA LO SIMULO HARDCODANDO I DATI
-    cart: [
-      {
-        id: 1,
-        name: "Sauvage",
-        image: "",
-        gender: "male",
-        description:
-          "Quisquam commodi neque animi recusandae ex provident hic laboriosam tempore, eos nam quidem laborum.",
-        best_seller: 1,
-        entry_date: "2025-06-30T13:06:54.000Z",
-        price: 90.52,
-        size_ml: 75,
-        size_name: "xs",
-        brand: {
-          brand_id: 1,
-          brand_name: "Dior",
-          brand_logo:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Dior_Logo.svg/1200px-Dior_Logo.svg.png",
-        },
-        discount: {
-          discount_id: 1,
-          discount_amount: 10,
-        },
-        quantity: 1,
-      },
-      {
-        id: 2,
-        name: "Miss Dior",
-        image: "",
-        gender: "female",
-        description: "Maiores laboriosam amet natus impedit?",
-        best_seller: 0,
-        entry_date: "2025-06-30T13:06:54.000Z",
-        price: 100,
-        size_ml: 75,
-        size_name: "xs",
-        brand: {
-          brand_id: 1,
-          brand_name: "Dior",
-          brand_logo:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Dior_Logo.svg/1200px-Dior_Logo.svg.png",
-        },
-        discount: {
-          discount_id: 2,
-          discount_amount: 20,
-        },
-        quantity: 1,
-      },
-    ],
+    cart: JSON.parse(localStorage.getItem("cart")),
   };
 
   const [clientInfo, setClientInfo] = useState(initialClientInfo);
@@ -87,6 +39,7 @@ export default function Checkout() {
       .then((res) => console.log(res.data));
     console.log("Dati cliente:", clientInfo);
     setClientInfo(initialClientInfo);
+    localStorage.clear();
     // Qui potresti voler reindirizzare l'utente a una pagina di conferma o pagamento
   };
 
