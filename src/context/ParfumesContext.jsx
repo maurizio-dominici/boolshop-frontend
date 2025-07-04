@@ -12,7 +12,14 @@ export const ParfumeAPIProvider = ({ children }) => {
 
   const BASE_URL = "http://localhost:3000/parfumes";
 
-  const searchParfumes = (query, brandId, gender, minPrice, maxPrice) => {
+  const searchParfumes = (
+    query,
+    brandId,
+    gender,
+    minPrice,
+    maxPrice,
+    orderBy
+  ) => {
     if (!query.trim()) {
       setParfumes([]);
       setLoading(false);
@@ -27,6 +34,7 @@ export const ParfumeAPIProvider = ({ children }) => {
     if (gender) params.append("gender", gender);
     if (minPrice) params.append("min_price", minPrice);
     if (maxPrice) params.append("max_price", maxPrice);
+    if (orderBy) params.append("order_by", orderBy);
 
     axios
       .get(`${BASE_URL}?${params.toString()}`)
