@@ -22,7 +22,7 @@ export default function SearchResults() {
 
   // Aggiorna la ricerca quando cambiano i filtri effettivi
   useEffect(() => {
-    searchParfumes(productName, "", gender, minPrice, maxPrice);
+    searchParfumes(productName, gender, minPrice, maxPrice);
   }, [productName, gender, minPrice, maxPrice]);
 
   // Applica i filtri solo quando premi il bottone
