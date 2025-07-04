@@ -39,7 +39,7 @@ export default function BestSellersSectionListPage() {
                 <p>
                   <strong>Formato:</strong> {item.size}
                 </p>
-                <Link to={`/product/${item.id}`}>
+                <Link to={`/product/${item.slug}`}>
                   <button className="btn btn-outline-primary">
                     Dettagli prodotto
                   </button>
