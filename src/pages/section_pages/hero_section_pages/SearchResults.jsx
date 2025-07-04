@@ -13,7 +13,7 @@ export default function SearchResults() {
   const [productName, setProductName] = useState(
     params.get("product_name") || ""
   );
-  const [brandId, setBrandId] = useState(params.get("brand_id") || "");
+  const [brandSlug, setBrandSlug] = useState(params.get("brand_slug") || "");
   const [gender, setGender] = useState(params.get("gender") || "");
   const [minPrice, setMinPrice] = useState(params.get("min_price") || "");
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
@@ -22,7 +22,7 @@ export default function SearchResults() {
 
   // Stati temporanei per i filtri
   const [tempProductName, setTempProductName] = useState(productName);
-  const [tempBrandId, setTempBrandId] = useState(brandId);
+  const [tempBrandSlug, setTempBrandSlug] = useState(brandSlug);
   const [tempGender, setTempGender] = useState(gender);
   const [tempMinPrice, setTempMinPrice] = useState(minPrice);
   const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
@@ -33,22 +33,22 @@ export default function SearchResults() {
   useEffect(() => {
     searchParfumes(
       productName,
-      brandId,
+      brandSlug,
       gender,
       minPrice,
       maxPrice,
       orderBy,
       size
     );
-  }, [productName, brandId, gender, minPrice, maxPrice, orderBy, size]);
+  }, [productName, brandSlug, gender, minPrice, maxPrice, orderBy, size]);
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
     const newParams = new URLSearchParams(location.search);
     if (tempProductName) newParams.set("product_name", tempProductName);
     else newParams.delete("product_name");
-    if (tempBrandId) newParams.set("brand_id", tempBrandId);
-    else newParams.delete("brand_id");
+    if (tempBrandSlug) newParams.set("brand_slug", tempBrandSlug);
+    else newParams.delete("brand_slug");
     if (tempGender) newParams.set("gender", tempGender);
     else newParams.delete("gender");
     if (tempMinPrice) newParams.set("min_price", tempMinPrice);
@@ -62,7 +62,7 @@ export default function SearchResults() {
 
     navigate(`/parfumes?${newParams.toString()}`);
     setProductName(tempProductName);
-    setBrandId(tempBrandId);
+    setBrandSlug(tempBrandSlug);
     setGender(tempGender);
     setMinPrice(tempMinPrice);
     setMaxPrice(tempMaxPrice);
@@ -118,8 +118,8 @@ export default function SearchResults() {
         <div className="col">
           <select
             className="form-select"
-            value={tempBrandId}
-            onChange={(e) => setTempBrandId(e.target.value)}
+            value={tempBrandSlug}
+            onChange={(e) => setTempBrandSlug(e.target.value)}
           >
             <option value="">Tutte le marche</option>
             <option value="1">Dior</option>

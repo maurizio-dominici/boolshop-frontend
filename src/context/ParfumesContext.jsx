@@ -14,7 +14,7 @@ export const ParfumeAPIProvider = ({ children }) => {
 
   const searchParfumes = (
     query,
-    brandId,
+    brandSlug,
     gender,
     minPrice,
     maxPrice,
@@ -31,7 +31,7 @@ export const ParfumeAPIProvider = ({ children }) => {
     setLoading(true);
     const params = new URLSearchParams();
     params.append("product_name", query);
-    if (brandId) params.append("brand_id", brandId);
+    if (brandSlug) params.append("brand_slug", brandSlug);
     if (gender) params.append("gender", gender);
     if (minPrice) params.append("min_price", minPrice);
     if (maxPrice) params.append("max_price", maxPrice);
