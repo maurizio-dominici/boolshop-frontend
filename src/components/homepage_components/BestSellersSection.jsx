@@ -31,8 +31,8 @@ export default function BestSellersSection() {
                   <p className="card-text">{parfume.description}</p>
                   <p className="fw-bold">{parfume.price}€</p>
                   <img
-                    src={parfume.brand_logo}
-                    alt={parfume.brand_name}
+                    src={parfume.brand.brand_logo}
+                    alt={parfume.brand.brand_name}
                     style={{ height: "30px" }}
                   />
                 </div>
