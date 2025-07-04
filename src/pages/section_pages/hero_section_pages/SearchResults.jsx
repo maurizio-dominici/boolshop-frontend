@@ -10,13 +10,16 @@ export default function SearchResults() {
 
   // Leggi i parametri dalla URL
   const params = new URLSearchParams(location.search);
-  const [productName] = useState(params.get("product_name") || "");
+  const [productName, setProductName] = useState(
+    params.get("product_name") || ""
+  );
   const [brandId, setBrandId] = useState(params.get("brand_id") || "");
   const [gender, setGender] = useState(params.get("gender") || "");
   const [minPrice, setMinPrice] = useState(params.get("min_price") || "");
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
 
   // Stati temporanei per i filtri
+  const [tempProductName, setTempProductName] = useState(productName);
   const [tempBrandId, setTempBrandId] = useState(brandId);
   const [tempGender, setTempGender] = useState(gender);
   const [tempMinPrice, setTempMinPrice] = useState(minPrice);
@@ -30,6 +33,8 @@ export default function SearchResults() {
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
     const newParams = new URLSearchParams(location.search);
+    if (tempProductName) newParams.set("product_name", tempProductName);
+    else newParams.delete("product_name");
     if (tempBrandId) newParams.set("brand_id", tempBrandId);
     else newParams.delete("brand_id");
     if (tempGender) newParams.set("gender", tempGender);
@@ -40,6 +45,7 @@ export default function SearchResults() {
     else newParams.delete("max_price");
 
     navigate(`/parfumes?${newParams.toString()}`);
+    setProductName(tempProductName);
     setBrandId(tempBrandId);
     setGender(tempGender);
     setMinPrice(tempMinPrice);
@@ -50,6 +56,15 @@ export default function SearchResults() {
     <div className="container mt-4">
       {/* Filtri */}
       <div className="row mb-3">
+        <div className="col">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Nome prodotto"
+            value={tempProductName}
+            onChange={(e) => setTempProductName(e.target.value)}
+          />
+        </div>
         <div className="col">
           <select
             className="form-select"
