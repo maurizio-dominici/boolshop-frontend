@@ -122,8 +122,12 @@ export default function SearchResults() {
             onChange={(e) => setTempBrandSlug(e.target.value)}
           >
             <option value="">Tutte le marche</option>
-            <option value="1">Dior</option>
-            <option value="2">Chanel</option>
+            <option value="dior">Dior</option>
+            <option value="chanel">Chanel</option>
+            <option value="calvin_klein">Calvin Klein</option>
+            <option value="giorgio_armani">Giorgio Armani</option>
+            <option value="maison_lumière">Maison Lumière</option>
+            <option value="nordica_scents">Nordica Scents</option>
             {/* aggiungere altre marche */}
           </select>
         </div>
