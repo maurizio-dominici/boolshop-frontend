@@ -44,6 +44,100 @@ export default function SearchResults() {
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
+    // Validazione dei filtri price
+    if (tempMinPrice && isNaN(tempMinPrice)) {
+      alert("Il prezzo minimo deve essere un numero.");
+      return;
+    }
+
+    if (tempMinPrice && Number(tempMinPrice) < 0) {
+      alert("Il prezzo minimo non può essere minore di 0.");
+      return;
+    }
+
+    if (tempMinPrice && Number(tempMinPrice) > 1000) {
+      alert("Il prezzo minimo non può essere maggiore di 1000.");
+      return;
+    }
+
+    if (tempMaxPrice && isNaN(tempMaxPrice)) {
+      alert("Il prezzo massimo deve essere un numero.");
+      return;
+    }
+
+    if (tempMaxPrice && Number(tempMaxPrice) < 0) {
+      alert("Il prezzo massimo non può essere minore di 0.");
+      return;
+    }
+
+    if (tempMaxPrice && Number(tempMaxPrice) > 1000) {
+      alert("Il prezzo massimo non può essere maggiore di 1000.");
+      return;
+    }
+
+    if (
+      tempMinPrice &&
+      tempMaxPrice &&
+      parseFloat(tempMinPrice) > parseFloat(tempMaxPrice)
+    ) {
+      alert("Il prezzo minimo non può essere maggiore del prezzo massimo.");
+      return;
+    }
+
+    // Validazione del nome del prodotto
+    if (tempProductName && tempProductName.length > 50) {
+      alert("Il nome del prodotto non può essere più lungo di 50 caratteri.");
+      return;
+    }
+
+    if (tempProductName && tempProductName.length < 1) {
+      alert("Il nome del prodotto deve essere lungo almeno 1 carattere.");
+      return;
+    }
+
+    // Validazione del brand
+    if (
+      tempBrandSlug &&
+      ![
+        "dior",
+        "chanel",
+        "calvin_klein",
+        "giorgio_armani",
+        "maison_lumière",
+        "nordica_scents",
+      ].includes(tempBrandSlug)
+    ) {
+      alert(
+        "Marca non valida. Scegli tra Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents."
+      );
+      return;
+    }
+    // Validazione della size del prodotto
+    if (tempSize && !["xs", "s", "m", "l", "xl", "xxl"].includes(tempSize)) {
+      alert("Formato non valido. Scegli tra xs, s, m, l, xl, xxl.");
+      return;
+    }
+    // Validazione del genere
+    if (tempGender && !["male", "female", "unisex"].includes(tempGender)) {
+      alert("Genere non valido. Scegli tra Uomo, Donna o Unisex.");
+      return;
+    }
+
+    // validazione dell'ordinamento
+    const validOrderBy = [
+      "",
+      "products.price ASC",
+      "products.price DESC",
+      "products.name ASC",
+      "products.name DESC",
+      "products.size_ml ASC",
+      "products.size_ml DESC",
+    ];
+    if (tempOrderBy && !validOrderBy.includes(tempOrderBy)) {
+      alert("Ordinamento non valido.");
+      return;
+    }
+
     const newParams = new URLSearchParams(location.search);
     if (tempProductName) newParams.set("product_name", tempProductName);
     else newParams.delete("product_name");
@@ -75,7 +169,11 @@ export default function SearchResults() {
       {/* Filtri */}
       <div className="row mb-3">
         <div className="col">
+          <label htmlFor="order-by" className="form-label">
+            Ordina per
+          </label>
           <select
+            id="order-by"
             className="form-select"
             value={tempOrderBy}
             onChange={(e) => setTempOrderBy(e.target.value)}
@@ -91,7 +189,11 @@ export default function SearchResults() {
         </div>
 
         <div className="col">
+          <label htmlFor="brand-size" className="form-label">
+            Size
+          </label>
           <select
+            id="brand-size"
             className="form-select"
             value={tempSize}
             onChange={(e) => setTempSize(e.target.value)}
@@ -107,7 +209,11 @@ export default function SearchResults() {
         </div>
 
         <div className="col">
+          <label htmlFor="product-name" className="form-label">
+            Nome prodotto
+          </label>
           <input
+            id="product-name"
             type="text"
             className="form-control"
             placeholder="Nome prodotto"
@@ -116,7 +222,11 @@ export default function SearchResults() {
           />
         </div>
         <div className="col">
+          <label htmlFor="brand-slug" className="form-label">
+            Marca
+          </label>
           <select
+            id="brand-slug"
             className="form-select"
             value={tempBrandSlug}
             onChange={(e) => setTempBrandSlug(e.target.value)}
@@ -132,7 +242,11 @@ export default function SearchResults() {
           </select>
         </div>
         <div className="col">
+          <label htmlFor="gender" className="form-label">
+            Genere
+          </label>
           <select
+            id="gender"
             className="form-select"
             value={tempGender}
             onChange={(e) => setTempGender(e.target.value)}
@@ -144,7 +258,11 @@ export default function SearchResults() {
           </select>
         </div>
         <div className="col">
+          <label htmlFor="min-price" className="form-label">
+            Prezzo minimo
+          </label>
           <input
+            id="min-price"
             type="number"
             className="form-control"
             placeholder="Prezzo minimo"
@@ -153,7 +271,11 @@ export default function SearchResults() {
           />
         </div>
         <div className="col">
+          <label htmlFor="max-price" className="form-label">
+            Prezzo massimo
+          </label>
           <input
+            id="max-price"
             type="number"
             className="form-control"
             placeholder="Prezzo massimo"
