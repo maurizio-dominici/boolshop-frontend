@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // LA CHIAMATA API LA FACCIO QUI OPPURE LA FACCIAMO NEL CONTEXT E LA RICHIEDIAMO QUI? PER ORA LA FACCIO QUI
 
@@ -51,7 +52,7 @@ export default function Checkout() {
         {/* ANAGRAFICI */}
 
         {/* NOME */}
-        <div className="col-3">
+        <div className="col-12 col-md-6 col-lg-3">
           <label htmlFor="first_name" className="form-label">
             Nome
           </label>
@@ -66,7 +67,7 @@ export default function Checkout() {
           />
         </div>
         {/* COGNOME */}
-        <div className="col-3">
+        <div className="col-12 col-md-6 col-lg-3">
           <label htmlFor="last_name" className="form-label">
             Cognome
           </label>
@@ -81,7 +82,7 @@ export default function Checkout() {
           />
         </div>
         {/* EMAIL */}
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <label htmlFor="email" className="form-label">
             E-Mail
           </label>
@@ -98,7 +99,7 @@ export default function Checkout() {
 
         {/* DATI INDIRIZZO */}
 
-        <div className="col-4">
+        <div className="col-12 col-md-4">
           <label htmlFor="country" className="form-label">
             Paese
           </label>
@@ -120,7 +121,7 @@ export default function Checkout() {
 
         {/* CITTÁ */}
 
-        <div className="col-4">
+        <div className="col-12 col-md-4">
           <label htmlFor="city" className="form-label">
             Cittá
           </label>
@@ -137,7 +138,7 @@ export default function Checkout() {
 
         {/* CODICE POSTALE */}
 
-        <div className="col-4">
+        <div className="col-12 col-md-4">
           <label htmlFor="postal_code" className="form-label">
             Codice Postale
           </label>
@@ -156,7 +157,7 @@ export default function Checkout() {
 
         {/* NOME STRADA INDIRIZZO */}
 
-        <div className="col-9">
+        <div className="col-12 col-md-9">
           <label htmlFor="street" className="form-label">
             Indirizzo
           </label>
@@ -173,7 +174,7 @@ export default function Checkout() {
 
         {/* NUMERO CIVICO */}
 
-        <div className="col-3">
+        <div className="col-12 col-md-3">
           <label htmlFor="civic_number" className="form-label">
             Numero Civico
           </label>
@@ -205,12 +206,80 @@ export default function Checkout() {
 
         {/* RIEPILOGO CARRELLO DA AGGIUNGE */}
 
-        <div className="col-3">
-          <button className="btn btn-primary" type="submit">
-            Vai al pagamento
+        <div className="col-12">
+          <h5>Riepilogo Carrello</h5>
+          {clientInfo.cart && clientInfo.cart.length > 0 ? (
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Prodotto</th>
+                    <th>Quantità</th>
+                    <th>Prezzo unitario</th>
+                    <th>Totale</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clientInfo.cart.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.name}</td>
+                      <td>{item.quantity}</td>
+                      <td>€{item.price}</td>
+                      <td>€{(item.price * item.quantity).toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan={3}>
+                      <b>Totale ordine</b>
+                    </td>
+                    <td>
+                      <b>
+                        €
+                        {clientInfo.cart
+                          .reduce(
+                            (sum, item) => sum + item.price * item.quantity,
+                            0
+                          )
+                          .toFixed(2)}
+                      </b>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          ) : (
+            <div>Il carrello è vuoto.</div>
+          )}
+        </div>
+
+        {/* SALVA I DATI INSERITI, TANTO IMPORTANTE, 
+        CALCOLEREMO IL TOTALE FINALE NEL BACK CON VALIDAZIONE DEL CODICE SCONTO,
+         BISOGNA TROVARE IL MODO PER MOSTRARLO FORSE? 
+         ALTRIMENTI NON FACCIAMO VEDERE NULLA E NEL PAGAMENTO STRIPE SARÁ PRESENTE IL PREZZO SCONTATO 
+         SE IL CODICE É VALIDO */}
+
+        <div className="col-12 col-md-3">
+          <button className="btn btn-primary w-100" type="submit">
+            Inserisci i dati per procedere col pagamento
           </button>
         </div>
       </form>
+
+      <h3 className="mt-5">PAGAMENTO CON STRIPE</h3>
+
+      {/* PARTE FRONT CON STRIPE, GESTIREMO DOPO MA NON SO ANCORA BENE COME, 
+        SICURO CHIAMATA API CHE CREA paymentIntent E CON UN res.json RIPORTA IL client_secret,
+         NECESSARIO AL FRONT */}
+      <div className="card-footer d-flex flex-column flex-md-row justify-content-between">
+        <Link to={-1} className="btn btn-outline-secondary my-3">
+          Torna indietro
+        </Link>
+        <Link to="/recipit" className="btn btn-primary my-3 ">
+          Paga ora
+        </Link>
+      </div>
     </div>
   );
 }
