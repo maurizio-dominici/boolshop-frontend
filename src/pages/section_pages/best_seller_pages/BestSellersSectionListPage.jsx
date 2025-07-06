@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function BestSellersSectionListPage() {
   const { bestSellers, getBestSellersParfumes, loading, error } =
     useContext(ParfumeAPIContext);
+  console.debug("bestSellers", bestSellers);
 
   useEffect(() => {
     getBestSellersParfumes();
