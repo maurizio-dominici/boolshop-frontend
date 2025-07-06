@@ -58,19 +58,25 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="container mt-5">
+      {/* <div className="card shadow row"> */}
       <div className="card shadow">
         {product.image ? (
           <img
             src={product.image}
             alt={product.name}
-            className="card-img-top"
+            // className="card-img-top d-block col-12 col-md-6"
+            className="card-img-top d-block"
+
+            style={{ maxHeight: "300px", objectFit: "contain" }}
           />
         ) : (
+          // <div className="bg-secondary text-white text-center py-5 col-12 col-md-6">
           <div className="bg-secondary text-white text-center py-5">
             Nessuna immagine disponibile
           </div>
         )}
 
+        {/* <div className="card-body col-12 col-md-6"> */}
         <div className="card-body">
           <h2>{product.name}</h2>
           <p>{product.description}</p>
@@ -91,11 +97,13 @@ export default function ProductDetailsPage() {
               Sconto: -{product.discount.discount_amount}%
             </p>
           )}
+
+          
+          <button onClick={() => cartAdd(product)} className="btn btn-success">
+            Aggiungi al carrello
+          </button>
         </div>
 
-        <button onClick={() => cartAdd(product)} className="btn btn-success">
-          Aggiungi al carrello
-        </button>
 
         <div className="card-footer d-flex justify-content-between">
           <Link to={-1} className="btn btn-outline-secondary">
