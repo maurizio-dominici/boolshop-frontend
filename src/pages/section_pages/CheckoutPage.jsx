@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+useNavigate;
 
 // LA CHIAMATA API LA FACCIO QUI OPPURE LA FACCIAMO NEL CONTEXT E LA RICHIEDIAMO QUI? PER ORA LA FACCIO QUI
 
@@ -17,6 +18,7 @@ export default function Checkout() {
       )
     );
   }
+  const navigate = useNavigate();
 
   const initialClientInfo = {
     first_name: "",
@@ -44,13 +46,13 @@ export default function Checkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(`${BASE_URL}/checkout`, clientInfo)
-      .then((res) => console.log(res.data));
-    console.log("Dati cliente:", clientInfo);
-    setClientInfo(initialClientInfo);
-    localStorage.clear();
-    // Qui potresti voler reindirizzare l'utente a una pagina di conferma o pagamento
+    axios.post(`${BASE_URL}/checkout`, clientInfo).then((res) => {
+      console.log(res.data);
+      setClientInfo(initialClientInfo);
+      const ordine = res.data;
+      navigate("/recipt", { state: { ordine } });
+      // localStorage.clear();
+    });
   };
 
   return (
@@ -277,7 +279,7 @@ export default function Checkout() {
 
         <div className="col-12 col-md-3">
           <button className="btn btn-primary w-100" type="submit">
-            Inserisci i dati per procedere col pagamento
+            Paga ora(**Inserisci i dati per procedere col pagamento)
           </button>
         </div>
       </form>
@@ -291,7 +293,7 @@ export default function Checkout() {
         <Link to={-1} className="btn btn-outline-secondary my-3">
           Torna indietro
         </Link>
-        <Link to="/recipit" className="btn btn-primary my-3 ">
+        <Link to="/recipit" className="btn btn-primary my-3 disabled">
           Paga ora
         </Link>
       </div>
