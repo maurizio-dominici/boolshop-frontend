@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
+import { useCartPopup } from "../../context/CartPopupContext";
 
 export default function Card({ item }) {
+  const { updateCartPopup } = useCartPopup();
+
   const cartAdd = (product) => {
-    // # DEBUG
-    // window.localStorage.clear();
-
-    // console.log("product", product);
-    // console.log("window.localStorage.getItem('cart')", window.localStorage.getItem("cart"));
-
     const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
 
     const isProductInCart =
@@ -18,26 +15,21 @@ export default function Card({ item }) {
     let addedItem = {};
     if (isProductInCart) {
       addedItem = cart.find((cartItem) => cartItem.slug === product.slug);
-      // console.log("addedItem", addedItem);
       addedItem.quantity += 1;
     } else {
       addedItem = product;
       addedItem.quantity = 1;
       cart.push(addedItem);
     }
-    // console.log("cart", JSON.stringify(cart));
 
     window.localStorage.setItem("cart", JSON.stringify(cart));
-    // console.log(window.localStorage.getItem("cart"));
+
+    updateCartPopup(cart);
 
     console.log(
       "LOG FINALE CARRELLO",
       JSON.parse(window.localStorage.getItem("cart"))
     );
-
-    // window.localStorage.setItem(key, value);
-    // window.localStorage.getItem(key);
-    // window.localStorage.removeItemItem(key);
   };
 
   return (
@@ -66,15 +58,11 @@ export default function Card({ item }) {
             <strong>Formato:</strong> {item.size_ml}ml
           </p>
           {item.discount.discount_amount !== 0 ? (
-            <p className="bg-success ">
-              <strong>Sconto:</strong> {item.discount.discount_amount}%
-            </p>
+            <span id="discount" className="badge">
+              {item.discount.discount_amount}%
+            </span>
           ) : (
-            <>
-              <p>
-                <strong>Sconto:</strong> Nessuno
-              </p>
-            </>
+            <></>
           )}
         </div>
       </Link>

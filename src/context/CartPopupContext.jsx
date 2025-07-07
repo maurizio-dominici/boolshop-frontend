@@ -1,58 +1,95 @@
+// import { createContext, useContext, useState } from "react";
+
+// const CartPopupContext = createContext();
+
+// const cartPopupInitialData = {
+//     cart: [],
+//     show: false,
+// };
+
+// function CartPopupProvider ({ children }) {
+
+//     const [ cartPopupData, setCartPopupData ] = useState(cartPopupInitialData);
+
+//     const showCartPopup = (cart = []) => {
+//         setCartPopupData({ cart, show: true });
+
+//         // setTimeout(() => {
+//         //     hideCartPopup(cartPopupInitialData);
+//         // }, 5000);
+//     };
+
+//     const hideCartPopup = () => {
+//         setCartPopupData(cartPopupInitialData);
+//     };
+
+//     const cartPopupHandler = {
+//         data: cartPopupData,
+//         showCartPopup,
+//         hideCartPopup,
+//     };
+
+//     return (
+//         <CartPopupContext.Provider value={cartPopupHandler}>
+//             {children}
+//         </CartPopupContext.Provider>
+//     );
+// };
+
+// function useCartPopup () {
+//     return useContext(CartPopupContext);
+// };
+
+// export { CartPopupProvider, useCartPopup };
+
+// TEST PER REATTIVITÁ DEL CART SENZA CHIUDERE E RIAPRIRE
+
 import { createContext, useContext, useState } from "react";
-
-
 
 const CartPopupContext = createContext();
 
-
-
 const cartPopupInitialData = {
-    cart: [],
-    show: false,
+  cart: [],
+  show: false,
 };
 
+function CartPopupProvider({ children }) {
+  const [cartPopupData, setCartPopupData] = useState(cartPopupInitialData);
 
+  const showCartPopup = (newCart = []) => {
+    setCartPopupData({
+      cart: newCart,
+      show: true,
+    });
+  };
 
+  const updateCartPopup = (newCart) => {
+    setCartPopupData((prev) => ({
+      ...prev,
+      cart: newCart,
+    }));
+  };
 
+  const hideCartPopup = () => {
+    setCartPopupData(cartPopupInitialData);
+  };
 
-function CartPopupProvider ({ children }) {
+  const cartPopupHandler = {
+    data: cartPopupData,
+    showCartPopup,
+    updateCartPopup,
+    hideCartPopup,
+  };
 
-    const [ cartPopupData, setCartPopupData ] = useState(cartPopupInitialData);
-    
+  return (
+    <CartPopupContext.Provider value={cartPopupHandler}>
+      {children}
+    </CartPopupContext.Provider>
+  );
+}
 
-    const showCartPopup = (cart = []) => {
-        setCartPopupData({ cart, show: true });
-
-        // setTimeout(() => {
-        //     hideCartPopup(cartPopupInitialData);
-        // }, 5000);
-    };
-    
-    const hideCartPopup = () => {
-        setCartPopupData(cartPopupInitialData);
-    };
-
-    const cartPopupHandler = {
-        data: cartPopupData,
-        showCartPopup,
-        hideCartPopup,
-    };
-    
-
-
-    return (
-        <CartPopupContext.Provider value={cartPopupHandler}>
-            {children}
-        </CartPopupContext.Provider>
-    );
-};
-
-
-
-function useCartPopup () {
-    return useContext(CartPopupContext);
-};
-
-
+function useCartPopup() {
+  return useContext(CartPopupContext);
+}
 
 export { CartPopupProvider, useCartPopup };

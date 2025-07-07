@@ -21,7 +21,7 @@ export default function LatestArrivalsSection() {
         </div>
         <div className="row">
           {recents.slice(0, 3).map((parfume) => (
-            <div key={parfume.id} className="col-md-4 mb-3">
+            <div key={parfume.id} className="col-lg-4 mb-3">
               <Card item={parfume} />
             </div>
           ))}
