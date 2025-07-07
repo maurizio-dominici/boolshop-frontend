@@ -49,7 +49,7 @@ export default function Checkout() {
     axios.post(`${BASE_URL}/checkout`, clientInfo).then((res) => {
       console.log(res.data);
       setClientInfo(initialClientInfo);
-      const ordine = res.data;
+      const ordine = res.data.orderRecap;
       navigate("/recipt", { state: { ordine } });
       localStorage.clear();
     });
