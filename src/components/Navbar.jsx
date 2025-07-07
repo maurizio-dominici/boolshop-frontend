@@ -22,7 +22,7 @@ export default function Navbar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to={"/"} className="nav-link" aria-current="page">
-                Home
+                <i class="bi bi-house-door"></i>
               </NavLink>
             </li>
             <li className="nav-item">
@@ -37,7 +37,7 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <NavLink to={"/cart"} className="nav-link">
-                Carrello
+                <i class="bi bi-cart"></i>
               </NavLink>
             </li>
             <li className="nav-item">
