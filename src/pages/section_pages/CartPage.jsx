@@ -58,7 +58,7 @@ export default function CartPage() {
                   <div className="col-md-3">
                     <ul className="mb-0">
                       <li>
-                        <b className="text-start">Nome Prodotto:</b> {item.name}
+                        <b className="text-start">Nome Prodotto:</b> <Link to={`/product/${item.slug}`} className="text-decoration-none">{item.name}</Link>
                       </li>
                       <li>
                         <b>Brand:</b> {item.brand?.brand_name || "-"}
@@ -112,6 +112,27 @@ export default function CartPage() {
                 </div>
               ))}
             </div>
+
+            <h4>
+              Totale carrello: €
+              {/* {
+                JSON.parse(window.localStorage.getItem("cart"))
+                  .reduce(
+                    (sum, item) => sum + item.price * item.quantity,
+                      0
+                  )
+                  .toFixed(2)
+              } */}
+              {
+                JSON.parse(window.localStorage.getItem("cart"))
+                  .reduce(
+                    (sum, item) => sum + getFinalPrice(item) * item.quantity,
+                      0
+                  )
+                  .toFixed(2)
+              }
+            </h4>
+
             <div className="card-footer d-flex justify-content-between">
               <Link to={-1} className="btn btn-outline-secondary my-3">
                 Torna indietro

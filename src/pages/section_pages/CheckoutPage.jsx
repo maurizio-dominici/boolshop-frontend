@@ -10,6 +10,14 @@ const BASE_URL = "http://localhost:3000";
 // CARREL
 
 export default function Checkout() {
+
+  function getFinalPrice(item) {
+    return parseFloat(
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
+        2
+      )
+    );
+  }
   const navigate = useNavigate();
 
   const initialClientInfo = {
@@ -240,9 +248,15 @@ export default function Checkout() {
                     <td>
                       <b>
                         €
-                        {clientInfo.cart
+                        {/* {clientInfo.cart
                           .reduce(
                             (sum, item) => sum + item.price * item.quantity,
+                            0
+                          )
+                          .toFixed(2)} */}
+                        {clientInfo.cart
+                          .reduce(
+                            (sum, item) => sum + getFinalPrice(item) * item.quantity,
                             0
                           )
                           .toFixed(2)}
