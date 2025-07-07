@@ -21,12 +21,12 @@ export const ParfumeAPIProvider = ({ children }) => {
     orderBy,
     size
   ) => {
-    if (!query.trim()) {
-      setParfumes([]);
-      setLoading(false);
-      setError(null);
-      return;
-    }
+    // if (!query.trim()) {
+    //   setParfumes([]);
+    //   setLoading(false);
+    //   setError(null);
+    //   return;
+    // }
 
     setLoading(true);
     const params = new URLSearchParams();
