@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 ul {
   list-style: none;
 }
@@ -46,5 +50,12 @@ a {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: red;
+  background-color: green;
+}
+
+#quantity {
+  border-radius: 5px;
+  padding: 5px 0px;
+  max-width: 4rem;
+  text-align: center;
 }

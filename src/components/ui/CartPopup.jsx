@@ -68,11 +68,12 @@ export default function CartPopup() {
                         className="btn m-1"
                         onClick={() => removeItem(cartItem)}
                       >
-                        <i class="bi bi-trash"></i>{" "}
+                        <i className="bi bi-trash"></i>{" "}
                       </button>
                       <button
                         className="btn m-1"
                         onClick={() => updateQuantity(cartItem, -1)}
+                        disabled={cartItem.quantity <= 1}
                       >
                         -
                       </button>

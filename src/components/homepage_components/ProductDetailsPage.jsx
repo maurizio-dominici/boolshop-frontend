@@ -24,26 +24,62 @@ export default function ProductDetailsPage() {
 
   if (!product) return <p>Caricamento in corso...</p>;
 
+  const handleInputChange = (e) => {
+    setProduct((product) => ({
+      ...product,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  // const cartAdd = (product) => {
+  //   const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
+
+  //   const isProductInCart =
+  //     cart.find((cartItem) => cartItem.slug === product.slug) === undefined
+  //       ? false
+  //       : true;
+
+  //   let addedItem = {};
+  //   if (isProductInCart) {
+  //     addedItem = cart.find((cartItem) => cartItem.slug === product.slug);
+  //     addedItem.quantity += 1;
+  //   } else {
+  //     addedItem = product;
+  //     addedItem.quantity = 1;
+  //     cart.push(addedItem);
+  //   }
+
+  //   window.localStorage.setItem("cart", JSON.stringify(cart));
+  //   updateCartPopup(cart);
+
+  //   console.log(
+  //     "LOG FINALE CARRELLO",
+  //     JSON.parse(window.localStorage.getItem("cart"))
+  //   );
+  // };
+
+  // DA RIVEDERE BENE
+
   const cartAdd = (product) => {
     const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
-
     const isProductInCart =
       cart.find((cartItem) => cartItem.slug === product.slug) === undefined
         ? false
         : true;
 
+    if (!product.quantity) product.quantity = 1;
+
     let addedItem = {};
     if (isProductInCart) {
       addedItem = cart.find((cartItem) => cartItem.slug === product.slug);
-      addedItem.quantity += 1;
+      addedItem.quantity =
+        parseInt(addedItem.quantity) + parseInt(product.quantity);
     } else {
       addedItem = product;
-      addedItem.quantity = 1;
       cart.push(addedItem);
     }
 
     window.localStorage.setItem("cart", JSON.stringify(cart));
-
     updateCartPopup(cart);
 
     console.log(
@@ -92,10 +128,23 @@ export default function ProductDetailsPage() {
               Sconto: -{product.discount.discount_amount}%
             </p>
           )}
-
-          <button onClick={() => cartAdd(product)} className="btn btn-success">
-            Aggiungi al carrello
-          </button>
+          <div className="d-flex gap-3 align-items-center">
+            <input
+              type="text"
+              id="quantity"
+              value={product.quantity}
+              onChange={handleInputChange}
+              placeholder="1"
+              pattern="\d"
+              maxLength={2}
+            />
+            <button
+              onClick={() => cartAdd(product)}
+              className="btn btn-success"
+            >
+              Aggiungi al carrello
+            </button>
+          </div>
         </div>
 
         <div className="card-footer d-flex justify-content-between">
