@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 useNavigate;
+import Payment from "../../components/Payment";
 
 // LA CHIAMATA API LA FACCIO QUI OPPURE LA FACCIAMO NEL CONTEXT E LA RICHIEDIAMO QUI? PER ORA LA FACCIO QUI
 
@@ -287,6 +288,7 @@ export default function Checkout() {
 
       {/* <h3 className="mt-5">PAGAMENTO CON STRIPE</h3> */}
 
+      <Payment />
       {/* PARTE FRONT CON STRIPE, GESTIREMO DOPO MA NON SO ANCORA BENE COME, 
         SICURO CHIAMATA API CHE CREA paymentIntent E CON UN res.json RIPORTA IL client_secret,
          NECESSARIO AL FRONT */}
