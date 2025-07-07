@@ -13,7 +13,7 @@ export default function BestSellersSectionListPage() {
 
   return (
     <ProductList
-      title="Tutti i nostri Ultimi Arrivi"
+      title="Tutti i nostri Best Sellers"
       products={bestSellers}
       loading={loading}
       error={error}
