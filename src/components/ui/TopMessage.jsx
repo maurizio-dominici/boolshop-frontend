@@ -10,7 +10,7 @@ export default function TopMessage () {
 
     return (
         <>
-            <div className="container mt-3">
+            <div className="container">
                 {
                     data.show && 
                     (

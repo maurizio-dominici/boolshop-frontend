@@ -25,9 +25,9 @@ function TopMessageProvider ({ children }) {
         if (!text) return;
         setTopMessageData({ text, type, show: true});
 
-        setTimeout(() => {
-            hideTopMessage(topMessageInitialData);
-        }, 5000);
+        // setTimeout(() => {
+        //     hideTopMessage(topMessageInitialData);
+        // }, 5000);
     };
     
     const hideTopMessage = () => {
