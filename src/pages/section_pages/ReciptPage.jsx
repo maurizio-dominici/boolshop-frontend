@@ -19,7 +19,7 @@ export default function ReciptPage() {
           <h2>Dettagli Ordine</h2>
           <p>ID Ordine: {ordine.orderId}</p>
           <p>Totale: {ordine.total_price}€</p>
-          {ordine.sicount_amount !== 0 && (
+          {ordine.discountAmount !== 0 && (
             <p>Percentuale di sconto: {ordine.discountAmount}%</p>
           )}
           <p>Spese di spedizione: {ordine.shipment_price}€</p>
