@@ -76,7 +76,7 @@ export default function Card({ item }) {
         className="btn btn-primary hovered z-1"
         onClick={() => cartAdd(item)}
       >
-        Aggiungi
+        <i className="bi bi-cart3 m-3 icon-m"></i>
       </button>
     </div>
   );

@@ -37,8 +37,10 @@ a {
 
 /* # POPUP CON IL CARRELLO */
 #CartPopup {
+  /* ABBOZZATA PER ORA, NON RESPONSIVE */
+  width: 16vw;
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  /* top: 1rem; */
+  right: 0px;
   z-index: 1000;
 }
