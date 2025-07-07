@@ -65,10 +65,16 @@ export default function Card({ item }) {
           <p>
             <strong>Formato:</strong> {item.size_ml}ml
           </p>
-          {item.discount.discount_amount !== 0 && (
-            <p>
-              <strong>Sconto:</strong> {item.discount.discount_amount}
+          {item.discount.discount_amount !== 0 ? (
+            <p className="bg-success ">
+              <strong>Sconto:</strong> {item.discount.discount_amount}%
             </p>
+          ) : (
+            <>
+              <p>
+                <strong>Sconto:</strong> Nessuno
+              </p>
+            </>
           )}
         </div>
       </Link>
