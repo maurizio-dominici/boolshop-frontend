@@ -10,6 +10,7 @@ import ProductDetailsPage from "./components/homepage_components/ProductDetailsP
 import CheckoutPage from "./pages/section_pages/CheckoutPage";
 import CartPage from "./pages/section_pages/CartPage";
 import ReciptPage from "./pages/section_pages/ReciptPage";
+import NotFoundPage from './pages/NotFoundPage';
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromise } from "./assets/stripe";
 
@@ -39,6 +40,8 @@ export default function App() {
 
               {/* Dettaglio prodotto */}
               <Route path="/product/:slug" element={<ProductDetailsPage />} />
+
+              <Route path='*' element={<NotFoundPage />} />
             </Route>
           </Routes>
         </Elements>
