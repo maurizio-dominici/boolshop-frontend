@@ -39,7 +39,7 @@ export default function BestSellersSectionListPage() {
                     <strong>Prezzo:</strong> {item.price}€
                   </p>
                   <p>
-                    <strong>Formato:</strong> {item.size}
+                    <strong>Formato:</strong> {item.size_ml}ml
                   </p>
                   {/* <Link to={`/product/${item.slug}`}>
                     <button className="btn btn-outline-primary">
