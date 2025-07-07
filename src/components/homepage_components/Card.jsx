@@ -44,7 +44,7 @@ export default function Card({ item }) {
     <div className="card h-100 text-center product-card">
       <Link to={`/product/${item.slug}`} className="text-decoration-none">
         <img
-          src={item.image_url}
+          src={item.image}
           alt={item.name}
           className="card-img-top"
           style={{ maxHeight: "200px", objectFit: "contain" }}
