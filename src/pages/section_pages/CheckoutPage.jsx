@@ -10,7 +10,6 @@ const BASE_URL = "http://localhost:3000";
 // CARREL
 
 export default function Checkout() {
-
   function getFinalPrice(item) {
     return parseFloat(
       (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
@@ -51,7 +50,7 @@ export default function Checkout() {
       setClientInfo(initialClientInfo);
       const ordine = res.data;
       navigate("/recipt", { state: { ordine } });
-      // localStorage.clear();
+      localStorage.clear();
     });
   };
 
@@ -256,7 +255,8 @@ export default function Checkout() {
                           .toFixed(2)} */}
                         {clientInfo.cart
                           .reduce(
-                            (sum, item) => sum + getFinalPrice(item) * item.quantity,
+                            (sum, item) =>
+                              sum + getFinalPrice(item) * item.quantity,
                             0
                           )
                           .toFixed(2)}
@@ -279,24 +279,25 @@ export default function Checkout() {
 
         <div className="col-12 col-md-3">
           <button className="btn btn-primary w-100" type="submit">
-            Paga ora(**Inserisci i dati per procedere col pagamento)
+            Paga ora
+            {/* (**Inserisci i dati per procedere col pagamento) */}
           </button>
         </div>
       </form>
 
-      <h3 className="mt-5">PAGAMENTO CON STRIPE</h3>
+      {/* <h3 className="mt-5">PAGAMENTO CON STRIPE</h3> */}
 
       {/* PARTE FRONT CON STRIPE, GESTIREMO DOPO MA NON SO ANCORA BENE COME, 
         SICURO CHIAMATA API CHE CREA paymentIntent E CON UN res.json RIPORTA IL client_secret,
          NECESSARIO AL FRONT */}
-      <div className="card-footer d-flex flex-column flex-md-row justify-content-between">
+      {/* <div className="card-footer d-flex flex-column flex-md-row justify-content-between">
         <Link to={-1} className="btn btn-outline-secondary my-3">
           Torna indietro
         </Link>
         <Link to="/recipit" className="btn btn-primary my-3 disabled">
           Paga ora
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

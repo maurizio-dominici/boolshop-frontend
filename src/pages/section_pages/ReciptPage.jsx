@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function ReciptPage() {
@@ -43,6 +43,10 @@ export default function ReciptPage() {
       ) : (
         <p>Nessun ordine disponibile.</p>
       )}
+
+      <Link to={"/"} className="btn btn-primary my-3">
+        Torna alla Home
+      </Link>
     </div>
   );
 }
