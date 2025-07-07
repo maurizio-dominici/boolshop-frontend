@@ -21,6 +21,7 @@ export default function SearchResults() {
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
   const [orderBy, setOrderBy] = useState(params.get("order_by") || "");
   const [size, setSize] = useState(params.get("size") || "");
+  const [showFilters, setShowFilters] = useState(false);
 
   // Stati temporanei per i filtri
   const [tempProductName, setTempProductName] = useState(productName);
@@ -46,7 +47,7 @@ export default function SearchResults() {
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
-    // Validazione dei filtri price
+    // Validazione del filtro per price
     if (tempMinPrice && isNaN(tempMinPrice)) {
       alert("Il prezzo minimo deve essere un numero.");
       return;
@@ -86,18 +87,13 @@ export default function SearchResults() {
       return;
     }
 
-    // Validazione del nome del prodotto
+    // Validazione del filtro nome del prodotto
     if (tempProductName && tempProductName.length > 50) {
       alert("Il nome del prodotto non può essere più lungo di 50 caratteri.");
       return;
     }
 
-    if (tempProductName && tempProductName.length < 1) {
-      alert("Il nome del prodotto deve essere lungo almeno 1 carattere.");
-      return;
-    }
-
-    // Validazione del brand
+    // Validazione del filtro brand
     if (
       tempBrandSlug &&
       ![
@@ -110,22 +106,24 @@ export default function SearchResults() {
       ].includes(tempBrandSlug)
     ) {
       alert(
-        "Marca non valida. Scegli tra Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents."
+        "Marca non valida. Scegli tra una di queste: Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents."
       );
       return;
     }
-    // Validazione della size del prodotto
+
+    // Validazione del filtro size
     if (tempSize && !["xs", "s", "m", "l", "xl", "xxl"].includes(tempSize)) {
       alert("Formato non valido. Scegli tra xs, s, m, l, xl, xxl.");
       return;
     }
-    // Validazione del genere
+
+    // Validazione del filtro genere
     if (tempGender && !["male", "female", "unisex"].includes(tempGender)) {
       alert("Genere non valido. Scegli tra Uomo, Donna o Unisex.");
       return;
     }
 
-    // validazione dell'ordinamento
+    // validazione del filtro per ordinamento
     const validOrderBy = [
       "",
       "products.price ASC",
@@ -139,7 +137,7 @@ export default function SearchResults() {
       alert("Ordinamento non valido.");
       return;
     }
-
+    // Aggiorna parametri della URL in base ai filtri selezionati
     const newParams = new URLSearchParams(location.search);
     if (tempProductName) newParams.set("product_name", tempProductName);
     else newParams.delete("product_name");
@@ -156,6 +154,7 @@ export default function SearchResults() {
     if (tempSize) newParams.set("size", tempSize);
     else newParams.delete("size");
 
+    // Naviga alla nuova URL con i parametri aggiornati
     navigate(`/parfumes?${newParams.toString()}`);
     setProductName(tempProductName);
     setBrandSlug(tempBrandSlug);
@@ -168,132 +167,158 @@ export default function SearchResults() {
 
   return (
     <div className="container mt-4">
-      {/* Filtri */}
-      <div className="row mb-3">
-        <div className="col">
-          <label htmlFor="order-by" className="form-label">
-            Ordina per
-          </label>
-          <select
-            id="order-by"
-            className="form-select"
-            value={tempOrderBy}
-            onChange={(e) => setTempOrderBy(e.target.value)}
-          >
-            <option value="">Ordina per...</option>
-            <option value="products.price ASC">Prezzo crescente</option>
-            <option value="products.price DESC">Prezzo decrescente</option>
-            <option value="products.name ASC">Nome A-Z</option>
-            <option value="products.name DESC">Nome Z-A</option>
-            <option value="products.size_ml ASC">Min Size</option>
-            <option value="products.size_ml DESC">Max Size</option>
-          </select>
-        </div>
-
-        <div className="col">
-          <label htmlFor="brand-size" className="form-label">
-            Size
-          </label>
-          <select
-            id="brand-size"
-            className="form-select"
-            value={tempSize}
-            onChange={(e) => setTempSize(e.target.value)}
-          >
-            <option value="">Filtra per Size</option>
-            <option value="xs">xs</option>
-            <option value="s">s</option>
-            <option value="m">m</option>
-            <option value="l">l</option>
-            <option value="xl">xl</option>
-            <option value="xxl">xxl</option>
-          </select>
-        </div>
-
-        <div className="col">
-          <label htmlFor="product-name" className="form-label">
-            Nome prodotto
-          </label>
-          <input
-            id="product-name"
-            type="text"
-            className="form-control"
-            placeholder="Nome prodotto"
-            value={tempProductName}
-            onChange={(e) => setTempProductName(e.target.value)}
-          />
-        </div>
-        <div className="col">
-          <label htmlFor="brand-slug" className="form-label">
-            Marca
-          </label>
-          <select
-            id="brand-slug"
-            className="form-select"
-            value={tempBrandSlug}
-            onChange={(e) => setTempBrandSlug(e.target.value)}
-          >
-            <option value="">Tutte le marche</option>
-            <option value="dior">Dior</option>
-            <option value="chanel">Chanel</option>
-            <option value="calvin_klein">Calvin Klein</option>
-            <option value="giorgio_armani">Giorgio Armani</option>
-            <option value="maison_lumière">Maison Lumière</option>
-            <option value="nordica_scents">Nordica Scents</option>
-            {/* aggiungere altre marche */}
-          </select>
-        </div>
-        <div className="col">
-          <label htmlFor="gender" className="form-label">
-            Genere
-          </label>
-          <select
-            id="gender"
-            className="form-select"
-            value={tempGender}
-            onChange={(e) => setTempGender(e.target.value)}
-          >
-            <option value="">Tutti i generi</option>
-            <option value="male">Uomo</option>
-            <option value="female">Donna</option>
-            <option value="unisex">Unisex</option>
-          </select>
-        </div>
-        <div className="col">
-          <label htmlFor="min-price" className="form-label">
-            Prezzo minimo
-          </label>
-          <input
-            id="min-price"
-            type="number"
-            className="form-control"
-            placeholder="Prezzo minimo"
-            value={tempMinPrice}
-            onChange={(e) => setTempMinPrice(e.target.value)}
-          />
-        </div>
-        <div className="col">
-          <label htmlFor="max-price" className="form-label">
-            Prezzo massimo
-          </label>
-          <input
-            id="max-price"
-            type="number"
-            className="form-control"
-            placeholder="Prezzo massimo"
-            value={tempMaxPrice}
-            onChange={(e) => setTempMaxPrice(e.target.value)}
-          />
-        </div>
-        <div className="col">
-          <button
-            className="btn btn-primary w-100"
-            onClick={handleApplyFilters}
-          >
-            Applica filtri
-          </button>
-        </div>
+      <div className="mb-3">
+        <button
+          className="btn btn-outline-secondary"
+          onClick={() => setShowFilters((prev) => !prev)}
+        >
+          {showFilters ? "Nascondi filtri" : "Mostra filtri avanzati"}
+        </button>
       </div>
+
+      {/* Filtri raggruppati in un menu a tendina */}
+      {showFilters && (
+        <div className="card card-body mb-3">
+          <div className="row">
+            {/* Filtro nome prodotto  */}
+            <div className="col">
+              <label htmlFor="product-name" className="form-label">
+                Nome prodotto
+              </label>
+              <input
+                id="product-name"
+                type="text"
+                className="form-control"
+                placeholder="Nome prodotto"
+                value={tempProductName}
+                onChange={(e) => setTempProductName(e.target.value)}
+              />
+            </div>
+
+            {/* Filtro per size prodotto */}
+            <div className="col">
+              <label htmlFor="brand-size" className="form-label">
+                Size
+              </label>
+              <select
+                id="brand-size"
+                className="form-select"
+                value={tempSize}
+                onChange={(e) => setTempSize(e.target.value)}
+              >
+                <option value="">Filtra per Size</option>
+                <option value="xs">xs</option>
+                <option value="s">s</option>
+                <option value="m">m</option>
+                <option value="l">l</option>
+                <option value="xl">xl</option>
+                <option value="xxl">xxl</option>
+              </select>
+            </div>
+
+            {/* Filtro per ordinare  */}
+            <div className="col">
+              <label htmlFor="order-by" className="form-label">
+                Ordina per
+              </label>
+              <select
+                id="order-by"
+                className="form-select"
+                value={tempOrderBy}
+                onChange={(e) => setTempOrderBy(e.target.value)}
+              >
+                <option value="">Ordina per...</option>
+                <option value="products.price ASC">Prezzo crescente</option>
+                <option value="products.price DESC">Prezzo decrescente</option>
+                <option value="products.name ASC">Nome A-Z</option>
+                <option value="products.name DESC">Nome Z-A</option>
+                <option value="products.size_ml ASC">Min Size</option>
+                <option value="products.size_ml DESC">Max Size</option>
+              </select>
+            </div>
+
+            {/* Filtro per marca */}
+            <div className="col">
+              <label htmlFor="brand-slug" className="form-label">
+                Marca
+              </label>
+              <select
+                id="brand-slug"
+                className="form-select"
+                value={tempBrandSlug}
+                onChange={(e) => setTempBrandSlug(e.target.value)}
+              >
+                <option value="">Tutte le marche</option>
+                <option value="dior">Dior</option>
+                <option value="chanel">Chanel</option>
+                <option value="calvin_klein">Calvin Klein</option>
+                <option value="giorgio_armani">Giorgio Armani</option>
+                <option value="maison_lumière">Maison Lumière</option>
+                <option value="nordica_scents">Nordica Scents</option>
+              </select>
+            </div>
+
+            {/* Filtro per genere  */}
+            <div className="col">
+              <label htmlFor="gender" className="form-label">
+                Genere
+              </label>
+              <select
+                id="gender"
+                className="form-select"
+                value={tempGender}
+                onChange={(e) => setTempGender(e.target.value)}
+              >
+                <option value="">Tutti i generi</option>
+                <option value="male">Uomo</option>
+                <option value="female">Donna</option>
+                <option value="unisex">Unisex</option>
+              </select>
+            </div>
+
+            {/* Filtro per prezzo minimo */}
+            <div className="col">
+              <label htmlFor="min-price" className="form-label">
+                Prezzo minimo
+              </label>
+              <input
+                id="min-price"
+                type="number"
+                className="form-control"
+                placeholder="Prezzo minimo"
+                value={tempMinPrice}
+                onChange={(e) => setTempMinPrice(e.target.value)}
+              />
+            </div>
+
+            {/* Filtro per prezzo massimo */}
+            <div className="col">
+              <label htmlFor="max-price" className="form-label">
+                Prezzo massimo
+              </label>
+              <input
+                id="max-price"
+                type="number"
+                className="form-control"
+                placeholder="Prezzo massimo"
+                value={tempMaxPrice}
+                onChange={(e) => setTempMaxPrice(e.target.value)}
+              />
+            </div>
+
+            {/* Bottone per applicare i filtri */}
+            <div className="col">
+              <button
+                className="btn btn-primary w-100 mt-4"
+                onClick={handleApplyFilters}
+              >
+                Applica filtri
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Risultati della ricerca */}
       <h2 className="fw-bold mb-4">Risultati della ricerca</h2>
       {loading && <p>Caricamento...</p>}
@@ -304,10 +329,7 @@ export default function SearchResults() {
       <div className="row">
         {parfumes.map((item) => (
           <div key={item.id} className="col-md-4 mb-4">
-            <Link 
-              to={`/product/${item.slug}`} 
-              className="text-decoration-none"
-            >
+            <Link to={`/product/${item.slug}`} className="text-decoration-none">
               <div className="card h-100 text-center">
                 <img
                   src={item.image_url}
@@ -315,23 +337,23 @@ export default function SearchResults() {
                   className="card-img-top"
                   style={{ maxHeight: "200px", objectFit: "contain" }}
                 />
-                  <div className="card-body">
-                    <h5 className="card-title">{item.name}</h5>
-                    <p className="card-text">{item.description}</p>
-                    <p>
-                      <strong>Brand:</strong> {item.brand.brand_name}
-                    </p>
-                    <p>
-                      <strong>Gender</strong> {item.gender}
-                    </p>
-                    <p>
-                      <strong>Prezzo:</strong> {item.price}€
-                    </p>
-                    <p>
-                      <strong>Formato:</strong> {item.size_ml}ml
-                    </p>
-                  </div>
+                <div className="card-body">
+                  <h5 className="card-title">{item.name}</h5>
+                  <p className="card-text">{item.description}</p>
+                  <p>
+                    <strong>Brand:</strong> {item.brand.brand_name}
+                  </p>
+                  <p>
+                    <strong>Gender</strong> {item.gender}
+                  </p>
+                  <p>
+                    <strong>Prezzo:</strong> {item.price}€
+                  </p>
+                  <p>
+                    <strong>Formato:</strong> {item.size_ml}ml
+                  </p>
                 </div>
+              </div>
             </Link>
           </div>
         ))}
