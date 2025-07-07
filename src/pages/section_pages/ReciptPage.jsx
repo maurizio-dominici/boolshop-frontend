@@ -18,24 +18,26 @@ export default function ReciptPage() {
         <div>
           <h2>Dettagli Ordine</h2>
           <p>ID Ordine: {ordine.orderId}</p>
-          <p>Totale: {ordine.total_price}</p>
-          {ordine.sicount_amount && (
-            <p>Percentuale di sconto: {ordine.discount_amount}</p>
+          <p>Totale: {ordine.total_price}€</p>
+          {ordine.sicount_amount !== 0 && (
+            <p>Percentuale di sconto: {ordine.discountAmount}%</p>
           )}
-          <p>Prezzo finale pagato: {ordine.final_price}</p>
-          {/* <p>Prodotti acquistati:</p>
+          <p>Spese di spedizione: {ordine.shipment_price}€</p>
+          <p>Prezzo finale pagato: {ordine.final_price}€</p>
+          <p>Prodotti acquistati:</p>
           {ordine.checkoutCart &&
           ordine.checkoutCart.cartProducts.length > 0 ? (
             <ul>
               {ordine.checkoutCart.cartProducts.map((item, index) => (
                 <li key={index}>
-                  {item.name} - Quantità: {item.quantity} - Prezzo: {item.price}
+                  {item.productName} - Quantità: {item.quantity} - Prezzo:{" "}
+                  {item.productFinalPrice}€
                 </li>
               ))}
             </ul>
           ) : (
             <p>Nessun prodotto acquistato.</p>
-          )} */}
+          )}
           {/* Aggiungi altri dettagli dell'ordine qui */}
         </div>
       ) : (
