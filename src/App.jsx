@@ -11,7 +11,7 @@ import CheckoutPage from "./pages/section_pages/CheckoutPage";
 import CartPage from "./pages/section_pages/CartPage";
 import ReciptPage from "./pages/section_pages/ReciptPage";
 import { Elements } from "@stripe/react-stripe-js";
-import { stripePromise } from "./stripe";
+import { stripePromise } from "./assets/stripe";
 
 export default function App() {
   return (
