@@ -10,10 +10,7 @@ export default function Header() {
     <>
       <div className="d-flex justify-content-between align-items-center bg-body-tertiary">
         <Navbar />
-        <NavLink
-          to={"/cart"}
-          className="nav-link bi bi-cart3 m-3 icon-xl"
-        ></NavLink>
+
         <button
           onClick={() => {
             const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
