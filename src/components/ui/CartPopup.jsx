@@ -8,6 +8,11 @@ export default function CartPopup() {
 
   if (!data.show) return <></>;
 
+  console.log("data", data);
+  // console.log("data.show", data.show);
+
+  if (!data.show) return <></>;
+
   return (
     <>
       {data.show && (
@@ -28,7 +33,6 @@ export default function CartPopup() {
                   <span key={cartItem.id}>
                     {cartItem.name} - {cartItem.quantity} x €
                     {cartItem.price.toFixed(2)}
-                    <br />
                   </span>
                 );
               })}
