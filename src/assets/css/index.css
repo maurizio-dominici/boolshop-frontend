@@ -1,3 +1,27 @@
 ul {
   list-style: none;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hovered {
+  position: absolute;
+
+  display: none;
+
+  right: 0.5rem;
+  bottom: 1rem;
+}
+
+.product-card .card-body {
+  position: relative;
+}
+.product-card:hover {
+  position: relative;
+  background-color: #f8f9fa33;
+}
+.product-card:hover .hovered {
+  display: block;
+}

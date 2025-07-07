@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ParfumeAPIContext } from "../../../context/ParfumesContext";
+import Card from "../../../components/homepage_components/Card";
 
 import { Link } from "react-router-dom";
 
@@ -329,32 +330,7 @@ export default function SearchResults() {
       <div className="row">
         {parfumes.map((item) => (
           <div key={item.id} className="col-md-4 mb-4">
-            <Link to={`/product/${item.slug}`} className="text-decoration-none">
-              <div className="card h-100 text-center">
-                <img
-                  src={item.image_url}
-                  alt={item.name}
-                  className="card-img-top"
-                  style={{ maxHeight: "200px", objectFit: "contain" }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{item.name}</h5>
-                  <p className="card-text">{item.description}</p>
-                  <p>
-                    <strong>Brand:</strong> {item.brand.brand_name}
-                  </p>
-                  <p>
-                    <strong>Gender</strong> {item.gender}
-                  </p>
-                  <p>
-                    <strong>Prezzo:</strong> {item.price}€
-                  </p>
-                  <p>
-                    <strong>Formato:</strong> {item.size_ml}ml
-                  </p>
-                </div>
-              </div>
-            </Link>
+            <Card item={item} />
           </div>
         ))}
       </div>
