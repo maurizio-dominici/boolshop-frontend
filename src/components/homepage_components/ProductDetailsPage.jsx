@@ -2,9 +2,15 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
+import { useTopMessage } from "../../context/TopMessageContext";
+
+
 export default function ProductDetailsPage() {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
+
+  const { showTopMessage } = useTopMessage();
 
   useEffect(() => {
     axios
@@ -46,6 +52,8 @@ export default function ProductDetailsPage() {
     window.localStorage.setItem("cart", JSON.stringify(cart));
     // console.log(window.localStorage.getItem("cart"));
 
+    showTopMessage("Prodotto aggiunto al carrello con successo", "success");
+
     console.log(
       "LOG FINALE CARRELLO",
       JSON.parse(window.localStorage.getItem("cart"))
@@ -55,6 +63,9 @@ export default function ProductDetailsPage() {
     // window.localStorage.getItem(key);
     // window.localStorage.removeItemItem(key);
   };
+
+
+
 
   return (
     <div className="container mt-5">
