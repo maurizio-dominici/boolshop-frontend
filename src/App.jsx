@@ -10,34 +10,38 @@ import ProductDetailsPage from "./components/homepage_components/ProductDetailsP
 import CheckoutPage from "./pages/section_pages/CheckoutPage";
 import CartPage from "./pages/section_pages/CartPage";
 import ReciptPage from "./pages/section_pages/ReciptPage";
+import { Elements } from "@stripe/react-stripe-js";
+import { stripePromise } from "./stripe";
 
 export default function App() {
   return (
     <ParfumeAPIProvider>
       <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/parfumes" element={<SearchResults />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/recipt" element={<ReciptPage />} />
+        <Elements stripe={stripePromise}>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/parfumes" element={<SearchResults />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/recipt" element={<ReciptPage />} />
 
-            {/* Sezioni prodotto */}
-            <Route
-              path="/bestsellers"
-              element={<BestSellersSectionListPage />}
-            />
-            <Route
-              path="/recents"
-              element={<LatestArrivalsSectionListPage />}
-            />
-            <Route path="/cart" element={<CartPage />} />
+              {/* Sezioni prodotto */}
+              <Route
+                path="/bestsellers"
+                element={<BestSellersSectionListPage />}
+              />
+              <Route
+                path="/recents"
+                element={<LatestArrivalsSectionListPage />}
+              />
+              <Route path="/cart" element={<CartPage />} />
 
-            {/* Dettaglio prodotto */}
-            <Route path="/product/:slug" element={<ProductDetailsPage />} />
-          </Route>
-        </Routes>
+              {/* Dettaglio prodotto */}
+              <Route path="/product/:slug" element={<ProductDetailsPage />} />
+            </Route>
+          </Routes>
+        </Elements>
       </BrowserRouter>
     </ParfumeAPIProvider>
   );
