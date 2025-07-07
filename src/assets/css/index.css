@@ -34,3 +34,11 @@ a {
 .product-card:hover .hovered {
   display: block;
 }
+
+/* # POPUP CON IL CARRELLO */
+#CartPopup {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
