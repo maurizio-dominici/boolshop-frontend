@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Payment from "../../components/Payment";
 import { useTopMessage } from "../../context/TopMessageContext";
 
 // LA CHIAMATA API LA FACCIO QUI OPPURE LA FACCIAMO NEL CONTEXT E LA RICHIEDIAMO QUI? PER ORA LA FACCIO QUI
@@ -49,12 +48,28 @@ export default function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_URL}/checkout`, clientInfo)
+
+      // CHECKOUT, USA IL TEST, DA CAMBIARE CON LA CHIAMATA API REALE
+
+      .post(
+        `
+        ${BASE_URL}/checkout  `,
+        // `${BASE_URL}/checkout/test`,
+        clientInfo
+      )
       .then((res) => {
         console.log(res.data);
         setClientInfo(initialClientInfo);
         const ordine = res.data.orderRecap;
-        navigate("/recipt", { state: { ordine } });
+        const checkoutCart = res.data.checkoutCart;
+        const clientSecret = res.data.clientSecret;
+        navigate(
+          "/recipt",
+          // "/pagamento",
+          {
+            state: { ordine, checkoutCart, clientSecret },
+          }
+        );
         localStorage.clear();
       })
       .catch((err) => {

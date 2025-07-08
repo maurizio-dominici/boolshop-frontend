@@ -12,9 +12,10 @@ import ProductDetailsPage from "./components/homepage_components/ProductDetailsP
 import CheckoutPage from "./pages/section_pages/CheckoutPage";
 import CartPage from "./pages/section_pages/CartPage";
 import ReciptPage from "./pages/section_pages/ReciptPage";
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from "./pages/NotFoundPage";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromise } from "./assets/stripe";
+import PaymentPage from "./pages/section_pages/PaymentPage";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
                   <Route path="/about-us" element={<AboutUs />} />
                   <Route path="/parfumes" element={<SearchResults />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route path="/pagamento" element={<PaymentPage />} />
                   <Route path="/recipt" element={<ReciptPage />} />
 
                   {/* Sezioni prodotto */}
@@ -43,9 +45,12 @@ export default function App() {
                   <Route path="/cart" element={<CartPage />} />
 
                   {/* Dettaglio prodotto */}
-                  <Route path="/product/:slug" element={<ProductDetailsPage />} />
+                  <Route
+                    path="/product/:slug"
+                    element={<ProductDetailsPage />}
+                  />
 
-                  <Route path='*' element={<NotFoundPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
             </Elements>
