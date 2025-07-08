@@ -51,35 +51,37 @@ export default function Card({ item }) {
         <img
           src={item.image}
           alt={item.name}
-          className="card-img-top"
+          className="card-img-top m-3"
           style={{ maxHeight: "200px", objectFit: "contain" }}
         />
         <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
 
-          <p className="card-text">{item.description}</p>
-          <p>
+          <div className="card-text">{item.description}</div>
+          <div>
             <strong>Brand:</strong> {item.brand.brand_name}
-          </p>
-          <p>
+          </div>
+          <div>
             <strong>Gender</strong> {item.gender}
-          </p>
-          <p>
+          </div>
+          <div>
+            <div>
+              <strong>Formato:</strong> {item.size_ml} ml
+            </div>
             <strong>Prezzo: </strong>
             {item.discount.discount_amount !== 0 ? (
               <>
-                <del>{item.price}€ </del> {getFinalPrice(item)}€
+                <del className="old-price">{item.price} € </del>{" "}
+                <span className="new-price">{getFinalPrice(item)} €</span>
               </>
             ) : (
-              <>{item.price}€</>
+              <>{item.price} €</>
             )}
-          </p>
-          <p>
-            <strong>Formato:</strong> {item.size_ml} ml
-          </p>
+          </div>
+
           {item.discount.discount_amount !== 0 ? (
             <span id="discount" className="badge">
-              {item.discount.discount_amount}%
+              {item.discount.discount_amount} %
             </span>
           ) : (
             <></>

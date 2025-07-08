@@ -6,6 +6,18 @@ ul {
   list-style: none;
 }
 
+.input-group {
+  background-color: lightgray;
+}
+
+.old-price {
+  color: lightgray;
+}
+
+.new-price {
+  color: green;
+}
+
 /* # MESSAGGIO DI AVVISO */
 #TopMessage {
   position: fixed;
