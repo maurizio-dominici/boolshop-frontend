@@ -23,7 +23,8 @@ export default function BestSellersSectionListPage() {
               products={bestSellers}
               loading={loading}
               error={error}
-              backLink="/"
+              // backLink="/"
+              backLink={-1}
             />
           : 
             <ProductListVisualization 
