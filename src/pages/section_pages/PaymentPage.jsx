@@ -70,9 +70,12 @@ export default function PaymentPage() {
           <div>
             <b>Spedizione:</b> €{ordine.shipping_price}
           </div>
-          <div>
-            <b>Sconto:</b> -€{ordine.discountAmount}
-          </div>
+
+          {ordine.discountAmount !== 0 && (
+            <div>
+              <b>Sconto:</b> {ordine.discountAmount}%
+            </div>
+          )}
           <div>
             <b>Totale finale:</b> €{ordine.final_price}
           </div>

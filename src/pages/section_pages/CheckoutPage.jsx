@@ -69,7 +69,6 @@ export default function Checkout() {
             state: { ordine, checkoutCart, clientSecret },
           }
         );
-        localStorage.clear();
       })
       .catch((err) => {
         const errorMessage = err?.response?.data?.error;
