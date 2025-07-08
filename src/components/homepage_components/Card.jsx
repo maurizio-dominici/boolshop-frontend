@@ -37,14 +37,13 @@ export default function Card({ item }) {
     );
   };
 
-
-
   function getFinalPrice(item) {
     return parseFloat(
-      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(2)
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
+        2
+      )
     );
-  };
-
+  }
 
   return (
     <div className="card h-100 text-center product-card">
@@ -66,19 +65,17 @@ export default function Card({ item }) {
             <strong>Gender</strong> {item.gender}
           </p>
           <p>
-            <strong>Prezzo:</strong> 
-              {item.discount.discount_amount !== 0 ? (
-                <>
-                  <del>{item.price}€</del> €{getFinalPrice(item)}
-                </>
-              ) : (
-                <>
-                  {item.price}€
-                </>
-              )}
+            <strong>Prezzo: </strong>
+            {item.discount.discount_amount !== 0 ? (
+              <>
+                <del>{item.price}€ </del> {getFinalPrice(item)}€
+              </>
+            ) : (
+              <>{item.price}€</>
+            )}
           </p>
           <p>
-            <strong>Formato:</strong> {item.size_ml}ml
+            <strong>Formato:</strong> {item.size_ml} ml
           </p>
           {item.discount.discount_amount !== 0 ? (
             <span id="discount" className="badge">

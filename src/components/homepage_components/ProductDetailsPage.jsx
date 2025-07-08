@@ -119,7 +119,7 @@ export default function ProductDetailsPage() {
           </p>
 
           <p>
-            <strong>Prezzo:</strong> €{product.price}
+            <strong>Prezzo:</strong> {product.price}€
           </p>
           <p>
             <strong>Formato:</strong> {product.size_ml}ml
