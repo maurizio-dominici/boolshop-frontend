@@ -4,6 +4,7 @@ import axios from "axios";
 export const ParfumeAPIContext = createContext();
 
 export const ParfumeAPIProvider = ({ children }) => {
+  const [visualization, setVisualization] = useState("grid"); // "grid" or "list"
   const [parfumes, setParfumes] = useState([]);
   const [recents, setRecents] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
@@ -173,6 +174,8 @@ export const ParfumeAPIProvider = ({ children }) => {
         getRecentsParfumes,
         bestSellers,
         getBestSellersParfumes,
+        visualization,
+        setVisualization, 
       }}
     >
       {children}
