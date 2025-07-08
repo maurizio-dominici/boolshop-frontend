@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-useNavigate;
 import Payment from "../../components/Payment";
+import { useTopMessage } from "../../context/TopMessageContext";
 
 // LA CHIAMATA API LA FACCIO QUI OPPURE LA FACCIAMO NEL CONTEXT E LA RICHIEDIAMO QUI? PER ORA LA FACCIO QUI
 
@@ -11,6 +11,8 @@ const BASE_URL = "http://localhost:3000";
 // CARREL
 
 export default function Checkout() {
+  const { showTopMessage } = useTopMessage();
+
   function getFinalPrice(item) {
     return parseFloat(
       (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
@@ -46,13 +48,19 @@ export default function Checkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${BASE_URL}/checkout`, clientInfo).then((res) => {
-      console.log(res.data);
-      setClientInfo(initialClientInfo);
-      const ordine = res.data.orderRecap;
-      navigate("/recipt", { state: { ordine } });
-      localStorage.clear();
-    });
+    axios
+      .post(`${BASE_URL}/checkout`, clientInfo)
+      .then((res) => {
+        console.log(res.data);
+        setClientInfo(initialClientInfo);
+        const ordine = res.data.orderRecap;
+        navigate("/recipt", { state: { ordine } });
+        localStorage.clear();
+      })
+      .catch((err) => {
+        const errorMessage = err?.response?.data?.error;
+        return showTopMessage(errorMessage, "danger");
+      });
   };
 
   return (

@@ -62,7 +62,7 @@ export default function CartPopup() {
             <p className="card-text">
               <strong>Riepilogo del carrello:</strong>
             </p>
-            <p className="card-text">
+            <div className="card-text">
               {data.cart.length > 0 &&
                 data.cart.map((cartItem) => {
                   return (
@@ -77,7 +77,7 @@ export default function CartPopup() {
                         {getFinalPrice(cartItem)} €
                       </span>
 
-                      <div className="d-flex justify-content-center align-items-center">
+                      <div className="d-flex align-items-center">
                         <button
                           className="btn "
                           onClick={() => removeItem(cartItem)}
@@ -136,7 +136,7 @@ export default function CartPopup() {
               {data.cart.length === 0 && (
                 <p className="text-secondary">Il tuo carrello é vuoto.</p>
               )}
-            </p>
+            </div>
           </div>
           {data.cart.length > 0 && (
             <Link to={"/cart"} className="btn btn-primary m-2">
