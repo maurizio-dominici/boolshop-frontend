@@ -29,12 +29,22 @@ export default function Card({ item }) {
     showCartPopup(cart);
     updateCartPopup(cart);
     showTopMessage("Aggiunto al carrello", "success");
+    // showTopMessage("Aggiunto al carrello", "success", false);
 
     console.log(
       "LOG FINALE CARRELLO",
       JSON.parse(window.localStorage.getItem("cart"))
     );
   };
+
+
+
+  function getFinalPrice(item) {
+    return parseFloat(
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(2)
+    );
+  };
+
 
   return (
     <div className="card h-100 text-center product-card">
@@ -56,7 +66,16 @@ export default function Card({ item }) {
             <strong>Gender</strong> {item.gender}
           </p>
           <p>
-            <strong>Prezzo:</strong> {item.price}€
+            <strong>Prezzo:</strong> 
+              {item.discount.discount_amount !== 0 ? (
+                <>
+                  <del>{item.price}€</del> €{getFinalPrice(item)}
+                </>
+              ) : (
+                <>
+                  B {item.price}€
+                </>
+              )}
           </p>
           <p>
             <strong>Formato:</strong> {item.size_ml}ml

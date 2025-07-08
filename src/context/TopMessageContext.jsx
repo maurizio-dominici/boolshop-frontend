@@ -21,13 +21,18 @@ function TopMessageProvider ({ children }) {
     const [ topMessageData, setTopMessageData ] = useState(topMessageInitialData);
     
 
-    const showTopMessage = (text, type = "info") => {
+    const showTopMessage = (text, type = "info", autoClose = true) => {
         if (!text) return;
         setTopMessageData({ text, type, show: true});
 
-        // setTimeout(() => {
-        //     hideTopMessage(topMessageInitialData);
-        // }, 5000);
+        if (autoClose) {
+            setTimeout(() => {
+                hideTopMessage();
+            }, 3000);
+            // setTimeout(() => {
+            //     hideTopMessage(topMessageInitialData);
+            // }, 5000);
+        }
     };
     
     const hideTopMessage = () => {
