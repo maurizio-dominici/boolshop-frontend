@@ -55,17 +55,26 @@ export default function Navbar() {
 
 
 
-      <button
-        onClick={() => {
-          const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
-          showCartPopup(cart);
+      <div className="d-flex align-items-center gap-1">
+        <NavLink 
+          to={"/parfumes"} 
+          // className="nav-link"
+          className="btn btn-outline-secondary"
+        >
+          <i className="bi bi-search icon-xl"></i>
+        </NavLink>
 
-          console.log("cart", cart);
-        }}
-        className="btn btn-primary position-relative"
-      >
-        <i className="bi bi-cart3 m-3 icon-xl"></i>
-      </button>
+        <button
+          onClick={() => {
+            const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
+            showCartPopup(cart);
+            console.log("cart", cart);
+          }}
+          className="btn btn-primary position-relative"
+        >
+          <i className="bi bi-cart3 icon-xl"></i>
+        </button>
+      </div>
     </nav>
   );
 }
