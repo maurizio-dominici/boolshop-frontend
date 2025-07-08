@@ -32,6 +32,7 @@ export default function Homepage() {
         : 
           <ProductListVisualization 
             products={bestSellers} 
+            isHomepage={true}
             link={"/bestsellers"} 
             title={"I nostri Best Seller"} 
             text={"Scoprili tutti"} 
@@ -44,6 +45,7 @@ export default function Homepage() {
         : 
           <ProductListVisualization 
             products={recents} 
+            isHomepage={true}
             link={"/recents"} 
             title={"I nostri Ultimi Arrivi"} 
             text={"Scoprili tutti"} 

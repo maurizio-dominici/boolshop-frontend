@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductListVisualizationItem from "../homepage_components/ProductListVisualizationItem";
 
 
-export default function ProductListVisualization ({ products, title, text, link }) {
+export default function ProductListVisualization ({ products, title, text, link, isHomepage = false }) {
     return (
         <>
             {/* <div className="container">
@@ -33,13 +33,22 @@ export default function ProductListVisualization ({ products, title, text, link 
                     </div>
                     <div className="row">
                         {
-                            products.slice(0, 3).map((parfume) => (
-                                <div key={parfume.id} className="col-12">
-                                    <ProductListVisualizationItem 
-                                        item={parfume} 
-                                    />
-                                </div>
-                            ))
+                            isHomepage ?
+                                products.slice(0, 3).map((parfume) => (
+                                    <div key={parfume.id} className="col-12">
+                                        <ProductListVisualizationItem 
+                                            item={parfume} 
+                                        />
+                                    </div>
+                                ))
+                            :
+                                products.map((parfume) => (
+                                    <div key={parfume.id} className="col-12">
+                                        <ProductListVisualizationItem 
+                                            item={parfume} 
+                                        />
+                                    </div>
+                                ))
                         }
                     </div>
                 </div>
