@@ -52,9 +52,8 @@ export default function Checkout() {
       // CHECKOUT, USA IL TEST, DA CAMBIARE CON LA CHIAMATA API REALE
 
       .post(
-        `
-        ${BASE_URL}/checkout  `,
-        // `${BASE_URL}/checkout/test`,
+        // `${BASE_URL}/checkout  `,
+        `${BASE_URL}/checkout/test`,
         clientInfo
       )
       .then((res) => {
@@ -64,8 +63,8 @@ export default function Checkout() {
         const checkoutCart = res.data.checkoutCart;
         const clientSecret = res.data.clientSecret;
         navigate(
-          "/recipt",
-          // "/pagamento",
+          // "/recipt",
+          "/pagamento",
           {
             state: { ordine, checkoutCart, clientSecret },
           }

@@ -1,4 +1,11 @@
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import {
+  useStripe,
+  useElements,
+  // CardNumberElement,
+  // CardExpiryElement,
+  // CardCvcElement,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,24 +26,28 @@ export default function PaymentForm({ ordine }) {
       return;
     }
 
-    const { error: stripeError, paymentIntent } =
-      await stripe.confirmCardPayment(undefined, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      });
+    const { error: stripeError, paymentIntent } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `http://localhost:5173/recipt`, // PORTA ALLA PAGINA DI SUCCESSO
+      },
+      redirect: "if_required",
+    });
 
     if (stripeError) {
       setError(stripeError.message);
+      // USIAMO IL TOPMESSAGE PER MOSTRARE L'ERRORE (?)
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      navigate("/success", { state: { ordine } });
+      navigate("/recipt", { state: { ordine } });
     }
+    localStorage.clear();
     setLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
+    <form className="container" onSubmit={handleSubmit}>
+      <PaymentElement />
+
       <button
         className="btn btn-primary mt-3"
         type="submit"
