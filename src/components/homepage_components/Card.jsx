@@ -73,7 +73,7 @@ export default function Card({ item }) {
                 </>
               ) : (
                 <>
-                  B {item.price}€
+                  {item.price}€
                 </>
               )}
           </p>
