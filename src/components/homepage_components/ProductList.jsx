@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Card from "./Card";
 
-export default function ProductList({
+export default function ProductList ({
   title,
   products,
   loading,

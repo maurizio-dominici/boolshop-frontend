@@ -1,9 +1,13 @@
 import { NavLink, Link } from "react-router-dom";
+import { useCartPopup } from "../context/CartPopupContext";
+
 
 export default function Navbar() {
+  const { showCartPopup, data } = useCartPopup();
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary px-3">
+      <div className="container-fluid p-0">
         <Link className="navbar-brand" to="/">
           Navbar
         </Link>
@@ -48,6 +52,20 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+
+
+
+      <button
+        onClick={() => {
+          const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
+          showCartPopup(cart);
+
+          console.log("cart", cart);
+        }}
+        className="btn btn-primary position-relative"
+      >
+        <i className="bi bi-cart3 m-3 icon-xl"></i>
+      </button>
     </nav>
   );
 }
