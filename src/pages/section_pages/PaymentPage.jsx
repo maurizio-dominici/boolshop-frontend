@@ -1,0 +1,75 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentForm from "../../components/PaymentForm"; // You need to create this component
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
+
+export default function PaymentPage() {
+  const location = useLocation();
+  console.log("PaymentPage location.state:", location.state);
+  const navigate = useNavigate();
+  const { ordine, checkoutCart, clientSecret } = location.state || {};
+
+  useEffect(() => {
+    if (!ordine || !clientSecret) {
+      // If accessed directly, redirect to home or checkout
+      return <h1>Dati mancanti</h1>;
+    }
+  }, [ordine, clientSecret, navigate]);
+
+  if (!ordine || !clientSecret) return null;
+
+  return (
+    <div className="container">
+      {/* <h2>Pagamento</h2>e */}
+      <h4>Riepilogo Ordine</h4>
+      <div>
+        <div>
+          <b>Nome:</b> {ordine.first_name} {ordine.last_name}
+        </div>
+        <div>
+          <b>Email:</b> {ordine.email}
+        </div>
+        <div>
+          <b>Paese:</b> {ordine.country}
+        </div>
+        <div>
+          <b>Città:</b> {ordine.city}
+        </div>
+        <div>
+          <b>CAP:</b> {ordine.postal_code}
+        </div>
+        <div>
+          <b>Indirizzo:</b> {ordine.street} {ordine.civic_number}
+        </div>
+      </div>
+      <hr />
+      <h4>Dettagli Carrello</h4>
+      <ul>
+        {checkoutCart.cartProducts.map((item) => (
+          <li key={item.id}>
+            {item.productName} x {item.quantity} - €{item.productFinalPrice}
+          </li>
+        ))}
+      </ul>
+      <div>
+        <b>Totale prodotti:</b> €{ordine.total_price}
+      </div>
+      <div>
+        <b>Spedizione:</b> €{ordine.shipping_price}
+      </div>
+      <div>
+        <b>Sconto:</b> -€{ordine.discountAmount}
+      </div>
+      <div>
+        <b>Totale finale:</b> €{ordine.final_price}
+      </div>
+      <hr />
+      <Elements stripe={stripePromise} options={{ clientSecret }}>
+        <PaymentForm ordine={ordine} />
+      </Elements>
+    </div>
+  );
+}
