@@ -243,8 +243,8 @@ export default function Checkout() {
                     <tr key={item.id}>
                       <td>{item.name}</td>
                       <td>{item.quantity}</td>
-                      <td>€{item.price}</td>
-                      <td>€{(item.price * item.quantity).toFixed(2)}</td>
+                      <td>{item.price} €</td>
+                      <td>{(item.price * item.quantity).toFixed(2)} €</td>
                     </tr>
                   ))}
                 </tbody>
@@ -255,7 +255,6 @@ export default function Checkout() {
                     </td>
                     <td>
                       <b>
-                        €
                         {/* {clientInfo.cart
                           .reduce(
                             (sum, item) => sum + item.price * item.quantity,
@@ -268,7 +267,8 @@ export default function Checkout() {
                               sum + getFinalPrice(item) * item.quantity,
                             0
                           )
-                          .toFixed(2)}
+                          .toFixed(2)}{" "}
+                        €
                       </b>
                     </td>
                   </tr>
