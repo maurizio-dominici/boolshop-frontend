@@ -80,7 +80,6 @@ export default function ProductDetailsPage() {
     }
 
     window.localStorage.setItem("cart", JSON.stringify(cart));
-    showCartPopup(cart);
     updateCartPopup(cart);
     showTopMessage("Aggiunto al carrello", "success");
 
@@ -139,6 +138,7 @@ export default function ProductDetailsPage() {
               placeholder="1"
               pattern="\d"
               maxLength={2}
+              defaultValue={1}
             />
             <button
               onClick={() => cartAdd(product)}
