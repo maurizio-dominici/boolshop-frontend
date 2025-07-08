@@ -9,7 +9,7 @@ import { useTopMessage } from "../../context/TopMessageContext";
 export default function ProductDetailsPage() {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
-  const { updateCartPopup } = useCartPopup();
+  const { updateCartPopup, showCartPopup } = useCartPopup();
 
   const { showTopMessage } = useTopMessage();
 
@@ -80,7 +80,9 @@ export default function ProductDetailsPage() {
     }
 
     window.localStorage.setItem("cart", JSON.stringify(cart));
+    showCartPopup(cart);
     updateCartPopup(cart);
+    showTopMessage("Aggiunto al carrello", "success");
 
     console.log(
       "LOG FINALE CARRELLO",

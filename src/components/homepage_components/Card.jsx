@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useCartPopup } from "../../context/CartPopupContext";
+import { useTopMessage } from "../../context/TopMessageContext";
 
 export default function Card({ item }) {
-  const { updateCartPopup } = useCartPopup();
+  const { updateCartPopup, showCartPopup } = useCartPopup();
+  const { showTopMessage } = useTopMessage();
 
   const cartAdd = (product) => {
     const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
@@ -24,7 +26,9 @@ export default function Card({ item }) {
 
     window.localStorage.setItem("cart", JSON.stringify(cart));
 
+    showCartPopup(cart);
     updateCartPopup(cart);
+    showTopMessage("Aggiunto al carrello", "success");
 
     console.log(
       "LOG FINALE CARRELLO",
