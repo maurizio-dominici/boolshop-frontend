@@ -3,10 +3,6 @@ import { useCartPopup } from "../../context/CartPopupContext";
 import { Link } from "react-router-dom";
 
 export default function CartPopup() {
-  const [cart, setCart] = useState(
-    JSON.parse(window.localStorage.getItem("cart"))
-  );
-
   const { data, hideCartPopup, updateCartPopup } = useCartPopup();
 
   console.log("data", data);
