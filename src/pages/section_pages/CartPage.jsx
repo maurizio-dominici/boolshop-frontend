@@ -77,7 +77,7 @@ export default function CartPage() {
                       <b className="">Taglia:</b> {item.size_name}
                     </li>
                     <li>
-                      <b>Formato:</b> {item.size_ml}ml
+                      <b>Formato:</b> {item.size_ml} ml
                     </li>
                   </ul>
                 </div>
@@ -86,13 +86,17 @@ export default function CartPage() {
                 <div className="col-md-3">
                   <ul className="mb-0">
                     <li>
-                      <b>Prezzo originale:</b> €{item.price}
+                      <b>Prezzo originale:</b>{" "}
+                      <del className="old-price"> {item.price} €</del>
                     </li>
                     <li>
-                      <b>Sconto applicato:</b> {item.discount.discount_amount}%
+                      <b>Sconto applicato:</b> {item.discount.discount_amount} %
                     </li>
                     <li>
-                      <b>Prezzo scontato:</b> €{getFinalPrice(item)}
+                      <b>Prezzo scontato:</b>{" "}
+                      <span className="new-price">
+                        {getFinalPrice(item)} €{" "}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -124,7 +128,17 @@ export default function CartPage() {
           </div>
 
           <h4>
-            Totale carrello: €
+            Totale carrello:
+            <span>
+              {" "}
+              {JSON.parse(window.localStorage.getItem("cart"))
+                .reduce(
+                  (sum, item) => sum + getFinalPrice(item) * item.quantity,
+                  0
+                )
+                .toFixed(2)}{" "}
+              €
+            </span>
             {/* {
                 JSON.parse(window.localStorage.getItem("cart"))
                   .reduce(
@@ -133,12 +147,6 @@ export default function CartPage() {
                   )
                   .toFixed(2)
               } */}
-            {JSON.parse(window.localStorage.getItem("cart"))
-              .reduce(
-                (sum, item) => sum + getFinalPrice(item) * item.quantity,
-                0
-              )
-              .toFixed(2)}
           </h4>
 
           <div className="card-footer d-flex justify-content-between">
