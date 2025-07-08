@@ -38,6 +38,16 @@ export default function CartPopup() {
     window.localStorage.setItem("cart", JSON.stringify(updatedCart));
     updateCartPopup(updatedCart);
   };
+  /* IMPORTO FUNZIONE DA CARD */
+
+  function getFinalPrice(item) {
+    return parseFloat(
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
+        2
+      )
+    );
+  }
+
   return (
     <>
       {data.show && (
@@ -51,16 +61,58 @@ export default function CartPopup() {
             ></button>
           </div>
           <div className="card-body">
-            <p className="card-text">Riepilogo del carrello</p>
+            <p className="card-text">
+              <strong>Riepilogo del carrello:</strong>
+            </p>
             <p className="card-text">
               {data.cart.length > 0 &&
                 data.cart.map((cartItem) => {
                   return (
                     <span key={cartItem.id}>
-                      {cartItem.name} - {cartItem.quantity} x €
-                      {cartItem.price.toFixed(2)}
+                      {/* {cartItem.name} : {cartItem.quantity} x <span> </span>
+                      {cartItem.price.toFixed(2)} € */}
                       <br />
-                      <button
+                      {/* parte nuova */}
+                      <span>
+                        <strong>{cartItem.name} : </strong>
+                        {cartItem.quantity} x <span> </span>
+                        {getFinalPrice(cartItem)} €
+                      </span>
+
+                      <div className="d-flex justify-content-center align-items-center">
+                        <button
+                          className="btn "
+                          onClick={() => removeItem(cartItem)}
+                        >
+                          <i className="bi bi-trash"></i>{" "}
+                        </button>
+                        <button
+                          className="btn "
+                          onClick={() => updateQuantity(cartItem, -1)}
+                          disabled={cartItem.quantity <= 1}
+                        >
+                          -
+                        </button>
+                        <button
+                          className="btn "
+                          onClick={() => updateQuantity(cartItem, 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                      {/* parte nuova */}
+                      <span>
+                        <strong>Totale ordine: </strong>
+                        {JSON.parse(window.localStorage.getItem("cart"))
+                          .reduce(
+                            (sum, item) =>
+                              sum + getFinalPrice(item) * item.quantity,
+                            0
+                          )
+                          .toFixed(2)}{" "}
+                        €
+                      </span>
+                      {/* <button
                         className="btn m-1"
                         onClick={() => removeItem(cartItem)}
                       >
@@ -78,7 +130,7 @@ export default function CartPopup() {
                         onClick={() => updateQuantity(cartItem, 1)}
                       >
                         +
-                      </button>
+                      </button> */}
                       <br />
                     </span>
                   );

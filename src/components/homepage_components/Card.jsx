@@ -65,17 +65,17 @@ export default function Card({ item }) {
             <strong>Gender</strong> {item.gender}
           </p>
           <p>
-            <strong>Prezzo:</strong>
+            <strong>Prezzo: </strong>
             {item.discount.discount_amount !== 0 ? (
               <>
-                <del>{item.price}€</del> €{getFinalPrice(item)}
+                <del>{item.price}€ </del> {getFinalPrice(item)}€
               </>
             ) : (
               <>{item.price}€</>
             )}
           </p>
           <p>
-            <strong>Formato:</strong> {item.size_ml}ml
+            <strong>Formato:</strong> {item.size_ml} ml
           </p>
           {item.discount.discount_amount !== 0 ? (
             <span id="discount" className="badge">
