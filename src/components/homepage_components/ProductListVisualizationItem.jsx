@@ -1,0 +1,147 @@
+import { Link } from "react-router-dom";
+import { useCartPopup } from "../../context/CartPopupContext";
+import { useTopMessage } from "../../context/TopMessageContext";
+
+export default function ProductListVisualizationItem ({ item }) {
+  const { updateCartPopup, setCartPopupData } = useCartPopup();
+  const { showTopMessage } = useTopMessage();
+
+  const cartAdd = (product) => {
+    const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
+
+    const isProductInCart =
+      cart.find((cartItem) => cartItem.slug === product.slug) === undefined
+        ? false
+        : true;
+
+    let addedItem = {};
+    if (isProductInCart) {
+      addedItem = cart.find((cartItem) => cartItem.slug === product.slug);
+      addedItem.quantity += 1;
+    } else {
+      addedItem = product;
+      addedItem.quantity = 1;
+      cart.push(addedItem);
+    }
+
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+
+    setCartPopupData(cart);
+    updateCartPopup(cart);
+    showTopMessage("Aggiunto al carrello", "success");
+    // showTopMessage("Aggiunto al carrello", "success", false);
+
+    console.log(
+      "LOG FINALE CARRELLO",
+      JSON.parse(window.localStorage.getItem("cart"))
+    );
+  };
+
+  function getFinalPrice(item) {
+    return parseFloat(
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
+        2
+      )
+    );
+  }
+
+  return (
+
+    // <div className="card mb-3" style={{ maxWidth: "540px", objectFit: "contain" }}>
+    <div className="card product-card mb-3">
+      <Link to={`/product/${item.slug}`} className="text-decoration-none">
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{ maxHeight: "200px", objectFit: "contain" }}
+              className="card-img-top" 
+            />
+            {/* <img
+              src={item.image}
+              alt={item.name}
+              className="card-img-top" 
+            /> */}
+          </div>
+
+
+          {/* <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title">
+                {item.name}
+              </h5>
+              <p className="card-text">
+                {item.description}
+              </p>
+              <p className="card-text">
+                <small className="text-body-secondary">
+                  {item.brand.brand_name}
+                </small>
+              </p>
+            </div>
+          </div> */}
+
+
+
+          <div className="col-md-4">
+            <div className="card-body">
+              <h5 className="card-title">
+                {item.name}
+              </h5>
+              <p className="card-text">
+                {item.description}
+              </p>
+              <p className="card-text">
+                <small className="text-body-secondary">
+                  {item.brand.brand_name}
+                </small>
+              </p>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card-body">
+              <p className="card-text">
+                <strong>Gender</strong> {item.gender}
+              </p>
+              <p className="card-text">
+                <small className="text-body-secondary">
+                  <strong>Prezzo: </strong>
+                  {
+                    item.discount.discount_amount !== 0 ? (
+                      <>
+                        <del>{item.price}€ </del> {getFinalPrice(item)}€
+                      </>
+                    ) : (
+                      <>{item.price}€</>
+                    )
+                  }
+                </small>
+              </p>
+              <p className="card-text">
+                {
+                  item.discount.discount_amount !== 0 ? (
+                    <span id="discount" className="badge">
+                      {item.discount.discount_amount}%
+                    </span>
+                  ) : (
+                    <></>
+                  )
+                }
+              </p>
+            </div>
+          </div>
+
+
+
+        </div>
+      </Link>
+      <button
+        className="btn btn-primary hovered z-1"
+        onClick={() => cartAdd(item)}
+      >
+        <i className="bi bi-cart3 m-3 icon-m"></i>
+      </button>
+    </div>
+  );
+}

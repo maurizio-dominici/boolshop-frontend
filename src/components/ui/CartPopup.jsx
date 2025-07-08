@@ -59,23 +59,24 @@ export default function CartPopup() {
             ></button>
           </div>
           <div className="card-body">
-            <p className="card-text">
+            <div className="card-text">
               <strong>Riepilogo del carrello:</strong>
-            </p>
+            </div>
             <div className="card-text">
               {data.cart.length > 0 &&
                 data.cart.map((cartItem) => {
                   return (
-                    <span key={cartItem.id}>
+                    <div key={cartItem.id}>
                       {/* {cartItem.name} : {cartItem.quantity} x <span> </span>
                       {cartItem.price.toFixed(2)} € */}
                       <br />
                       {/* parte nuova */}
-                      <span>
+
+                      <div>
                         <strong>{cartItem.name} : </strong>
                         {cartItem.quantity} x <span> </span>
                         {getFinalPrice(cartItem)} €
-                      </span>
+                      </div>
 
                       <div className="d-flex align-items-center">
                         <button
@@ -117,13 +118,13 @@ export default function CartPopup() {
                       >
                         +
                       </button> */}
-                      <br />
-                    </span>
+                      {/* <br /> */}
+                    </div>
                   );
                 })}
 
               {/* parte nuova */}
-              <span>
+              <div className="my-3">
                 <strong>Totale ordine: </strong>
                 {data.cart.length > 0 &&
                   data.cart
@@ -133,9 +134,9 @@ export default function CartPopup() {
                     )
                     .toFixed(2)}{" "}
                 €
-              </span>
+              </div>
               {data.cart.length === 0 && (
-                <p className="text-secondary">Il tuo carrello é vuoto.</p>
+                <div className="text-secondary">Il tuo carrello é vuoto.</div>
               )}
             </div>
           </div>
@@ -143,7 +144,7 @@ export default function CartPopup() {
             <Link
               to={"/cart"}
               onClick={hideCartPopup}
-              className="btn btn-primary m-2"
+              className="btn btn-primary "
             >
               Vai al Carrello
             </Link>

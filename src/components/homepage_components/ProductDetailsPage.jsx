@@ -88,6 +88,13 @@ export default function ProductDetailsPage() {
       JSON.parse(window.localStorage.getItem("cart"))
     );
   };
+  function getFinalPrice(item) {
+    return parseFloat(
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
+        2
+      )
+    );
+  }
 
   return (
     <div className="container mt-5">
@@ -98,7 +105,7 @@ export default function ProductDetailsPage() {
             src={product.image}
             alt={product.name}
             // className="card-img-top d-block col-12 col-md-6"
-            className="card-img-top d-block"
+            className="card-img-top d-block m-3"
             style={{ maxHeight: "300px", objectFit: "contain" }}
           />
         ) : (
@@ -111,25 +118,35 @@ export default function ProductDetailsPage() {
         {/* <div className="card-body col-12 col-md-6"> */}
         <div className="card-body">
           <h2>{product.name}</h2>
-          <p>{product.description}</p>
+          <div>{product.description}</div>
 
-          <p>
+          <div>
             <strong>Brand:</strong> {product.brand?.brand_name || "Sconosciuto"}
-          </p>
+          </div>
 
-          <p>
-            <strong>Prezzo:</strong> {product.price}€
-          </p>
-          <p>
-            <strong>Formato:</strong> {product.size_ml}ml
-          </p>
+          <div>
+            <div>
+              <strong>Formato:</strong> {product.size_ml} ml
+            </div>
+            <strong>Prezzo: </strong>
+            {product.discount.discount_amount !== 0 ? (
+              <>
+                <del className="old-price">{product.price} € </del>{" "}
+                <span className="new-price">{getFinalPrice(product)} €</span>
+              </>
+            ) : (
+              <>{product.price} €</>
+            )}
+          </div>
 
-          {product.discount?.discount_amount > 0 && (
-            <p className="text-success">
-              Sconto: -{product.discount.discount_amount}%
-            </p>
+          {product.discount.discount_amount !== 0 ? (
+            <span id="discount" className="badge">
+              {product.discount.discount_amount} %
+            </span>
+          ) : (
+            <></>
           )}
-          <div className="d-flex gap-3 align-items-center">
+          <div className="d-flex gap-3 align-items-center mt-3">
             <input
               type="text"
               id="quantity"

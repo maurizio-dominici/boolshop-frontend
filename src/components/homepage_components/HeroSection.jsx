@@ -27,14 +27,16 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="bg-primary text-white py-5">
-      <div className="container text-center py-5">
+    <section className="bg-primary text-white py-2">
+      <div className="container text-center py-4">
         <h1 className="display-4 fw-bold mb-3">
           Cerca il tuo profumo preferito
         </h1>
-        <p className="lead mb-4">Vivi l'essenza del lusso a ogni spruzzo.</p>
+        <p className="lead mb-4 fs-4">
+          Vivi l'essenza del lusso a ogni spruzzo.
+        </p>
         <form onSubmit={handleSearch}>
-          <div className="input-group mb-2">
+          <div className="input-group mb-2 ">
             <input
               type="text"
               className="form-control form-control-lg"
@@ -47,7 +49,7 @@ export default function HeroSection() {
             <div className="alert alert-danger mb-2">{errorMsg}</div>
           )}
 
-          <button className="btn btn-light btn-lg w-100" type="submit">
+          <button className="btn btn-light btn-lg w-100 mt-3" type="submit">
             Cerca
           </button>
         </form>

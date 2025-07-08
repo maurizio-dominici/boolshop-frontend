@@ -5,10 +5,15 @@ import Card from "../../../components/homepage_components/Card";
 import Filters from "../../../components/Filters";
 import OrderBySelect from "../../../components/OrderBySelect";
 import DiscountedSelect from "../../../components/DiscountedSelect";
+import ProductListVisualization from "../../../components/ui/ProductListVisualization";
+import VisualizationButton from "../../../components/ui/VisualizationButton";
+
+
 
 export default function SearchResults() {
   const {
     parfumes,
+    visualization,
     loading,
     error,
     searchParfumes,
@@ -112,12 +117,42 @@ export default function SearchResults() {
         <p>Nessun profumo trovato per la tua ricerca.</p>
       )}
       <div className="row">
-        {parfumes.map((item) => (
-          <div key={item.id} className="col-md-4 mb-4">
-            <Card item={item} />
-          </div>
-        ))}
+
+        {
+          visualization === "grid" ? 
+            // isHomePage ?
+            //   parfumes.map((item) => (
+            //     <div key={item.id} className="col-md-4 mb-4">
+            //       <Card item={item} />
+            //     </div>
+            //   ))
+            // :
+            //   parfumes.map((item) => (
+            //     <div key={item.id} className="col-md-4 mb-4">
+            //       <Card item={item} />
+            //     </div>
+            //   ))
+
+            parfumes.map((item) => (
+              <div key={item.id} className="col-md-4 mb-4">
+                <Card item={item} />
+              </div>
+            ))
+          : 
+            <ProductListVisualization 
+              products={parfumes} 
+              isHomePage={false}
+            />
+        }
+
+
+
+
+
       </div>
+
+
+      <VisualizationButton />
     </div>
   );
 }

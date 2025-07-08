@@ -6,6 +6,25 @@ ul {
   list-style: none;
 }
 
+/* # PULSANTE MODIFICA VISUALIZZAZIONE */
+#VisualizationButton {
+  position: fixed;
+  bottom: 3.5rem;
+  left: 3.5rem;
+  z-index: 1000;
+}
+.input-group {
+  background-color: lightgray;
+}
+
+.old-price {
+  color: gray;
+}
+
+.new-price {
+  color: green;
+}
+
 /* # MESSAGGIO DI AVVISO */
 #TopMessage {
   position: fixed;
