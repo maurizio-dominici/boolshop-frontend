@@ -19,6 +19,14 @@ export default function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();
   const [showFilters, setShowFilters] = useState(false);
+  const [advancedTempFilters, setAdvancedTempFilters] = useState({
+    productName: filters.productName,
+    brandSlug: filters.brandSlug,
+    gender: filters.gender,
+    minPrice: filters.minPrice,
+    maxPrice: filters.maxPrice,
+    size: filters.size,
+  });
 
   // Aggiorna la ricerca quando cambiano i filtri nelle dipendenze
   useEffect(() => {
@@ -27,34 +35,43 @@ export default function SearchResults() {
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
-    const validationError = validateFilters(filters);
+    const fullFilters = {
+      ...filters,
+      ...advancedTempFilters,
+    };
+
+    const validationError = validateFilters(fullFilters);
     if (validationError) {
       alert(validationError);
       return;
     }
 
-    // Aggiorna parametri della URL in base ai filtri selezionati
+    updateFilters(fullFilters);
+    searchParfumes(fullFilters);
+
     const newParams = new URLSearchParams(location.search);
-    if (filters.productName) newParams.set("product_name", filters.productName);
+    if (fullFilters.productName)
+      newParams.set("product_name", fullFilters.productName);
     else newParams.delete("product_name");
-    if (filters.brandSlug) newParams.set("brand_slug", filters.brandSlug);
+    if (fullFilters.brandSlug)
+      newParams.set("brand_slug", fullFilters.brandSlug);
     else newParams.delete("brand_slug");
-    if (filters.gender) newParams.set("gender", filters.gender);
+    if (fullFilters.gender) newParams.set("gender", fullFilters.gender);
     else newParams.delete("gender");
-    if (filters.minPrice) newParams.set("min_price", filters.minPrice);
+    if (fullFilters.minPrice) newParams.set("min_price", fullFilters.minPrice);
     else newParams.delete("min_price");
-    if (filters.maxPrice) newParams.set("max_price", filters.maxPrice);
+    if (fullFilters.maxPrice) newParams.set("max_price", fullFilters.maxPrice);
     else newParams.delete("max_price");
-    if (filters.orderBy) newParams.set("order_by", filters.orderBy);
+    if (fullFilters.orderBy) newParams.set("order_by", fullFilters.orderBy);
     else newParams.delete("order_by");
-    if (filters.size) newParams.set("size", filters.size);
+    if (fullFilters.size) newParams.set("size", fullFilters.size);
     else newParams.delete("size");
-    if (filters.discounted) newParams.set("discounted", filters.discounted);
+    if (fullFilters.discounted)
+      newParams.set("discounted", fullFilters.discounted);
     else newParams.delete("discounted");
 
     navigate(`/parfumes?${newParams.toString()}`);
   };
-
   // Cambia ordinamento quando selezioni una select
   const handleOrderByChange = (e) => {
     updateFilters({ orderBy: e.target.value });
@@ -98,8 +115,10 @@ export default function SearchResults() {
       {/* Colonna filtri */}
       {showFilters && (
         <Filters
-          filters={filters}
-          onChange={handleFiltersChange}
+          filters={advancedTempFilters}
+          onChange={(newFilters) =>
+            setAdvancedTempFilters((prev) => ({ ...prev, ...newFilters }))
+          }
           onApply={handleApplyFilters}
         />
       )}
