@@ -75,7 +75,7 @@ export default function Card({ item }) {
                 <span className="new-price">{getFinalPrice(item)} €</span>
               </>
             ) : (
-              <>{item.price} €</>
+              <>{item.price} € </>
             )}
           </div>
 
