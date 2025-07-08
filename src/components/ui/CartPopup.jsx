@@ -125,12 +125,13 @@ export default function CartPopup() {
               {/* parte nuova */}
               <span>
                 <strong>Totale ordine: </strong>
-                {JSON.parse(window.localStorage.getItem("cart"))
-                  .reduce(
-                    (sum, item) => sum + getFinalPrice(item) * item.quantity,
-                    0
-                  )
-                  .toFixed(2)}{" "}
+                {data.cart.length > 0 &&
+                  data.cart
+                    .reduce(
+                      (sum, item) => sum + getFinalPrice(item) * item.quantity,
+                      0
+                    )
+                    .toFixed(2)}{" "}
                 €
               </span>
               {data.cart.length === 0 && (
