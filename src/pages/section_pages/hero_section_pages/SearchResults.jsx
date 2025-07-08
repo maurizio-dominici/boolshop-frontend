@@ -166,21 +166,51 @@ export default function SearchResults() {
     setSize(tempSize);
   };
 
+  const handleOrderByChange = (e) => {
+    setTempOrderBy(e.target.value);
+    const newParams = new URLSearchParams(location.search);
+    if (e.target.value) newParams.set("order_by", e.target.value);
+    else newParams.delete("order_by");
+    navigate(`/parfumes?${newParams.toString()}`);
+    setOrderBy(e.target.value);
+  };
+
   return (
     <div className="container mt-4">
-      <div className="mb-3">
-        <button
-          className="btn btn-outline-secondary"
-          onClick={() => setShowFilters((prev) => !prev)}
-        >
-          {showFilters ? "Nascondi filtri" : "Mostra filtri avanzati"}
-        </button>
+      <div className="row mb-3 g-2">
+        <div className="col-12 col-md-3">
+          <label htmlFor="order-by" className="form-label">
+            Ordina per
+          </label>
+          <select
+            id="order-by"
+            className="form-select"
+            value={tempOrderBy}
+            onChange={handleOrderByChange}
+          >
+            <option value="">Ordina per...</option>
+            <option value="products.price ASC">Prezzo crescente</option>
+            <option value="products.price DESC">Prezzo decrescente</option>
+            <option value="products.name ASC">Nome A-Z</option>
+            <option value="products.name DESC">Nome Z-A</option>
+            <option value="products.size_ml ASC">Min Size</option>
+            <option value="products.size_ml DESC">Max Size</option>
+          </select>
+        </div>
+        <div className="col-12 col-md-9 d-flex align-items-end">
+          <button
+            className="btn btn-outline-secondary w-md-auto"
+            onClick={() => setShowFilters((prev) => !prev)}
+          >
+            {showFilters ? "Nascondi filtri" : "Mostra filtri avanzati"}
+          </button>
+        </div>
       </div>
 
       {/* Filtri raggruppati in un menu a tendina */}
       {showFilters && (
         <div className="card card-body mb-3">
-          <div className="row">
+          <div className="row row-cols-1 row-cols-md-3 g-3">
             {/* Filtro nome prodotto  */}
             <div className="col">
               <label htmlFor="product-name" className="form-label">
@@ -214,27 +244,6 @@ export default function SearchResults() {
                 <option value="l">l</option>
                 <option value="xl">xl</option>
                 <option value="xxl">xxl</option>
-              </select>
-            </div>
-
-            {/* Filtro per ordinare  */}
-            <div className="col">
-              <label htmlFor="order-by" className="form-label">
-                Ordina per
-              </label>
-              <select
-                id="order-by"
-                className="form-select"
-                value={tempOrderBy}
-                onChange={(e) => setTempOrderBy(e.target.value)}
-              >
-                <option value="">Ordina per...</option>
-                <option value="products.price ASC">Prezzo crescente</option>
-                <option value="products.price DESC">Prezzo decrescente</option>
-                <option value="products.name ASC">Nome A-Z</option>
-                <option value="products.name DESC">Nome Z-A</option>
-                <option value="products.size_ml ASC">Min Size</option>
-                <option value="products.size_ml DESC">Max Size</option>
               </select>
             </div>
 
