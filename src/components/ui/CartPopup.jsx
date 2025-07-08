@@ -62,7 +62,7 @@ export default function CartPopup() {
             <p className="card-text">
               <strong>Riepilogo del carrello:</strong>
             </p>
-            <p className="card-text">
+            <div className="card-text">
               {data.cart.length > 0 &&
                 data.cart.map((cartItem) => {
                   return (
@@ -98,18 +98,6 @@ export default function CartPopup() {
                           +
                         </button>
                       </div>
-                      {/* parte nuova */}
-                      <span>
-                        <strong>Totale ordine: </strong>
-                        {JSON.parse(window.localStorage.getItem("cart"))
-                          .reduce(
-                            (sum, item) =>
-                              sum + getFinalPrice(item) * item.quantity,
-                            0
-                          )
-                          .toFixed(2)}{" "}
-                        €
-                      </span>
                       {/* <button
                         className="btn m-1"
                         onClick={() => removeItem(cartItem)}
@@ -133,10 +121,23 @@ export default function CartPopup() {
                     </span>
                   );
                 })}
+
+                {/* parte nuova */}
+                <span>
+                  <strong>Totale ordine: </strong>
+                  {JSON.parse(window.localStorage.getItem("cart"))
+                    .reduce(
+                      (sum, item) =>
+                        sum + getFinalPrice(item) * item.quantity,
+                      0
+                    )
+                    .toFixed(2)}{" "}
+                  €
+                </span>
               {data.cart.length === 0 && (
                 <p className="text-secondary">Il tuo carrello é vuoto.</p>
               )}
-            </p>
+            </div>
           </div>
           {data.cart.length > 0 && (
             <Link to={"/cart"} className="btn btn-primary m-2">
