@@ -22,6 +22,7 @@ export default function SearchResults() {
   const [maxPrice, setMaxPrice] = useState(params.get("max_price") || "");
   const [orderBy, setOrderBy] = useState(params.get("order_by") || "");
   const [size, setSize] = useState(params.get("size") || "");
+  const [discounted, setDiscounted] = useState(params.get("discounted") || "");
   const [showFilters, setShowFilters] = useState(false);
 
   // Stati temporanei per i filtri
@@ -32,6 +33,7 @@ export default function SearchResults() {
   const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
   const [tempOrderBy, setTempOrderBy] = useState(orderBy);
   const [tempSize, setTempSize] = useState(size);
+  const [tempDiscounted, setTempDiscounted] = useState(discounted);
 
   // Aggiorna la ricerca quando cambiano i filtri effettivi
   useEffect(() => {
@@ -42,9 +44,19 @@ export default function SearchResults() {
       minPrice,
       maxPrice,
       orderBy,
-      size
+      size,
+      discounted
     );
-  }, [productName, brandSlug, gender, minPrice, maxPrice, orderBy, size]);
+  }, [
+    productName,
+    brandSlug,
+    gender,
+    minPrice,
+    maxPrice,
+    orderBy,
+    size,
+    discounted,
+  ]);
 
   // Applica i filtri solo quando premi il bottone
   const handleApplyFilters = () => {
@@ -154,6 +166,8 @@ export default function SearchResults() {
     else newParams.delete("order_by");
     if (tempSize) newParams.set("size", tempSize);
     else newParams.delete("size");
+    if (tempDiscounted) newParams.set("discounted", tempDiscounted);
+    else newParams.delete("discounted");
 
     // Naviga alla nuova URL con i parametri aggiornati
     navigate(`/parfumes?${newParams.toString()}`);
@@ -164,8 +178,9 @@ export default function SearchResults() {
     setMaxPrice(tempMaxPrice);
     setOrderBy(tempOrderBy);
     setSize(tempSize);
+    setDiscounted(tempDiscounted);
   };
-
+  // Cambia ordinamento quando selezioni una select
   const handleOrderByChange = (e) => {
     setTempOrderBy(e.target.value);
     const newParams = new URLSearchParams(location.search);
@@ -173,6 +188,15 @@ export default function SearchResults() {
     else newParams.delete("order_by");
     navigate(`/parfumes?${newParams.toString()}`);
     setOrderBy(e.target.value);
+  };
+  // Seleziona prodotti se scontati o non
+  const handleDiscauntedChange = (e) => {
+    setTempDiscounted(e.target.value);
+    const newParams = new URLSearchParams(location.search);
+    if (e.target.value) newParams.set("discounted", e.target.value);
+    else newParams.delete("discounted");
+    navigate(`/parfumes?${newParams.toString()}`);
+    setDiscounted(e.target.value);
   };
 
   return (
@@ -197,6 +221,23 @@ export default function SearchResults() {
             <option value="products.size_ml DESC">Max Size</option>
           </select>
         </div>
+
+        <div className="col-12 col-md-3">
+          <label htmlFor="discounted" className="form-label">
+            Sconto
+          </label>
+          <select
+            id="discounted"
+            className="form-select"
+            value={tempDiscounted}
+            onChange={handleDiscauntedChange}
+          >
+            <option value="">Tutti</option>
+            <option value="true">Scontati</option>
+            <option value="false">Non Scontati</option>
+          </select>
+        </div>
+
         <div className="col-12 col-md-9 d-flex align-items-end">
           <button
             className="btn btn-outline-secondary w-md-auto"
