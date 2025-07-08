@@ -25,7 +25,6 @@ export default function CartPopup() {
       (cartItem) => cartItem.quantity > 0
     );
 
-    setCart(filteredCart);
     window.localStorage.setItem("cart", JSON.stringify(filteredCart));
     console.log(JSON.parse(window.localStorage.getItem("cart")));
     updateCartPopup(updatedCart);
@@ -34,7 +33,6 @@ export default function CartPopup() {
   const removeItem = (item) => {
     const updatedCart = data.cart.filter((cartItem) => cartItem.id !== item.id);
     console.debug("updatedCart", updatedCart);
-    setCart(updatedCart);
     window.localStorage.setItem("cart", JSON.stringify(updatedCart));
     updateCartPopup(updatedCart);
   };
