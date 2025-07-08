@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "../../components/PaymentForm";
 
+// QUI CI VA LA VOSTRA CHIAVE PUBBLICA DI STRIPE
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
 export default function PaymentPage() {

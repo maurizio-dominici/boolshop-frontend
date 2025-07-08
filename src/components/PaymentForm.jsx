@@ -29,7 +29,6 @@ export default function PaymentForm({ ordine }) {
     if (stripeError) {
       setError(stripeError.message);
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      // Redirect SPA-style
       navigate("/success", { state: { ordine } });
     }
     setLoading(false);
