@@ -71,12 +71,15 @@ export default function SearchResults() {
   return (
     <div className="container mt-4">
       <div className="row mb-3 g-2">
+        {/* Colonna Order By */}
         <div className="col-12 col-md-3">
           <OrderBySelect
             value={filters.orderBy}
             onChange={handleOrderByChange}
           />
         </div>
+
+        {/* Colonna sconti */}
         <div className="col-12 col-md-3">
           <DiscountedSelect
             value={filters.discounted}
@@ -92,7 +95,7 @@ export default function SearchResults() {
           </button>
         </div>
       </div>
-
+      {/* Colonna filtri */}
       {showFilters && (
         <Filters
           filters={filters}
