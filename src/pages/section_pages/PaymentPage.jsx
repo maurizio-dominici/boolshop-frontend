@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import PaymentForm from "../../components/PaymentForm"; // You need to create this component
+import PaymentForm from "../../components/PaymentForm";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
@@ -14,7 +14,6 @@ export default function PaymentPage() {
 
   useEffect(() => {
     if (!ordine || !clientSecret) {
-      // If accessed directly, redirect to home or checkout
       return <h1>Dati mancanti</h1>;
     }
   }, [ordine, clientSecret, navigate]);
@@ -23,8 +22,7 @@ export default function PaymentPage() {
 
   return (
     <div className="container">
-      {/* <h2>Pagamento</h2>e */}
-      <h4>Riepilogo Ordine</h4>
+      <h2>Pagamento</h2>e<h4>Riepilogo Ordine</h4>
       <div>
         <div>
           <b>Nome:</b> {ordine.first_name} {ordine.last_name}

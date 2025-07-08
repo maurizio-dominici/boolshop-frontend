@@ -55,7 +55,6 @@ export default function Checkout() {
         const ordine = res.data.orderRecap;
         const checkoutCart = res.data.checkoutCart;
         const clientSecret = res.data.clientSecret;
-        // Redirect to /pagamento with orderRecap, checkoutCart and clientSecret
         navigate("/pagamento", {
           state: { ordine, checkoutCart, clientSecret },
         });
