@@ -20,14 +20,15 @@ export default function LatestArrivalsSectionListPage() {
               products={recents}
               loading={loading}
               error={error}
-              backLink="/"
+              // backLink="/"
+              backLink={-1}
             />
           : 
             <ProductListVisualization 
               products={recents} 
               link={"/recents"} 
               title={"I nostri Ultimi Arrivi"} 
-              text={"Scoprili tutti"} 
+              text={"Scoprili tutti"}
             />
         }
 

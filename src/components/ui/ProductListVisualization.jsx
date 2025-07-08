@@ -21,13 +21,13 @@ export default function ProductListVisualization ({ products, title, text, link,
                         {
                             title &&
                             <h2 className="fw-bold">
-                                {title} {/* (ProductListVisualization) */}
+                                {title}
                             </h2>
                         }
                         {
                             link &&
                             <Link to={link || "/parfumes"}>
-                                <button className="btn btn-primary">{text}</button>
+                                <button className="btn btn-primary">{text || "Visualizza tutti i profumi"}</button>
                             </Link>
                         }
                     </div>
@@ -42,13 +42,28 @@ export default function ProductListVisualization ({ products, title, text, link,
                                     </div>
                                 ))
                             :
-                                products.map((parfume) => (
-                                    <div key={parfume.id} className="col-12">
-                                        <ProductListVisualizationItem 
-                                            item={parfume} 
-                                        />
+                                <>
+                                    {
+                                        products.map((parfume) => (
+                                            <div key={parfume.id} className="col-12">
+                                                <ProductListVisualizationItem 
+                                                    item={parfume} 
+                                                />
+                                            </div>
+                                        ))
+                                    }
+
+                                    {/* <div className="mt-4">
+                                        <Link to={'/'} className="btn btn-secondary">
+                                            Torna indietro
+                                        </Link>
+                                    </div> */}
+                                    <div className="mt-4">
+                                        <Link to={-1} className="btn btn-secondary">
+                                            Torna indietro
+                                        </Link>
                                     </div>
-                                ))
+                                </>
                         }
                     </div>
                 </div>

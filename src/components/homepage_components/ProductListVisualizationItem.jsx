@@ -46,8 +46,6 @@ export default function ProductListVisualizationItem ({ item }) {
   }
 
   return (
-
-    // <div className="card mb-3" style={{ maxWidth: "540px", objectFit: "contain" }}>
     <div className="card product-card mb-3">
       <Link to={`/product/${item.slug}`} className="text-decoration-none">
         <div className="row g-0">
@@ -58,29 +56,7 @@ export default function ProductListVisualizationItem ({ item }) {
               style={{ maxHeight: "200px", objectFit: "contain" }}
               className="card-img-top" 
             />
-            {/* <img
-              src={item.image}
-              alt={item.name}
-              className="card-img-top" 
-            /> */}
           </div>
-
-
-          {/* <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">
-                {item.name}
-              </h5>
-              <p className="card-text">
-                {item.description}
-              </p>
-              <p className="card-text">
-                <small className="text-body-secondary">
-                  {item.brand.brand_name}
-                </small>
-              </p>
-            </div>
-          </div> */}
 
 
 
@@ -105,18 +81,20 @@ export default function ProductListVisualizationItem ({ item }) {
                 <strong>Gender</strong> {item.gender}
               </p>
               <p className="card-text">
-                <small className="text-body-secondary">
+                {/* <small> */}
                   <strong>Prezzo: </strong>
+
                   {
                     item.discount.discount_amount !== 0 ? (
                       <>
-                        <del>{item.price}€ </del> {getFinalPrice(item)}€
+                        <del className="old-price">{item.price} € </del>{" "}
+                        <span className="new-price">{getFinalPrice(item)} €</span>
                       </>
                     ) : (
-                      <>{item.price}€</>
+                      <>{item.price} € </>
                     )
                   }
-                </small>
+                {/* </small> */}
               </p>
               <p className="card-text">
                 {
@@ -128,6 +106,9 @@ export default function ProductListVisualizationItem ({ item }) {
                     <></>
                   )
                 }
+              </p>
+              <p className="card-text">
+                {item.size_ml}ml ({item.size_name})
               </p>
             </div>
           </div>
