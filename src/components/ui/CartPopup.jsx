@@ -122,25 +122,28 @@ export default function CartPopup() {
                   );
                 })}
 
-                {/* parte nuova */}
-                <span>
-                  <strong>Totale ordine: </strong>
-                  {JSON.parse(window.localStorage.getItem("cart"))
-                    .reduce(
-                      (sum, item) =>
-                        sum + getFinalPrice(item) * item.quantity,
-                      0
-                    )
-                    .toFixed(2)}{" "}
-                  €
-                </span>
+              {/* parte nuova */}
+              <span>
+                <strong>Totale ordine: </strong>
+                {JSON.parse(window.localStorage.getItem("cart"))
+                  .reduce(
+                    (sum, item) => sum + getFinalPrice(item) * item.quantity,
+                    0
+                  )
+                  .toFixed(2)}{" "}
+                €
+              </span>
               {data.cart.length === 0 && (
                 <p className="text-secondary">Il tuo carrello é vuoto.</p>
               )}
             </div>
           </div>
           {data.cart.length > 0 && (
-            <Link to={"/cart"} className="btn btn-primary m-2">
+            <Link
+              to={"/cart"}
+              onClick={hideCartPopup}
+              className="btn btn-primary m-2"
+            >
               Vai al Carrello
             </Link>
           )}
