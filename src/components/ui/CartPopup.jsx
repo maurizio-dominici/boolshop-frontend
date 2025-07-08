@@ -3,10 +3,6 @@ import { useCartPopup } from "../../context/CartPopupContext";
 import { Link } from "react-router-dom";
 
 export default function CartPopup() {
-  const [cart, setCart] = useState(
-    JSON.parse(window.localStorage.getItem("cart"))
-  );
-
   const { data, hideCartPopup, updateCartPopup } = useCartPopup();
 
   console.log("data", data);
@@ -36,7 +32,7 @@ export default function CartPopup() {
   };
 
   const removeItem = (item) => {
-    const updatedCart = cart.filter((cartItem) => cartItem.id !== item.id);
+    const updatedCart = data.cart.filter((cartItem) => cartItem.id !== item.id);
     console.debug("updatedCart", updatedCart);
     setCart(updatedCart);
     window.localStorage.setItem("cart", JSON.stringify(updatedCart));

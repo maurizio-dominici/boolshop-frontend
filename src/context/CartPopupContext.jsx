@@ -64,6 +64,7 @@ function CartPopupProvider({ children }) {
   };
 
   const updateCartPopup = (newCart) => {
+    console.debug("updateCartPopup", newCart);
     setCartPopupData((prev) => ({
       ...prev,
       cart: newCart,
@@ -76,6 +77,7 @@ function CartPopupProvider({ children }) {
 
   const cartPopupHandler = {
     data: cartPopupData,
+    setCartPopupData,
     showCartPopup,
     updateCartPopup,
     hideCartPopup,
