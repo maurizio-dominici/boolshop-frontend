@@ -36,7 +36,7 @@ export default function CartPopup() {
   };
 
   const removeItem = (item) => {
-    const updatedCart = cart.filter((cartItem) => cartItem.id !== item.id);
+    const updatedCart = data.cart.filter((cartItem) => cartItem.id !== item.id);
     console.debug("updatedCart", updatedCart);
     setCart(updatedCart);
     window.localStorage.setItem("cart", JSON.stringify(updatedCart));
