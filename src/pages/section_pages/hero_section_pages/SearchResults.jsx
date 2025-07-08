@@ -6,6 +6,9 @@ import Filters from "../../../components/Filters";
 import OrderBySelect from "../../../components/OrderBySelect";
 import DiscountedSelect from "../../../components/DiscountedSelect";
 import ProductListVisualization from "../../../components/ui/ProductListVisualization";
+import VisualizationButton from "../../../components/ui/VisualizationButton";
+
+
 
 export default function SearchResults() {
   const {
@@ -147,6 +150,9 @@ export default function SearchResults() {
 
 
       </div>
+
+
+      <VisualizationButton />
     </div>
   );
 }

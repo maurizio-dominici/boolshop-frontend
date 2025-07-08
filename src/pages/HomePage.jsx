@@ -2,6 +2,8 @@ import HeroSection from "../components/homepage_components/HeroSection";
 import BestSellersSection from "../components/homepage_components/BestSellersSection";
 import LatestArrivalSection from "../components/homepage_components/LatestArrivalsSection";
 import ProductListVisualization from "../components/ui/ProductListVisualization";
+import VisualizationButton from ".../../../components/ui/VisualizationButton";
+
 
 
 import { useContext, useEffect } from "react";
@@ -51,6 +53,11 @@ export default function Homepage() {
             text={"Scoprili tutti"} 
           />
       }
+
+
+
+      <VisualizationButton />
+
     </div>
   );
 }

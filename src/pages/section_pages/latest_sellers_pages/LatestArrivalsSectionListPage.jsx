@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { ParfumeAPIContext } from "../../../context/ParfumesContext";
 import ProductList from "../../../components/homepage_components/ProductList";
 import ProductListVisualization from "../../../components/ui/ProductListVisualization";
+import VisualizationButton from "../../../components/ui/VisualizationButton";
 
 export default function LatestArrivalsSectionListPage() {
   const { recents, visualization, getRecentsParfumes, loading, error } =
@@ -29,6 +30,9 @@ export default function LatestArrivalsSectionListPage() {
               text={"Scoprili tutti"} 
             />
         }
+
+
+        <VisualizationButton />
     </>
   );
 }
