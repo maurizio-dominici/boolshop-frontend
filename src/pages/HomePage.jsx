@@ -4,60 +4,53 @@ import LatestArrivalSection from "../components/homepage_components/LatestArriva
 import ProductListVisualization from "../components/ui/ProductListVisualization";
 import VisualizationButton from ".../../../components/ui/VisualizationButton";
 
-
-
 import { useContext, useEffect } from "react";
 import { ParfumeAPIContext } from "../context/ParfumesContext";
 
 export default function Homepage() {
-
-  const { bestSellers, recents, getBestSellersParfumes, getRecentsParfumes, visualization } = useContext(ParfumeAPIContext);
+  const {
+    bestSellers,
+    recents,
+    getBestSellersParfumes,
+    getRecentsParfumes,
+    visualization,
+  } = useContext(ParfumeAPIContext);
 
   useEffect(() => {
     getBestSellersParfumes();
     getRecentsParfumes();
   }, []);
 
-
   return (
-    <div className="container">
-      <h1>HomePage</h1>
-
+    <div className="container my-3">
       {/* Creazione Sezione Componenti della Homepage */}
       <HeroSection />
 
+      {visualization === "grid" ? (
+        <BestSellersSection />
+      ) : (
+        <ProductListVisualization
+          products={bestSellers}
+          isHomepage={true}
+          link={"/bestsellers"}
+          title={"I nostri Best Seller"}
+          text={"Scoprili tutti"}
+        />
+      )}
 
-
-      {
-        visualization === "grid" ? 
-          <BestSellersSection />
-        : 
-          <ProductListVisualization 
-            products={bestSellers} 
-            isHomepage={true}
-            link={"/bestsellers"} 
-            title={"I nostri Best Seller"} 
-            text={"Scoprili tutti"} 
-          />
-      }
-
-      {
-        visualization === "grid" ? 
-          <LatestArrivalSection />
-        : 
-          <ProductListVisualization 
-            products={recents} 
-            isHomepage={true}
-            link={"/recents"} 
-            title={"I nostri Ultimi Arrivi"} 
-            text={"Scoprili tutti"} 
-          />
-      }
-
-
+      {visualization === "grid" ? (
+        <LatestArrivalSection />
+      ) : (
+        <ProductListVisualization
+          products={recents}
+          isHomepage={true}
+          link={"/recents"}
+          title={"I nostri Ultimi Arrivi"}
+          text={"Scoprili tutti"}
+        />
+      )}
 
       <VisualizationButton />
-
     </div>
   );
 }

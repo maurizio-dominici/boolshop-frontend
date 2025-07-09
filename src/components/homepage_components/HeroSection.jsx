@@ -27,29 +27,33 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="bg-primary text-white py-2">
-      <div className="container text-center py-4">
-        <h1 className="display-4 fw-bold mb-3">
+    <section className="hero-section hero-area text-white py-2">
+      <div className="container hero-content text-center py-4">
+        <h1 className="display-4 fw-bold mb-3 hero-title">
           Cerca il tuo profumo preferito
         </h1>
-        <p className="lead mb-4 fs-4">
+        <p className="lead mb-4 fs-4 hero-subtitle">
           Vivi l'essenza del lusso a ogni spruzzo.
         </p>
         <form onSubmit={handleSearch}>
-          <div className="input-group mb-2 ">
+          <div className="input-group mb-2 search-input-group">
             <input
               type="text"
-              className="form-control form-control-lg"
+              className="form-control form-control-lg search-input"
               placeholder="Trova il profumo per te..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>
           {errorMsg && (
-            <div className="alert alert-danger mb-2">{errorMsg}</div>
+            <div className="alert alert-danger mb-2 search-error">
+              {errorMsg}
+            </div>
           )}
-
-          <button className="btn btn-light btn-lg w-100 mt-3" type="submit">
+          <button
+            className="btn btn-light btn-lg w-100 mt-3 search-button"
+            type="submit"
+          >
             Cerca
           </button>
         </form>
