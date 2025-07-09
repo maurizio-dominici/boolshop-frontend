@@ -114,8 +114,6 @@ export default function SearchResults() {
         "chanel",
         "calvin_klein",
         "giorgio_armani",
-        "maison_lumière",
-        "nordica_scents",
       ].includes(tempBrandSlug)
     ) {
       alert(
@@ -309,8 +307,6 @@ export default function SearchResults() {
                 <option value="chanel">Chanel</option>
                 <option value="calvin_klein">Calvin Klein</option>
                 <option value="giorgio_armani">Giorgio Armani</option>
-                <option value="maison_lumière">Maison Lumière</option>
-                <option value="nordica_scents">Nordica Scents</option>
               </select>
             </div>
 
