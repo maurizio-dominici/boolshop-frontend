@@ -37,12 +37,17 @@ export default function Card({ item }) {
     );
   };
 
+  /* parte nuova */
+
+  function getOriginalPrice(item) {
+    return item.price.toFixed(2);
+  }
+
   function getFinalPrice(item) {
-    return parseFloat(
-      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
-        2
-      )
-    );
+    const test =
+      item.price - (item.price * item.discount.discount_amount) / 100;
+    console.log("risultato ", parseFloat(test));
+    return parseFloat(test).toFixed(2);
   }
 
   return (
@@ -71,11 +76,11 @@ export default function Card({ item }) {
             <strong>Prezzo: </strong>
             {item.discount.discount_amount !== 0 ? (
               <>
-                <del className="old-price">{item.price} € </del>{" "}
+                <del className="old-price">{getOriginalPrice(item)} € </del>{" "}
                 <span className="new-price">{getFinalPrice(item)} €</span>
               </>
             ) : (
-              <>{item.price} € </>
+              <>{getOriginalPrice(item)} € </>
             )}
           </div>
 

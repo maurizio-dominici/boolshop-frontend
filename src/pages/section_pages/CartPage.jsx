@@ -42,6 +42,19 @@ export default function CartPage() {
     updateCartPopup(updatedCart);
   };
 
+  /* parte nuova */
+
+  function getOriginalPrice(item) {
+    return item.price.toFixed(2);
+  }
+
+  function getFinalPrice(item) {
+    const test =
+      item.price - (item.price * item.discount.discount_amount) / 100;
+    console.log("risultato ", parseFloat(test));
+    return parseFloat(test).toFixed(2);
+  }
+
   return (
     <>
       {cart?.length ? (
@@ -87,7 +100,10 @@ export default function CartPage() {
                   <ul className="mb-0">
                     <li>
                       <b>Prezzo originale:</b>{" "}
-                      <del className="old-price"> {item.price} €</del>
+                      <del className="old-price">
+                        {" "}
+                        {getOriginalPrice(item)} €
+                      </del>
                     </li>
                     <li>
                       <b>Sconto applicato:</b> {item.discount.discount_amount} %

@@ -60,24 +60,25 @@ export default function PaymentPage() {
           <ul>
             {checkoutCart.cartProducts.map((item) => (
               <li key={item.id}>
-                {item.productName} x {item.quantity} - €{item.productFinalPrice}
+                {item.productName} x {item.quantity} - {item.productFinalPrice}{" "}
+                €
               </li>
             ))}
           </ul>
           <div>
-            <b>Totale prodotti:</b> €{ordine.total_price}
+            <b>Totale prodotti:</b> {ordine.total_price} €
           </div>
           <div>
-            <b>Spedizione:</b> €{ordine.shipping_price}
+            <b>Spedizione:</b> {ordine.shipping_price} €
           </div>
 
           {ordine.discountAmount !== 0 && (
             <div>
-              <b>Sconto:</b> {ordine.discountAmount}%
+              <b>Sconto:</b> {ordine.discountAmount} %
             </div>
           )}
           <div>
-            <b>Totale finale:</b> €{ordine.final_price}
+            <b>Totale finale:</b> {ordine.final_price} €
           </div>
         </div>
         <div className="col-5">

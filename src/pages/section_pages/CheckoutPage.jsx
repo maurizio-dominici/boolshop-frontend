@@ -76,6 +76,27 @@ export default function Checkout() {
       });
   };
 
+  function getFinalPrice(item) {
+    return parseFloat(
+      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
+        2
+      )
+    );
+  }
+
+  /* parte nuova */
+
+  function getOriginalPrice(item) {
+    return item.price.toFixed(2);
+  }
+
+  function getFinalPrice(item) {
+    const test =
+      item.price - (item.price * item.discount.discount_amount) / 100;
+    console.log("risultato ", parseFloat(test));
+    return parseFloat(test).toFixed(2);
+  }
+
   return (
     <div className="container">
       <form className="row g-3" onSubmit={handleSubmit}>
@@ -256,7 +277,7 @@ export default function Checkout() {
                     <tr key={item.id}>
                       <td>{item.name}</td>
                       <td>{item.quantity}</td>
-                      <td>{item.price} €</td>
+                      <td>{getOriginalPrice(item)} €</td>
                       <td>{(item.price * item.quantity).toFixed(2)} €</td>
                     </tr>
                   ))}
