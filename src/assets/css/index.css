@@ -95,6 +95,11 @@ nav a {
   box-shadow: none;
 }
 
+/* .nav-link:hover {
+  color: var(--boolshop-secondary-color) !important;
+  cursor: pointer;
+} */
+
 #hamburger-menu::before {
   color: white;
   border: none;

@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="pt-5 pb-4 border-top">
       <div className="container">
         <div className="row">
-          {/* <!-- Brand & Description --> */}
+          {/*  Brand & Description  */}
           <div className="col-md-3 mb-4">
             <h5>Boolshop Parfumes</h5>
             <p>
@@ -12,7 +12,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* <!-- Link Utili --> */}
+          {/*  Link Utili  */}
           <div className="col-md-3 mb-4">
             <h6>Informazioni</h6>
             <ul className="footer-list">
@@ -34,7 +34,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* <!-- Servizi --> */}
+          {/*  Servizi  */}
           <div className="col-md-3 mb-4">
             <h6>Servizi</h6>
             <ul className="footer-list">
@@ -53,7 +53,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* <!-- Social & Newsletter --> */}
+          {/*  Social & Newsletter  */}
           <div className="col-md-3 mb-4">
             <h6>Seguici</h6>
             <div className="mb-2">
