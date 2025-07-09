@@ -8,8 +8,6 @@ import DiscountedSelect from "../../../components/DiscountedSelect";
 import ProductListVisualization from "../../../components/ui/ProductListVisualization";
 import VisualizationButton from "../../../components/ui/VisualizationButton";
 
-
-
 export default function SearchResults() {
   const {
     parfumes,
@@ -24,7 +22,7 @@ export default function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();
   const [showFilters, setShowFilters] = useState(false);
-
+  const [newFilters, setNewFilters] = useState(filters);
   // Aggiorna la ricerca quando cambiano i filtri nelle dipendenze
   useEffect(() => {
     searchParfumes(filters);
@@ -50,27 +48,52 @@ export default function SearchResults() {
     else newParams.delete("min_price");
     if (filters.maxPrice) newParams.set("max_price", filters.maxPrice);
     else newParams.delete("max_price");
-    if (filters.orderBy) newParams.set("order_by", filters.orderBy);
-    else newParams.delete("order_by");
+    // if (filters.orderBy) newParams.set("order_by", filters.orderBy);
+    // else newParams.delete("order_by");
     if (filters.size) newParams.set("size", filters.size);
     else newParams.delete("size");
-    if (filters.discounted) newParams.set("discounted", filters.discounted);
-    else newParams.delete("discounted");
+    // if (filters.discounted) newParams.set("discounted", filters.discounted);
+    // else newParams.delete("discounted");
+
+    updateFilters(newFilters);
 
     navigate(`/parfumes?${newParams.toString()}`);
   };
 
   // Cambia ordinamento quando selezioni una select
   const handleOrderByChange = (e) => {
+    const newParams = new URLSearchParams(location.search);
+    console.log(e.target.value);
+
+    if (e.target.value) newParams.set("order_by", e.target.value);
+    else newParams.delete("order_by");
+
+    console.log(newParams);
+    console.log(filters.orderBy);
+
+    navigate(`/parfumes?${newParams.toString()}`);
     updateFilters({ orderBy: e.target.value });
   };
+
   // Seleziona prodotti se scontati o non
   const handleDiscountedChange = (e) => {
+    const newParams = new URLSearchParams(location.search);
+
+    if (e.target.value) newParams.set("discounted", e.target.value);
+    else newParams.delete("discounted");
+
+    console.log(newParams);
+    console.log(filters.discounted);
+
+    navigate(`/parfumes?${newParams.toString()}`);
     updateFilters({ discounted: e.target.value });
   };
+
   // Gestisce il cambiamento dei filtri avanzati
-  const handleFiltersChange = (newFilters) => {
-    updateFilters(newFilters);
+  const handleFiltersChange = (e, newFilters) => {
+    // updateFilters(newFilters);
+    const value = e.target.value;
+    setNewFilters({ ...newFilters, value });
   };
 
   return (
@@ -117,40 +140,29 @@ export default function SearchResults() {
         <p>Nessun profumo trovato per la tua ricerca.</p>
       )}
       <div className="row">
+        {visualization === "grid" ? (
+          // isHomePage ?
+          //   parfumes.map((item) => (
+          //     <div key={item.id} className="col-md-4 mb-4">
+          //       <Card item={item} />
+          //     </div>
+          //   ))
+          // :
+          //   parfumes.map((item) => (
+          //     <div key={item.id} className="col-md-4 mb-4">
+          //       <Card item={item} />
+          //     </div>
+          //   ))
 
-        {
-          visualization === "grid" ? 
-            // isHomePage ?
-            //   parfumes.map((item) => (
-            //     <div key={item.id} className="col-md-4 mb-4">
-            //       <Card item={item} />
-            //     </div>
-            //   ))
-            // :
-            //   parfumes.map((item) => (
-            //     <div key={item.id} className="col-md-4 mb-4">
-            //       <Card item={item} />
-            //     </div>
-            //   ))
-
-            parfumes.map((item) => (
-              <div key={item.id} className="col-md-4 mb-4">
-                <Card item={item} />
-              </div>
-            ))
-          : 
-            <ProductListVisualization 
-              products={parfumes} 
-              isHomePage={false}
-            />
-        }
-
-
-
-
-
+          parfumes.map((item) => (
+            <div key={item.id} className="col-md-4 mb-4">
+              <Card item={item} />
+            </div>
+          ))
+        ) : (
+          <ProductListVisualization products={parfumes} isHomePage={false} />
+        )}
       </div>
-
 
       <VisualizationButton />
     </div>
