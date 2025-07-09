@@ -181,7 +181,7 @@ export default function ProductDetailsPage() {
                 />
                 <button
                   onClick={() => cartAdd(product)}
-                  className="btn btn-success"
+                  className="btn btn-primary"
                 >
                   Aggiungi al carrello
                 </button>
