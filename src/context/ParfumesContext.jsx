@@ -93,12 +93,17 @@ export const ParfumeAPIProvider = ({ children }) => {
   // Funzione per aggiornare i filtri
   const updateFilters = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
+    // setFilters(newFilters);
   };
 
   const BASE_URL = "http://localhost:3000/parfumes";
 
   const searchParfumes = (customFilters) => {
     setLoading(true);
+
+    console.log("customFilters", customFilters);
+    console.log("filters", filters);
+
     // Usa i filtri passati o quelli nello state
     const activeFilters = customFilters || filters;
     const params = new URLSearchParams();
@@ -115,6 +120,10 @@ export const ParfumeAPIProvider = ({ children }) => {
     if (activeFilters.size) params.append("size", activeFilters.size);
     if (activeFilters.discounted)
       params.append("discounted", activeFilters.discounted);
+
+    console.log("params", params.toString());
+
+    console.log("activeFilters", activeFilters);
 
     axios
       .get(`${BASE_URL}?${params.toString()}`)
@@ -175,7 +184,7 @@ export const ParfumeAPIProvider = ({ children }) => {
         bestSellers,
         getBestSellersParfumes,
         visualization,
-        setVisualization, 
+        setVisualization,
       }}
     >
       {children}
