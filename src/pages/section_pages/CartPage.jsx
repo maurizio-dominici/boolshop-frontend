@@ -175,7 +175,7 @@ export default function CartPage() {
           </h4>
 
           <div className="card-footer d-flex justify-content-between">
-            <Link to={-1} className="btn btn-outline-secondary my-3">
+            <Link to={-1} className="btn btn-outline-primary my-3">
               Torna indietro
             </Link>
             <Link to="/checkout" className="btn btn-primary my-3">

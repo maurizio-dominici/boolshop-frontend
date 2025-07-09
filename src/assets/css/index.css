@@ -1,5 +1,6 @@
 :root {
   --boolshop-primary-color: #06062a;
+  --boolshop-primary-color-hover: var(--boolshop-primary-color-hover);
   --boolshop-secondary-color: #e7c75a;
 }
 
@@ -27,9 +28,26 @@ nav a {
 }
 
 .btn.btn-primary:hover {
-  background-color: #a8edea;
+  background-color: var(--boolshop-primary-color-hover);
   color: #275238;
 }
+
+/* BOTTONI SECONDARY OUTLINE */
+.btn-outline-primary {
+  color: var(--boolshop-primary-color);
+  outline: 1px solid var(--boolshop-primary-color);
+  background-color: transparent;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  transition: background-color 0.3s ease-in-out;
+}
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: var(--boolshop-primary-color);
+}
+
 
 /* BOTTONI SECONDARY OUTLINE */
 .btn-outline-secondary {
@@ -43,7 +61,7 @@ nav a {
 }
 
 .btn-outline-secondary:hover {
-  background-color: #a8edea;
+  background-color: var(--boolshop-primary-color-hover);
   color: #275238;
 }
 
@@ -74,7 +92,7 @@ nav a {
 
 /* hero-section */
 .hero-area {
-  background: linear-gradient(to right, #a8edea, #fed6e3);
+  background: linear-gradient(to right, var(--boolshop-primary-color-hover), #fed6e3);
   padding: 2rem 0;
   font-family: "Segoe UI", sans-serif;
   color: #2d4d3a;
@@ -129,7 +147,7 @@ nav a {
   font-weight: 600;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
-  border: 1px solid #a8edea;
+  border: 1px solid var(--boolshop-primary-color-hover);
   padding: 0.8rem 1rem;
   width: 100%;
   margin-top: 1rem;
@@ -137,7 +155,7 @@ nav a {
 }
 
 .search-button:hover {
-  background-color: #a8edea;
+  background-color: var(--boolshop-primary-color-hover);
   color: #ffffff;
   border-color: #4c6653;
 }
