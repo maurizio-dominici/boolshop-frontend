@@ -235,7 +235,7 @@ export default function SearchResults() {
 
         <div className="col-12 col-md-9 d-flex align-items-end">
           <button
-            className="btn btn-outline-secondary w-md-auto"
+            className="btn btn-secondary w-md-auto"
             onClick={() => setShowFilters((prev) => !prev)}
           >
             {showFilters ? "Nascondi filtri" : "Mostra filtri avanzati"}

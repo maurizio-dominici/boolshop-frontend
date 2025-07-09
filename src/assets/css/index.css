@@ -2,6 +2,7 @@
   --boolshop-primary-color: #06062a;
   --boolshop-primary-color-hover: #a8edea;
   --boolshop-secondary-color: #e7c75a;
+  --boolshop-secondary-color-hover: #f3db8c;
 }
 
 * {
@@ -32,7 +33,7 @@ nav a {
   color: #275238;
 }
 
-/* BOTTONI SECONDARY OUTLINE */
+/* BOTTONI PRIMARY OUTLINE */
 .btn-outline-primary {
   color: var(--boolshop-primary-color);
   outline: 1px solid var(--boolshop-primary-color);
@@ -46,6 +47,23 @@ nav a {
 .btn-outline-primary:hover {
   color: #fff;
   background-color: var(--boolshop-primary-color);
+}
+
+
+/* BOTTONI SECONDARY */
+.btn-secondary {
+  background-color: var(--boolshop-secondary-color);
+  color: var(--boolshop-primary-color);
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: var(--boolshop-secondary-color-hover);
+  color: var(--boolshop-primary-color);
 }
 
 
