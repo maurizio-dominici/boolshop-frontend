@@ -1,26 +1,26 @@
 import { NavLink, Link } from "react-router-dom";
 import { useCartPopup } from "../context/CartPopupContext";
 
-
 export default function Navbar() {
   const { showCartPopup, data } = useCartPopup();
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary px-3">
+    <nav className="navbar navbar-expand-lg px-3">
       <div className="container-fluid p-0">
         <Link className="navbar-brand" to="/">
-          Logo
+          <img className="logo" src="/boolshop-parfumes-logo.jpg" alt="Logo" />
         </Link>
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          // aria-controls="navbarSupportedContent"
+          // aria-expanded="false"
+          // aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          {/* <span className="navbar-toggler-icon"></span> */}
+          <i id="hamburger-menu" className="bi bi-list"></i>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -53,11 +53,9 @@ export default function Navbar() {
         </div>
       </div>
 
-
-
       <div className="d-flex align-items-center gap-1">
-        <NavLink 
-          to={"/parfumes"} 
+        <NavLink
+          to={"/parfumes"}
           // className="nav-link"
           className="btn btn-outline-secondary"
         >
