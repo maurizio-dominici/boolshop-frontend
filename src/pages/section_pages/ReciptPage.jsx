@@ -22,6 +22,16 @@ export default function ReciptPage() {
             </h1>
             {ordine ? (
               <div>
+                <div
+                  className="alert mb-4"
+                  style={{
+                    background: "var(--boolshop-secondary-color-hover)",
+                  }}
+                >
+                  <i className="fa-solid fa-circle-check me-2"></i>
+                  <b>Grazie per il tuo ordine!</b> La tua richiesta è stata
+                  ricevuta con successo.
+                </div>
                 <h4 className="fw-bold mb-3 d-flex align-items-center gap-2">
                   <i className="fa-solid fa-clipboard-list text-secondary"></i>
                   Dettagli Ordine
@@ -38,44 +48,15 @@ export default function ReciptPage() {
                   </div>
                 )}
                 <div className="mb-2">
-                  <b>Spese di spedizione:</b> {ordine.shipment_price} €
-                </div>
-                <div className="mb-2">
                   <b>Prezzo finale pagato:</b>{" "}
                   <span className="text-success">{ordine.final_price} €</span>
                 </div>
-                <div className="mb-2">
-                  <b>Prodotti acquistati:</b>
+                <div className="alert alert-info mt-4">
+                  Riceverai una mail di conferma con tutti i dettagli
+                  dell’ordine.
+                  <br />
+                  Per qualsiasi domanda, contattaci pure!
                 </div>
-                {ordine.checkoutCart &&
-                ordine.checkoutCart.cartProducts.length > 0 ? (
-                  <ul className="list-group mb-3">
-                    {ordine.checkoutCart.cartProducts.map((item, index) => (
-                      <li
-                        key={index}
-                        className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-2"
-                        style={{ background: "transparent" }}
-                      >
-                        <span>
-                          <span className="fw-semibold">
-                            {item.productName}
-                          </span>
-                          <span className="text-muted ms-2">
-                            x {item.quantity}
-                          </span>
-                        </span>
-                        <span className="fw-bold text-success">
-                          {item.productFinalPrice} €
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="alert alert-warning">
-                    Nessun prodotto acquistato.
-                  </div>
-                )}
-                {/* Aggiungi altri dettagli dell'ordine qui */}
               </div>
             ) : (
               <div className="alert alert-danger">
@@ -83,10 +64,14 @@ export default function ReciptPage() {
               </div>
             )}
 
-            <div className="d-flex justify-content-center mt-4">
-              <Link to={"/"} className="btn btn-primary">
+            <div className="d-flex justify-content-center gap-3 mt-4">
+              <Link to={"/"} className="btn btn-outline-secondary">
                 <i className="fa-solid fa-house me-2"></i>
                 Torna alla Home
+              </Link>
+              <Link to="/" className="btn btn-primary">
+                <i className="fa-solid fa-cart-shopping me-2"></i>
+                Continua a fare shopping
               </Link>
             </div>
           </div>
@@ -95,3 +80,25 @@ export default function ReciptPage() {
     </div>
   );
 }
+//                     Nessun prodotto acquistato.
+//                   </div>
+//                 )}
+//               </div>
+//             ) : (
+//               <div className="alert alert-danger">
+//                 Nessun ordine disponibile.
+//               </div>
+//             )}
+
+//             <div className="d-flex justify-content-center mt-4">
+//               <Link to={"/"} className="btn btn-primary">
+//                 <i className="fa-solid fa-house me-2"></i>
+//                 Torna alla Home
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
