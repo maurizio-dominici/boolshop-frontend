@@ -88,12 +88,18 @@ export default function ProductDetailsPage() {
       JSON.parse(window.localStorage.getItem("cart"))
     );
   };
-  function getFinalPrice(item) {
-    return parseFloat(
-      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
-        2
-      )
-    );
+
+  /* parte nuova formattazione prezzo */
+
+  function getOriginalPrice(product) {
+    return product.price.toFixed(2);
+  }
+
+  function getFinalPrice(product) {
+    const test =
+      product.price - (product.price * product.discount.discount_amount) / 100;
+
+    return parseFloat(test).toFixed(2);
   }
 
   return (
@@ -131,11 +137,11 @@ export default function ProductDetailsPage() {
             <strong>Prezzo: </strong>
             {product.discount.discount_amount !== 0 ? (
               <>
-                <del className="old-price">{product.price} € </del>{" "}
+                <del className="old-price">{getOriginalPrice(product)} € </del>{" "}
                 <span className="new-price">{getFinalPrice(product)} €</span>
               </>
             ) : (
-              <>{product.price} €</>
+              <>{getOriginalPrice(product)} €</>
             )}
           </div>
 
