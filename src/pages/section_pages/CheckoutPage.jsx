@@ -12,13 +12,6 @@ const BASE_URL = "http://localhost:3000";
 export default function Checkout() {
   const { showTopMessage } = useTopMessage();
 
-  function getFinalPrice(item) {
-    return parseFloat(
-      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
-        2
-      )
-    );
-  }
   const navigate = useNavigate();
 
   const initialClientInfo = {
@@ -35,6 +28,13 @@ export default function Checkout() {
     // DATI DEL CARRELLO DA PRENDERE TRAMITE LOCAL STORAGE, PER ORA LO SIMULO HARDCODANDO I DATI
     cart: JSON.parse(localStorage.getItem("cart")),
   };
+
+  function getFinalPrice(item) {
+    const test =
+      item.price - (item.price * item.discount.discount_amount) / 100;
+
+    return parseFloat(test).toFixed(2);
+  }
 
   const [clientInfo, setClientInfo] = useState(initialClientInfo);
 
@@ -266,28 +266,35 @@ export default function Checkout() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Prodotto</th>
-                    <th>Quantità</th>
-                    <th>Prezzo unitario</th>
-                    <th>Totale</th>
+                    <th className="text-center">Prodotto</th>
+                    <th className="text-center">Quantità</th>
+                    <th className="text-center">Prezzo unitario originale</th>
+                    <th className="text-center">Prezzo unitario finale</th>
+                    <th className="text-center">Totale</th>
                   </tr>
                 </thead>
                 <tbody>
                   {clientInfo.cart.map((item) => (
                     <tr key={item.id}>
-                      <td>{item.name}</td>
-                      <td>{item.quantity}</td>
-                      <td>{getOriginalPrice(item)} €</td>
-                      <td>{(item.price * item.quantity).toFixed(2)} €</td>
+                      <td className="text-center">{item.name}</td>
+                      <td className="text-center">{item.quantity}</td>
+                      <td className="text-center">
+                        {getOriginalPrice(item)} €
+                      </td>
+                      <td className="text-center">{getFinalPrice(item)} €</td>
+                      <td className="text-center">
+                        {(getFinalPrice(item) * item.quantity).toFixed(2)} €
+                      </td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colSpan={3}>
+                    <td className="text-center">
                       <b>Totale ordine</b>
                     </td>
-                    <td>
+                    <td colSpan={3} className="text-center"></td>
+                    <td className="text-center">
                       <b>
                         {/* {clientInfo.cart
                           .reduce(
@@ -320,8 +327,11 @@ export default function Checkout() {
          ALTRIMENTI NON FACCIAMO VEDERE NULLA E NEL PAGAMENTO STRIPE SARÁ PRESENTE IL PREZZO SCONTATO 
          SE IL CODICE É VALIDO */}
 
-        <div className="col-12 col-md-3">
-          <button className="btn btn-primary w-100" type="submit">
+        <div className="d-flex justify-content-between">
+          <Link to={"/cart"} className="btn btn-outline-secondary my-3">
+            Torna al carrello
+          </Link>
+          <button className="btn btn-primary my-3" type="submit">
             Paga ora
             {/* (**Inserisci i dati per procedere col pagamento) */}
           </button>
