@@ -56,7 +56,7 @@ export default function Card({ item }) {
         <img
           src={item.image}
           alt={item.name}
-          className="card-img-top m-3"
+          className="card-img-top img-fluid pt-3"
           style={{ maxHeight: "200px", objectFit: "contain" }}
         />
         <div className="card-body">
@@ -67,7 +67,7 @@ export default function Card({ item }) {
             <strong>Brand:</strong> {item.brand.brand_name}
           </div>
           <div>
-            <strong>Gender</strong> {item.gender}
+            <strong>Gender:</strong> {item.gender}
           </div>
           <div>
             <div>

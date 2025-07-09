@@ -54,30 +54,31 @@ export default function ProductListVisualizationItem({ item }) {
     <div className="card product-card mb-3">
       <Link to={`/product/${item.slug}`} className="text-decoration-none">
         <div className="row g-0">
-          <div className="col-md-4">
+          <div className="col-md-2">
             <img
               src={item.image}
               alt={item.name}
               style={{ maxHeight: "200px", objectFit: "contain" }}
-              className="card-img-top"
+              className="card-img-top pt-3 img-fluid"
             />
           </div>
 
-          <div className="col-md-4">
+          <div className="col-md-5">
             <div className="card-body">
               <h5 className="card-title">{item.name}</h5>
               <p className="card-text">{item.description}</p>
               <p className="card-text">
                 <small className="text-body-secondary">
+                  <strong>Brand: </strong>
                   {item.brand.brand_name}
                 </small>
               </p>
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-5">
             <div className="card-body">
               <p className="card-text">
-                <strong>Gender</strong> {item.gender}
+                <strong>Gender:</strong> {item.gender}
               </p>
               <p className="card-text">
                 {/* <small> */}
@@ -96,14 +97,15 @@ export default function ProductListVisualizationItem({ item }) {
               <p className="card-text">
                 {item.discount.discount_amount !== 0 ? (
                   <span id="discount" className="badge">
-                    {item.discount.discount_amount}%
+                    {item.discount.discount_amount} %
                   </span>
                 ) : (
                   <></>
                 )}
               </p>
               <p className="card-text">
-                {item.size_ml}ml ({item.size_name})
+                <strong>Formato: </strong>
+                {item.size_ml} ml ({item.size_name})
               </p>
             </div>
           </div>
