@@ -111,7 +111,8 @@ nav a {
   background: linear-gradient(
     to right,
     var(--boolshop-primary-color-hover),
-    #fed6e3 /* usare colore piú visibile forse?
+    #fed6e3
+      /* usare colore piú visibile forse?
     /* var(--boolshop-secondary-color) */
   );
   padding: 2rem 0;
@@ -499,4 +500,29 @@ ul.list-group {
 /* Migliora margin tra sezioni form */
 .card .row.g-3 > [class^="col-"] {
   margin-bottom: 1rem;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--boolshop-primary-color);
+  color: white;
+}
+
+.footer-list {
+  padding-left: 0;
+}
+
+footer .input-group {
+  background-color: var(--boolshop-primary-color);
+}
+
+#footer-btn {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.footer-list li a:hover {
+  color: var(--boolshop-secondary-color);
+  cursor: pointer;
 }
