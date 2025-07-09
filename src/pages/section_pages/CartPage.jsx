@@ -179,16 +179,16 @@ export default function CartPage() {
                     €
                   </span>
                 </h4>
-                <div className="card-footer bg-transparent border-0 d-flex flex-column flex-md-row justify-content-between align-items-stretch gap-2 px-0">
-                  <Link to={-1} className="btn btn-outline-primary">
-                    Torna indietro
-                  </Link>
-                  <Link to="/checkout" className="btn btn-primary">
-                    Vai al CHECKOUT
-                  </Link>
-                </div>
               </div>
             </div>
+          </div>
+          <div className="card-footer bg-transparent border-0 d-flex flex-md-row justify-content-between align-items-center gap-2 px-0">
+            <Link to={-1} className="btn btn-outline-primary">
+              Torna indietro
+            </Link>
+            <Link to="/checkout" className="btn btn-primary">
+              Vai al CHECKOUT
+            </Link>
           </div>
         </div>
       ) : (
