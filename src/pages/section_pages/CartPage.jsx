@@ -101,7 +101,6 @@ export default function CartPage() {
                     <li>
                       <b>Prezzo originale:</b>{" "}
                       <del className="old-price">
-                        {" "}
                         {getOriginalPrice(item)} €
                       </del>
                     </li>
