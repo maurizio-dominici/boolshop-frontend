@@ -84,6 +84,20 @@ export default function Card({ item }) {
             )}
           </div>
 
+
+          {/* <button
+            className="btn btn-primary z-1 d-block d-md-none w-100 mt-3"
+            onClick={() => cartAdd(item)}
+          >
+            <i className="bi bi-cart3 m-3 icon-m"></i>
+          </button> */}
+          <button
+            className="btn btn-primary z-1 d-block d-md-none w-100 mt-3"
+            onClick={() => cartAdd(item)}
+          >
+            Aggiungi al carrello
+          </button>
+
           {item.discount.discount_amount !== 0 ? (
             <span id="discount" className="badge">
               {item.discount.discount_amount} %

@@ -60,6 +60,16 @@ export default function CartPage() {
       {cart?.length ? (
         <div className="container">
           <h1>IL TUO CARRELLO</h1>
+
+          <div className="d-flex justify-content-between my-3">
+            <Link to={-1} className="btn btn-outline-primary">
+              Torna indietro
+            </Link>
+            <Link to="/checkout" className="btn btn-primary">
+              Vai al CHECKOUT
+            </Link>
+          </div>
+
           <div className="row my-5">
             {cart.map((item) => (
               <div className="row align-items-center mb-4" key={item.id}>
@@ -173,15 +183,6 @@ export default function CartPage() {
                   .toFixed(2)
               } */}
           </h4>
-
-          <div className="card-footer d-flex justify-content-between">
-            <Link to={-1} className="btn btn-outline-primary my-3">
-              Torna indietro
-            </Link>
-            <Link to="/checkout" className="btn btn-primary my-3">
-              Vai al CHECKOUT
-            </Link>
-          </div>
         </div>
       ) : (
         <div className="container text-center my-5">

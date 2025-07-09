@@ -13,7 +13,7 @@ export default function LatestArrivalsSection() {
   return (
     <section className="py-3 bg-light">
       <div className="container">
-        <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-md-flex justify-content-between align-items-center mb-3">
           <h2 className="fw-bold">I nostri Ultimi Arrivi</h2>
           <Link to="/recents">
             <button className="btn btn-primary">Scoprili tutti</button>

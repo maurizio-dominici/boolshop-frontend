@@ -107,6 +107,15 @@ export default function ProductListVisualizationItem({ item }) {
                 <strong>Formato: </strong>
                 {item.size_ml} ml ({item.size_name})
               </p>
+
+              <button
+                className="btn btn-primary z-1 d-block d-md-none"
+                onClick={() => cartAdd(item)}
+              >
+                <i className="bi bi-cart3 m-3 icon-m"></i>
+              </button>
+
+
             </div>
           </div>
         </div>

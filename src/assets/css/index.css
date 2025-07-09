@@ -111,7 +111,8 @@ nav a {
   background: linear-gradient(
     to right,
     var(--boolshop-primary-color-hover),
-    #fed6e3 /* usare colore piú visibile forse? */
+    #fed6e3 /* usare colore piú visibile forse?
+    /* var(--boolshop-secondary-color) */
   );
   padding: 2rem 0;
   font-family: "Segoe UI", sans-serif;
@@ -215,8 +216,8 @@ section h2.fw-bold {
 #VisualizationButton {
   position: fixed;
   /* bottom: 3.5rem; */
-  /* bottom: 1.5rem; */
-  bottom: 7.5rem;
+  bottom: 1.5rem;
+  /* bottom: 7.5rem; */
   left: 3.5rem;
   z-index: 1000;
 }
@@ -260,8 +261,10 @@ a {
   position: relative;
 }
 
-.product-card:hover .hovered {
-  display: block;
+@media screen and (min-width: 768px) {
+  .product-card:hover .hovered {
+    display: block;
+  }
 }
 
 /* # POPUP CON IL CARRELLO */

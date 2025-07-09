@@ -27,7 +27,7 @@ export default function VisualizationButton () {
 
         
         visualization === "grid" ? 
-            <div id="VisualizationButton" className="btn-group" role="group" aria-label="Basic example">
+            <div id="VisualizationButton" className="btn-group d-none d-md-block" role="group" aria-label="Basic example">
                 <button 
                     type="button" 
                     className="btn btn-primary disabled"

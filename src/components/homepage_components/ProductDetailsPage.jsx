@@ -105,7 +105,7 @@ export default function ProductDetailsPage() {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between mb-3">
-        <Link to={-1} className="btn btn-outline-secondary">
+        <Link to={-1} className="btn btn-secondary">
           Torna indietro
         </Link>
         <Link to="/" className="btn btn-primary">

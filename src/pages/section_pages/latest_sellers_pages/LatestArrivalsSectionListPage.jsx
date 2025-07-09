@@ -17,9 +17,6 @@ export default function LatestArrivalsSectionListPage() {
         <h1 className="text-center fw-bold mb-4 text-danger display-5">
           Tutti i nostri Ultimi Arrivi
         </h1>
-        <div className="d-flex justify-content-end mb-3">
-          <VisualizationButton />
-        </div>
 
         {visualization === "grid" ? (
           <ProductList

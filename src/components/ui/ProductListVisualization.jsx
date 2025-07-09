@@ -34,7 +34,7 @@ export default function ProductListVisualization ({ products, title, text, link,
                     <div className="row">
                         {
                             isHomepage ?
-                                products.slice(0, 3).map((parfume) => (
+                                products.slice(0, 6).map((parfume) => (
                                     <div key={parfume.id} className="col-12">
                                         <ProductListVisualizationItem 
                                             item={parfume} 

@@ -19,9 +19,6 @@ export default function BestSellersSectionListPage() {
         <h1 className="text-center fw-bold mb-4 text-danger display-5">
           Tutti i nostri Best Sellers
         </h1>
-        <div className="d-flex justify-content-end mb-3">
-          <VisualizationButton />
-        </div>
         {visualization === "grid" ? (
           <ProductList
             title="Tutti i nostri Best Sellers"

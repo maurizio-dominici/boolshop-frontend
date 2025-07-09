@@ -15,6 +15,15 @@ export default function ProductList({
       {loading && <p>Caricamento...</p>}
       {error && <p>Errore nel caricamento dei profumi.</p>}
 
+
+      {backLink && (
+        <div className="mb-3">
+          <Link to={backLink} className="btn btn-secondary">
+            Torna indietro
+          </Link>
+        </div>
+      )}
+
       <div className="row">
         {products.map((item) => (
           <div key={item.id} className="col-md-6 col-xl-4 mb-3">
@@ -22,14 +31,6 @@ export default function ProductList({
           </div>
         ))}
       </div>
-
-      {backLink && (
-        <div className="mt-4">
-          <Link to={backLink} className="btn btn-secondary">
-            Torna indietro
-          </Link>
-        </div>
-      )}
     </div>
   );
 }
