@@ -19,8 +19,8 @@ export default function BestSellersSection() {
           </Link>
         </div>
         <div className="row">
-          {bestSellers.slice(0, 3).map((parfume) => (
-            <div key={parfume.id} className="col-lg-4 mb-3">
+          {bestSellers.slice(0, 6).map((parfume) => (
+            <div key={parfume.id} className="col-md-6 col-xl-4 mb-3">
               <Card item={parfume} />
             </div>
           ))}

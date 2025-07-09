@@ -20,8 +20,8 @@ export default function LatestArrivalsSection() {
           </Link>
         </div>
         <div className="row">
-          {recents.slice(0, 3).map((parfume) => (
-            <div key={parfume.id} className="col-lg-4 mb-3">
+          {recents.slice(0, 6).map((parfume) => (
+            <div key={parfume.id} className="col-md-6 col-xl-4 mb-3">
               <Card item={parfume} />
             </div>
           ))}

@@ -109,12 +109,9 @@ export default function SearchResults() {
     // Validazione del filtro brand
     if (
       tempBrandSlug &&
-      ![
-        "dior",
-        "chanel",
-        "calvin_klein",
-        "giorgio_armani",
-      ].includes(tempBrandSlug)
+      !["dior", "chanel", "calvin_klein", "giorgio_armani"].includes(
+        tempBrandSlug
+      )
     ) {
       alert(
         "Marca non valida. Scegli tra una di queste: Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents."
@@ -200,11 +197,6 @@ export default function SearchResults() {
   return (
     <div className="container mt-4">
       <div className="row mb-3 g-2">
-
-
-
-
-
         <div className="col-12 col-md-3">
           <label htmlFor="order-by" className="form-label">
             Ordina per
@@ -371,13 +363,6 @@ export default function SearchResults() {
         </div>
       )}
 
-
-
-
-
-
-
-
       {/* Risultati della ricerca */}
       <h2 className="fw-bold mb-4">Risultati della ricerca</h2>
       {loading && <p>Caricamento...</p>}
@@ -401,7 +386,7 @@ export default function SearchResults() {
           //   ))
 
           parfumes.map((item) => (
-            <div key={item.id} className="col-md-4 mb-4">
+            <div key={item.id} className="col-md-6 col-xl-4 mb-3">
               <Card item={item} />
             </div>
           ))
