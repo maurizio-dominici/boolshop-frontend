@@ -10,129 +10,48 @@ export const ParfumeAPIProvider = ({ children }) => {
   const [bestSellers, setBestSellers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [filters, setFilters] = useState({
-    productName: "",
-    brandSlug: "",
-    gender: "",
-    minPrice: "",
-    maxPrice: "",
-    orderBy: "",
-    size: "",
-    discounted: "",
-  });
-
-  const validateFilters = (filters) => {
-    if (filters.minPrice && isNaN(filters.minPrice)) {
-      return "Il prezzo minimo deve essere un numero.";
-    }
-    if (filters.minPrice && Number(filters.minPrice) < 0) {
-      return "Il prezzo minimo non può essere minore di 0.";
-    }
-    if (filters.minPrice && Number(filters.minPrice) > 1000) {
-      return "Il prezzo minimo non può essere maggiore di 1000.";
-    }
-    if (filters.maxPrice && isNaN(filters.maxPrice)) {
-      return "Il prezzo massimo deve essere un numero.";
-    }
-    if (filters.maxPrice && Number(filters.maxPrice) < 0) {
-      return "Il prezzo massimo non può essere minore di 0.";
-    }
-    if (filters.maxPrice && Number(filters.maxPrice) > 1000) {
-      return "Il prezzo massimo non può essere maggiore di 1000.";
-    }
-    if (
-      filters.minPrice &&
-      filters.maxPrice &&
-      parseFloat(filters.minPrice) > parseFloat(filters.maxPrice)
-    ) {
-      return "Il prezzo minimo non può essere maggiore del prezzo massimo.";
-    }
-    if (filters.productName && filters.productName.length > 50) {
-      return "Il nome del prodotto non può essere più lungo di 50 caratteri.";
-    }
-    if (
-      filters.brandSlug &&
-      ![
-        "dior",
-        "chanel",
-        "calvin_klein",
-        "giorgio_armani",
-        "maison_lumière",
-        "nordica_scents",
-      ].includes(filters.brandSlug)
-    ) {
-      return "Marca non valida. Scegli tra una di queste: Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents.";
-    }
-    if (
-      filters.size &&
-      !["xs", "s", "m", "l", "xl", "xxl"].includes(filters.size)
-    ) {
-      return "Formato non valido. Scegli tra xs, s, m, l, xl, xxl.";
-    }
-    if (
-      filters.gender &&
-      !["male", "female", "unisex"].includes(filters.gender)
-    ) {
-      return "Genere non valido. Scegli tra Uomo, Donna o Unisex.";
-    }
-    const validOrderBy = [
-      "",
-      "products.price ASC",
-      "products.price DESC",
-      "products.name ASC",
-      "products.name DESC",
-      "products.size_ml ASC",
-      "products.size_ml DESC",
-    ];
-    if (filters.orderBy && !validOrderBy.includes(filters.orderBy)) {
-      return "Ordinamento non valido.";
-    }
-    return null; // Nessun errore
-  };
-
-  // Funzione per aggiornare i filtri
-  const updateFilters = (newFilters) => {
-    setFilters((prev) => ({ ...prev, ...newFilters }));
-    // setFilters(newFilters);
-  };
 
   const BASE_URL = "http://localhost:3000/parfumes";
 
-  const searchParfumes = (customFilters) => {
+  const searchParfumes = (
+    query,
+    brandSlug,
+    gender,
+    minPrice,
+    maxPrice,
+    orderBy,
+    size,
+    discounted
+  ) => {
+    // if (!query.trim()) {
+    //   setParfumes([]);
+    //   setLoading(false);
+    //   setError(null);
+    //   return;
+    // }
+
     setLoading(true);
 
-    console.log("customFilters", customFilters);
-    console.log("filters", filters);
-
-    // Usa i filtri passati o quelli nello state
-    const activeFilters = customFilters || filters;
     const params = new URLSearchParams();
-    if (activeFilters.productName)
-      params.append("product_name", activeFilters.productName);
-    if (activeFilters.brandSlug)
-      params.append("brand_slug", activeFilters.brandSlug);
-    if (activeFilters.gender) params.append("gender", activeFilters.gender);
-    if (activeFilters.minPrice)
-      params.append("min_price", activeFilters.minPrice);
-    if (activeFilters.maxPrice)
-      params.append("max_price", activeFilters.maxPrice);
-    if (activeFilters.orderBy) params.append("order_by", activeFilters.orderBy);
-    if (activeFilters.size) params.append("size", activeFilters.size);
-    if (activeFilters.discounted)
-      params.append("discounted", activeFilters.discounted);
-
-    console.log("params", params.toString());
-
-    console.log("activeFilters", activeFilters);
+    params.append("product_name", query);
+    if (brandSlug) params.append("brand_slug", brandSlug);
+    if (gender) params.append("gender", gender);
+    if (minPrice) params.append("min_price", minPrice);
+    if (maxPrice) params.append("max_price", maxPrice);
+    if (orderBy) params.append("order_by", orderBy);
+    if (size) params.append("size", size);
+    if (discounted) params.append("discounted", discounted);
 
     axios
       .get(`${BASE_URL}?${params.toString()}`)
       .then((response) => {
+        console.log(response);
         setParfumes(response.data);
         setError(null);
         setLoading(false);
       })
       .catch((err) => {
+        console.log(err);
         setError(err);
         setParfumes([]);
         setLoading(false);
@@ -175,9 +94,9 @@ export const ParfumeAPIProvider = ({ children }) => {
         parfumes,
         loading,
         error,
-        filters,
-        validateFilters,
-        updateFilters,
+        // filters,
+        // validateFilters,
+        // updateFilters,
         searchParfumes,
         recents,
         getRecentsParfumes,
