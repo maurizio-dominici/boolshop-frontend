@@ -289,3 +289,211 @@ a {
   max-width: 4rem;
   text-align: center;
 }
+
+/* --- CUSTOM CHECKOUT & PAYMENT/RECIPT --- */
+.card {
+  border-radius: 1.2rem !important;
+  box-shadow: 0 2px 16px rgba(168, 237, 234, 0.15) !important;
+  border: none !important;
+}
+
+.cart-table-modern {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(168, 237, 234, 0.1);
+}
+
+.cart-table-modern thead th {
+  background: var(--boolshop-primary-color-hover);
+  color: #2d4d3a;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 2px solid #e7c75a;
+}
+
+.cart-table-modern tbody tr {
+  border-bottom: 1px solid #f3db8c;
+  transition: background 0.2s;
+}
+
+.cart-table-modern tbody tr:hover {
+  background: #f6fefa;
+}
+
+.cart-table-modern td,
+.cart-table-modern th {
+  vertical-align: middle;
+  padding: 0.75rem 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+  .cart-table-modern thead th {
+    font-size: 0.95rem;
+    position: sticky;
+    top: 0;
+    background: #e7c75a;
+    color: #06062a;
+    z-index: 10;
+  }
+  .cart-table-modern td,
+  .cart-table-modern th {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.3rem;
+  }
+}
+
+input.form-control,
+select.form-select {
+  border-radius: 0.6rem !important;
+  box-shadow: 0 1px 4px rgba(168, 237, 234, 0.1);
+  border: 1px solid #e7c75a;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+}
+
+input.form-control:focus,
+select.form-select:focus {
+  border-color: var(--boolshop-primary-color-hover);
+  box-shadow: 0 0 0 2px #a8edea33;
+}
+
+.form-label {
+  font-size: 1.07rem;
+  color: #2d4d3a;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    padding: 1.2rem !important;
+  }
+  .cart-table-modern {
+    font-size: 0.97rem;
+  }
+}
+
+.btn.w-100.w-md-auto {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .btn.w-100.w-md-auto {
+    width: auto;
+  }
+}
+
+/* Migliora spaziatura tra bottoni su mobile */
+@media (max-width: 767.98px) {
+  .d-flex.flex-column.flex-md-row.gap-3 > * {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Migliora elenco prodotti in Payment/Recipt */
+.list-group-item {
+  background: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 1.05rem;
+}
+
+.list-group-item .fw-semibold {
+  color: #2d4d3a;
+}
+
+.list-group-item .text-success {
+  font-weight: 600;
+}
+
+/* Migliora titoli con icone */
+h4.fw-bold i,
+h5.fw-bold i,
+h1.fw-bold i {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+/* Migliora alert */
+.alert {
+  border-radius: 0.7rem;
+  font-size: 1.05rem;
+  padding: 0.9rem 1.2rem;
+}
+
+/* Migliora margin tra sezioni card */
+.card .mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Migliora padding tra righe form */
+.row.g-4 > [class^="col-"] {
+  margin-bottom: 0.5rem;
+}
+
+/* Migliora sticky header tabella su mobile */
+@media (max-width: 575.98px) {
+  .cart-table-modern thead th {
+    position: sticky;
+    top: 0;
+    background: #e7c75a;
+    color: #06062a;
+    z-index: 20;
+    font-size: 0.98rem;
+  }
+}
+
+/* Migliora ombre leggere su card */
+.card.shadow-sm {
+  box-shadow: 0 2px 16px rgba(168, 237, 234, 0.15) !important;
+}
+
+/* Migliora arrotondamenti */
+.card,
+.cart-table-modern,
+input.form-control,
+select.form-select {
+  border-radius: 1rem !important;
+}
+
+/* Migliora gap tra label e input */
+.form-label + .form-control,
+.form-label + .form-select {
+  margin-top: 0.15rem;
+}
+
+/* Migliora gap tra sezioni */
+.card > *:not(:last-child) {
+  margin-bottom: 1.1rem;
+}
+
+/* Migliora responsive padding */
+@media (max-width: 575.98px) {
+  .card {
+    padding: 1rem !important;
+  }
+}
+
+/* Migliora gap tra icona e testo nei bottoni */
+.btn i {
+  margin-right: 0.5em;
+}
+
+/* Migliora elenco prodotti in Recipt/Payment */
+ul.list-group {
+  margin-bottom: 1.2rem;
+}
+
+/* Migliora margin tra card e container */
+.container > .card,
+.container > .row > .col-12 > .card {
+  margin-bottom: 2rem;
+}
+
+/* Migliora margin tra sezioni form */
+.card .row.g-3 > [class^="col-"] {
+  margin-bottom: 1rem;
+}
