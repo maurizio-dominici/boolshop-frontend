@@ -305,8 +305,8 @@ a {
 }
 
 .cart-table-modern thead th {
-  background: var(--boolshop-primary-color-hover);
-  color: #2d4d3a;
+  background: var(--boolshop-primary-color); /* background primario */
+  color: var(--boolshop-primary-color-hover); /* testo primary-hover */
   font-weight: 600;
   position: sticky;
   top: 0;
@@ -334,8 +334,8 @@ a {
     font-size: 0.95rem;
     position: sticky;
     top: 0;
-    background: #e7c75a;
-    color: #06062a;
+    background: var(--boolshop-primary-color); /* background primario */
+    color: var(--boolshop-primary-color-hover); /* testo primary-hover */
     z-index: 10;
   }
   .cart-table-modern td,
@@ -439,8 +439,8 @@ h1.fw-bold i {
   .cart-table-modern thead th {
     position: sticky;
     top: 0;
-    background: #e7c75a;
-    color: #06062a;
+    background: var(--boolshop-primary-color); /* background primario */
+    color: var(--boolshop-primary-color-hover); /* testo primary-hover */
     z-index: 20;
     font-size: 0.98rem;
   }

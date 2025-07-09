@@ -282,7 +282,10 @@ export default function Checkout() {
                       <th className="text-center">Prodotto</th>
                       <th className="text-center">Quantità</th>
                       <th className="text-center">Prezzo originale</th>
-                      <th className="text-center">Prezzo scontato</th>
+                      {/* Mostra colonna "Prezzo scontato" solo se almeno un prodotto ha sconto */}
+                      {clientInfo.cart.some(
+                        (item) => item.discount.discount_amount > 0
+                      ) && <th className="text-center">Prezzo scontato</th>}
                       <th className="text-center">Totale</th>
                     </tr>
                   </thead>
@@ -291,12 +294,31 @@ export default function Checkout() {
                       <tr key={item.id} className="cart-row">
                         <td className="text-center fw-semibold">{item.name}</td>
                         <td className="text-center">{item.quantity}</td>
-                        <td className="text-center text-decoration-line-through text-muted">
-                          {getOriginalPrice(item)} €
+                        <td className="text-center">
+                          {item.discount.discount_amount > 0 ? (
+                            <span className="text-decoration-line-through text-muted">
+                              {getOriginalPrice(item)} €
+                            </span>
+                          ) : (
+                            <span className="fw-bold">
+                              {getOriginalPrice(item)} €
+                            </span>
+                          )}
                         </td>
-                        <td className="text-center text-success fw-bold">
-                          {getFinalPrice(item)} €
-                        </td>
+                        {/* Mostra solo se almeno un prodotto ha sconto */}
+                        {clientInfo.cart.some(
+                          (i) => i.discount.discount_amount > 0
+                        ) && (
+                          <td className="text-center">
+                            {item.discount.discount_amount > 0 ? (
+                              <span className="text-success fw-bold">
+                                {getFinalPrice(item)} €
+                              </span>
+                            ) : (
+                              <span className="text-muted">—</span>
+                            )}
+                          </td>
+                        )}
                         <td className="text-center fw-semibold">
                           {(getFinalPrice(item) * item.quantity).toFixed(2)} €
                         </td>
@@ -306,7 +328,17 @@ export default function Checkout() {
                   <tfoot>
                     <tr className="bg-light">
                       <td className="text-center fw-bold">Totale ordine</td>
-                      <td colSpan={3}></td>
+                      {/* colspan dinamico in base alla presenza della colonna sconto */}
+                      <td
+                        colSpan={
+                          2 +
+                          (clientInfo.cart.some(
+                            (item) => item.discount.discount_amount > 0
+                          )
+                            ? 1
+                            : 0)
+                        }
+                      ></td>
                       <td className="text-center fw-bold">
                         {clientInfo.cart
                           .reduce(
