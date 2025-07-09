@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useCartPopup } from "../../context/CartPopupContext";
 import { useTopMessage } from "../../context/TopMessageContext";
 
-export default function ProductListVisualizationItem ({ item }) {
+export default function ProductListVisualizationItem({ item }) {
   const { updateCartPopup, setCartPopupData } = useCartPopup();
   const { showTopMessage } = useTopMessage();
 
@@ -36,13 +36,17 @@ export default function ProductListVisualizationItem ({ item }) {
       JSON.parse(window.localStorage.getItem("cart"))
     );
   };
+  /* parte nuova */
+
+  function getOriginalPrice(item) {
+    return item.price.toFixed(2);
+  }
 
   function getFinalPrice(item) {
-    return parseFloat(
-      (item.price - (item.price * item.discount.discount_amount) / 100).toFixed(
-        2
-      )
-    );
+    const test =
+      item.price - (item.price * item.discount.discount_amount) / 100;
+    console.log("risultato ", parseFloat(test));
+    return parseFloat(test).toFixed(2);
   }
 
   return (
@@ -54,20 +58,14 @@ export default function ProductListVisualizationItem ({ item }) {
               src={item.image}
               alt={item.name}
               style={{ maxHeight: "200px", objectFit: "contain" }}
-              className="card-img-top" 
+              className="card-img-top"
             />
           </div>
 
-
-
           <div className="col-md-4">
             <div className="card-body">
-              <h5 className="card-title">
-                {item.name}
-              </h5>
-              <p className="card-text">
-                {item.description}
-              </p>
+              <h5 className="card-title">{item.name}</h5>
+              <p className="card-text">{item.description}</p>
               <p className="card-text">
                 <small className="text-body-secondary">
                   {item.brand.brand_name}
@@ -82,39 +80,32 @@ export default function ProductListVisualizationItem ({ item }) {
               </p>
               <p className="card-text">
                 {/* <small> */}
-                  <strong>Prezzo: </strong>
+                <strong>Prezzo: </strong>
 
-                  {
-                    item.discount.discount_amount !== 0 ? (
-                      <>
-                        <del className="old-price">{item.price} € </del>{" "}
-                        <span className="new-price">{getFinalPrice(item)} €</span>
-                      </>
-                    ) : (
-                      <>{item.price} € </>
-                    )
-                  }
+                {item.discount.discount_amount !== 0 ? (
+                  <>
+                    <del className="old-price">{getOriginalPrice(item)} € </del>{" "}
+                    <span className="new-price">{getFinalPrice(item)} €</span>
+                  </>
+                ) : (
+                  <>{getOriginalPrice(item)} € </>
+                )}
                 {/* </small> */}
               </p>
               <p className="card-text">
-                {
-                  item.discount.discount_amount !== 0 ? (
-                    <span id="discount" className="badge">
-                      {item.discount.discount_amount}%
-                    </span>
-                  ) : (
-                    <></>
-                  )
-                }
+                {item.discount.discount_amount !== 0 ? (
+                  <span id="discount" className="badge">
+                    {item.discount.discount_amount}%
+                  </span>
+                ) : (
+                  <></>
+                )}
               </p>
               <p className="card-text">
                 {item.size_ml}ml ({item.size_name})
               </p>
             </div>
           </div>
-
-
-
         </div>
       </Link>
       <button
