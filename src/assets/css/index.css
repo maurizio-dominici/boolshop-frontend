@@ -67,6 +67,8 @@ a {
   top: 3.5rem;
   right: 0px;
   z-index: 1000;
+  overflow: auto;
+  max-height: 90vh;
 }
 
 #discount {
