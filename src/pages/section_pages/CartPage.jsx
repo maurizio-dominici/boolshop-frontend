@@ -97,23 +97,33 @@ export default function CartPage() {
 
                 {/* MOSTRA PREZZI */}
                 <div className="col-md-3">
-                  <ul className="mb-0">
-                    <li>
-                      <b>Prezzo originale:</b>{" "}
-                      <del className="old-price">
-                        {getOriginalPrice(item)} €
-                      </del>
-                    </li>
-                    <li>
-                      <b>Sconto applicato:</b> {item.discount.discount_amount} %
-                    </li>
-                    <li>
-                      <b>Prezzo scontato:</b>{" "}
-                      <span className="new-price">
-                        {getFinalPrice(item)} €{" "}
-                      </span>
-                    </li>
-                  </ul>
+                  {item.discount.discount_amount > 0 ? (
+                    <ul className="mb-0">
+                      <li>
+                        <b>Prezzo originale: </b>
+                        <del className="old-price">
+                          {getOriginalPrice(item)} €
+                        </del>
+                      </li>
+                      <li>
+                        <b>Sconto applicato: </b>{" "}
+                        {item.discount.discount_amount}%
+                      </li>
+                      <li>
+                        <b>Prezzo scontato: </b>
+                        <span className="new-price">
+                          {getFinalPrice(item)} €
+                        </span>
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul className="mb-0">
+                      <li>
+                        <b>Prezzo originale: </b>{" "}
+                        <span>{getOriginalPrice(item)} €</span>
+                      </li>
+                    </ul>
+                  )}
                 </div>
                 {/* CONTROLLO QUANTITÁ */}
                 <div className="col-md-4 d-flex align-items-center justify-content-end gap-3">
