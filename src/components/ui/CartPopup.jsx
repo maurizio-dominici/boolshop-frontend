@@ -38,7 +38,7 @@ export default function CartPopup() {
   };
   /* IMPORTO FUNZIONE DA CARD */
 
-  /* parte nuova */
+  /* parte nuova formattazione prezzo */
 
   function getOriginalPrice(item) {
     return item.price.toFixed(2);
@@ -47,7 +47,7 @@ export default function CartPopup() {
   function getFinalPrice(item) {
     const test =
       item.price - (item.price * item.discount.discount_amount) / 100;
-    console.log("risultato ", parseFloat(test));
+
     return parseFloat(test).toFixed(2);
   }
 
