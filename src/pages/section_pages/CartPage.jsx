@@ -187,13 +187,13 @@ export default function CartPage() {
                           sum + getFinalPrice(item) * item.quantity,
                         0
                       )
-                      .toFixed(2) > 100.0 ? (
+                      .toFixed(2) >= 100.0 ? (
                       <span>
                         Complimenti! Hai diritto alla spedizione gratuita.
                       </span>
                     ) : (
                       <span>
-                        Ricorda che se il totale supera i 100€ puoi ottenere la
+                        Ricorda che se il totale raggiunge i 100€ ottieni la
                         spedizione gratuita!
                       </span>
                     )}
