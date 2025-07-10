@@ -35,6 +35,7 @@ export default function HeroSection() {
         <p className="lead mb-4 fs-4 hero-subtitle">
           Vivi l'essenza del lusso a ogni spruzzo.
         </p>
+
         <form onSubmit={handleSearch}>
           <div className="input-group mb-2 search-input-group">
             <input
@@ -51,11 +52,15 @@ export default function HeroSection() {
             </div>
           )}
           <button
-            className="btn btn-light btn-lg w-100 mt-3 search-button"
+            className="btn btn-light btn-lg w-100 mt-3 mb-4 search-button"
             type="submit"
           >
-            Cerca
+            <i class="bi bi-search-heart"></i> Cerca
           </button>
+          <small>
+            <i class="bi bi-box hero-box"></i> Spedizione gratuita per ordini
+            superiori a 100 €
+          </small>
         </form>
       </div>
     </section>

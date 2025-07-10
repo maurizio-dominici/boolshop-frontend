@@ -155,6 +155,15 @@ h6 {
   );
 }
 
+.hero-area small {
+  color: var(--boolshop-primary-color);
+  font-size: 0.9rem;
+}
+
+.hero-box {
+  font-size: 1rem;
+}
+
 .input-group > .form-control {
   border: none;
 }
