@@ -63,7 +63,7 @@ export default function CartPage() {
           <div className="row gy-4">
             {cart.map((item) => (
               <div className="col-12" key={item.id}>
-                <div className="card shadow-sm p-3 h-100">
+                <div className="card shadow-sm p-3 h-md-100">
                   <div className="row align-items-center gx-3">
                     {/* CI VA L'IMG */}
                     <div className="col-4 col-md-2 text-center">
@@ -139,7 +139,7 @@ export default function CartPage() {
                         disabled={item.quantity <= 1}
                         aria-label="Diminuisci quantità"
                       >
-                        -
+                        <i className="bi bi-dash"></i>
                       </button>
                       <div className="fw-bold px-2">{item.quantity}</div>
                       <button
@@ -147,7 +147,7 @@ export default function CartPage() {
                         onClick={() => updateQuantity(item, 1)}
                         aria-label="Aumenta quantità"
                       >
-                        +
+                        <i className="bi bi-plus"></i>
                       </button>
                       {/* <button
                         // className="btn btn-secondary ms-2"
@@ -161,7 +161,7 @@ export default function CartPage() {
                         className="btn btn-sm btn-outline-primary"
                         onClick={() => removeItem(cartItem)}
                       >
-                        <i className="bi bi-trash"></i>{" "}
+                        <i className="bi bi-trash"></i>
                       </button>
                     </div>
                   </div>
