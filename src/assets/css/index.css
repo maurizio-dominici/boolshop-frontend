@@ -596,3 +596,11 @@ footer .input-group {
   opacity: 0.6;
   cursor: not-allowed !important;
 }
+
+/* SEARCHRESULTS */
+
+.product-filter-name {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}

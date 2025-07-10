@@ -4,7 +4,6 @@ import { ParfumeAPIContext } from "../../../context/ParfumesContext";
 import Card from "../../../components/homepage_components/Card";
 import ProductListVisualization from "../../../components/ui/ProductListVisualization";
 import VisualizationButton from "../../../components/ui/VisualizationButton";
-
 export default function SearchResults() {
   const { parfumes, loading, error, searchParfumes, visualization } =
     useContext(ParfumeAPIContext);
@@ -184,20 +183,11 @@ export default function SearchResults() {
     navigate(`/parfumes?${newParams.toString()}`);
     setOrderBy(e.target.value);
   };
-  // Seleziona prodotti se scontati o non
-  const handleDiscauntedChange = (e) => {
-    setTempDiscounted(e.target.value);
-    const newParams = new URLSearchParams(location.search);
-    if (e.target.value) newParams.set("discounted", e.target.value);
-    else newParams.delete("discounted");
-    navigate(`/parfumes?${newParams.toString()}`);
-    setDiscounted(e.target.value);
-  };
 
   return (
     <div className="page-container">
       <div className="container mt-4">
-        <div className="row mb-3 g-2">
+        <div className="row mb-3 g-2 align-items-end">
           <div className="col-12 col-md-3">
             <label htmlFor="order-by" className="form-label fw-semibold">
               Ordina per
@@ -219,19 +209,25 @@ export default function SearchResults() {
           </div>
 
           <div className="col-12 col-md-3">
-            <label htmlFor="discounted" className="form-label fw-semibold">
-              Sconto
+            <label htmlFor="product-name" className="form-label fw-semibold">
+              Nome prodotto
             </label>
-            <select
-              id="discounted"
-              className="form-select"
-              value={tempDiscounted}
-              onChange={handleDiscauntedChange}
+            <input
+              id="product-name"
+              type="text"
+              className="form-control"
+              placeholder="Nome prodotto"
+              value={tempProductName}
+              onChange={(e) => setTempProductName(e.target.value)}
+            />
+          </div>
+          <div className="col">
+            <button
+              className="btn btn-primary mt-4"
+              onClick={handleApplyFilters}
             >
-              <option value="">Tutti</option>
-              <option value="true">Scontati</option>
-              <option value="false">Non Scontati</option>
-            </select>
+              Applica filtri
+            </button>
           </div>
 
           <div className="col-12 col-md-9 d-flex align-items-end">
@@ -248,22 +244,21 @@ export default function SearchResults() {
         {showFilters && (
           <div className="card card-body mb-3">
             <div className="row row-cols-1 row-cols-md-3 g-3">
-              {/* Filtro nome prodotto  */}
+              {/* filtro discounted */}
               <div className="col">
-                <label
-                  htmlFor="product-name"
-                  className="form-label fw-semibold"
-                >
-                  Nome prodotto
+                <label htmlFor="discounted" className="form-label fw-semibold">
+                  Sconto
                 </label>
-                <input
-                  id="product-name"
-                  type="text"
-                  className="form-control"
-                  placeholder="Nome prodotto"
-                  value={tempProductName}
-                  onChange={(e) => setTempProductName(e.target.value)}
-                />
+                <select
+                  id="discounted"
+                  className="form-select"
+                  value={tempDiscounted}
+                  onChange={(e) => setTempDiscounted(e.target.value)}
+                >
+                  <option value="">Tutti</option>
+                  <option value="true">Scontati</option>
+                  <option value="false">Non Scontati</option>
+                </select>
               </div>
 
               {/* Filtro per size prodotto */}
@@ -376,19 +371,6 @@ export default function SearchResults() {
         )}
         <div className="row">
           {visualization === "grid" ? (
-            // isHomePage ?
-            //   parfumes.map((item) => (
-            //     <div key={item.id} className="col-md-4 mb-4">
-            //       <Card item={item} />
-            //     </div>
-            //   ))
-            // :
-            //   parfumes.map((item) => (
-            //     <div key={item.id} className="col-md-4 mb-4">
-            //       <Card item={item} />
-            //     </div>
-            //   ))
-
             parfumes.map((item) => (
               <div key={item.id} className="col-md-6 col-xl-4 mb-3">
                 <Card item={item} />
