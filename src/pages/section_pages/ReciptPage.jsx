@@ -48,7 +48,7 @@ export default function ReciptPage() {
                   )}
                   {ordine.discountAmount !== 0 && (
                     <div className="mb-2">
-                      <b>Percentuale codice sconto applicato:</b>
+                      <b>Percentuale codice sconto applicato: </b>
                       {ordine.discountAmount} %
                     </div>
                   )}
