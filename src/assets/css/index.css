@@ -574,7 +574,17 @@ footer .input-group {
   flex-direction: column;
   min-height: 100vh;
 }
-
 #root > .page-container {
   flex-grow: 1;
+}
+
+/* # CART REDUCE QUANTITY DISABLED STYLE */
+.page-container.cart .btn.btn-secondary:disabled {
+  background-color: #fff;
+  border: 1px solid gray;
+  color: gray;
+  /* border: 1px solid;
+  color: var(--boolshop-primary-color); */
+  opacity: 0.6;
+  cursor: not-allowed !important;
 }

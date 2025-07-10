@@ -56,7 +56,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="page-container">
+    <div className="page-container cart">
       {cart?.length ? (
         <div className="container py-4">
           <h1 className="mb-4 text-center fw-bold">IL TUO CARRELLO</h1>
@@ -134,7 +134,7 @@ export default function CartPage() {
                     {/* CONTROLLO QUANTITÁ */}
                     <div className="col-md-6 col-xl-4 d-flex align-items-center justify-content-md-end justify-content-start gap-2 gap-md-3 mt-3 mt-md-0">
                       <button
-                        className="btn btn-outline-secondary"
+                        className="btn btn-secondary"
                         onClick={() => updateQuantity(item, -1)}
                         disabled={item.quantity <= 1}
                         aria-label="Diminuisci quantità"
@@ -143,14 +143,15 @@ export default function CartPage() {
                       </button>
                       <div className="fw-bold px-2">{item.quantity}</div>
                       <button
-                        className="btn btn-outline-secondary"
+                        className="btn btn-secondary"
                         onClick={() => updateQuantity(item, 1)}
                         aria-label="Aumenta quantità"
                       >
                         +
                       </button>
                       <button
-                        className="btn btn-outline-secondary ms-2"
+                        // className="btn btn-secondary ms-2"
+                        className="btn btn-outline-primary ms-2"
                         onClick={() => removeItem(item)}
                         aria-label="Elimina prodotto"
                       >

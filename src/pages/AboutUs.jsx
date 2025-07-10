@@ -1,7 +1,7 @@
 export default function AboutUs() {
   return (
     <div className="page-container">
-      <div className="container">
+      <div className="container my-5">
         <h1>About us</h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam qui ipsam iure aliquid explicabo totam cumque dolorem ullam obcaecati eum velit illo quasi vitae, ipsa tempora cum tempore minus. Quo.
