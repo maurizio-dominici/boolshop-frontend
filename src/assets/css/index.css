@@ -619,3 +619,18 @@ footer .input-group {
   align-items: flex-end;
   gap: 1rem;
 }
+
+/* ABOUT US */
+.about-item {
+  list-style: disc;
+}
+
+.about-paragraf a {
+  color: var(--boolshop-primary-color);
+  font-weight: 700;
+}
+
+.about-paragraf a:hover {
+  color: var(--boolshop-secondary-color);
+  transition: 200ms;
+}

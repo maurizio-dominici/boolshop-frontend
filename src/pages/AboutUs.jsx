@@ -34,7 +34,7 @@ export default function AboutUs() {
             Assistenza clienti sempre disponibile, prima e dopo l'acquisto
           </li>
         </ul>
-        <p>
+        <p className="about-paragraf">
           Boolshop Parfumes non è solo un negozio online, ma uno spazio dove il
           profumo diventa esperienza, emozione e identità.
           <br />
