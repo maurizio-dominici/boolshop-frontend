@@ -54,9 +54,9 @@ export default function CartPopup() {
   return (
     <>
       {data.show && (
-        <div id="CartPopup" className="card">
-          <div className="border-bottom pb-2 d-flex justify-content-between mt-1">
-            <h2 className="card-title fs-5">Il tuo carrello</h2>
+        <div id="CartPopup" className="card shadow">
+          <div className="border-bottom d-flex justify-content-between mb-0 pb-3">
+            <h2 className="card-title fs-5 m-0">Il tuo carrello</h2>
             <button
               onClick={hideCartPopup}
               type="button"
@@ -84,25 +84,25 @@ export default function CartPopup() {
                         {getFinalPrice(cartItem)} €
                       </div>
 
-                      <div className="d-flex gap-1 align-items-center gap-3">
+                      <div className="d-flex gap-1 align-items-center">
                         <button
                           className="btn btn-sm btn-outline-primary"
                           onClick={() => removeItem(cartItem)}
                         >
-                          <i className="bi bi-trash"></i>{" "}
+                          <i className="bi bi-trash"></i>
                         </button>
                         <button
-                          className="btn btn-sm btn-secondary "
+                          className="btn btn-sm btn-secondary"
                           onClick={() => updateQuantity(cartItem, -1)}
                           disabled={cartItem.quantity <= 1}
                         >
-                          -
+                          <i className="bi bi-dash"></i>
                         </button>
                         <button
                           className="btn btn-sm btn-secondary"
                           onClick={() => updateQuantity(cartItem, 1)}
                         >
-                          +
+                          <i className="bi bi-plus"></i>
                         </button>
                       </div>
                       {/* <button

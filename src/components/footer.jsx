@@ -10,16 +10,16 @@ export default function Footer() {
               Fragranze esclusive, eleganza senza tempo. Scopri il tuo profumo
               ideale con noi.
             </p>
-            <img
+            {/* <img
               className="logo d-block mx-auto"
               src="/boolshop-parfumes-logo.jpg"
               alt="Logo"
-            />
+            /> */}
           </div>
 
           {/*  Link Utili  */}
           <div className="col-md-3 mb-4">
-            <h6 className="text-white">Informazioni</h6>
+            <h5 className="text-white">Informazioni</h5>
             <ul className="footer-list">
               <li>
                 <a className="text-decoration-none">Chi siamo</a>
@@ -41,7 +41,7 @@ export default function Footer() {
 
           {/*  Servizi  */}
           <div className="col-md-3 mb-4">
-            <h6 className="text-white">Servizi</h6>
+            <h5 className="text-white">Servizi</h5>
             <ul className="footer-list">
               <li>
                 <a className="text-decoration-none">Spedizione</a>
@@ -60,20 +60,26 @@ export default function Footer() {
 
           {/*  Social & Newsletter  */}
           <div className="col-md-3 mb-4">
-            <h6 className="text-white">Seguici</h6>
-            <div className="mb-2">
-              <a className="me-2">
-                <i className="bi bi-facebook"></i>
-              </a>
-              <a className="me-2">
-                <i className="bi bi-instagram"></i>
-              </a>
-              <a className="me-2">
-                <i className="bi bi-youtube"></i>
-              </a>
-            </div>
-            {/* da chiedere se si puo mettere */}
-            {/* <form>
+            <div className="text-center">
+              <img
+                className="logo d-block mx-auto"
+                src="/boolshop-parfumes-logo.jpg"
+                alt="Logo"
+              />
+              <h5 className="text-white mb-1">Seguici</h5>
+              <div className="d-flex align-items-center justify-content-center gap-2 mb-3">
+                <a href="#">
+                  <i className="bi bi-facebook fs-4"></i>
+                </a>
+                <a href="#">
+                  <i className="bi bi-instagram fs-4"></i>
+                </a>
+                <a href="#">
+                  <i className="bi bi-youtube fs-4"></i>
+                </a>
+              </div>
+              {/* da chiedere se si puo mettere */}
+              {/* <form>
               <label htmlFor="newsletter" className="label-form">
                 Iscriviti alla newsletter
               </label>
@@ -93,6 +99,7 @@ export default function Footer() {
                 </button>
               </div>
             </form> */}
+            </div>
           </div>
         </div>
 
