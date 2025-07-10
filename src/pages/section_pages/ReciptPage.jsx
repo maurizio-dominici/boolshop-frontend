@@ -37,9 +37,7 @@ export default function ReciptPage() {
                     <i className="fa-solid fa-clipboard-list text-secondary"></i>
                     Dettagli Ordine
                   </h4>
-                  {/* <div className="mb-2">
-                    <b>ID Ordine:</b> {ordine.orderId}
-                  </div> */}
+
                   <div className="mb-2">
                     <b>Prezzo iniziale:</b> {ordine.total_price} €
                   </div>
@@ -50,7 +48,8 @@ export default function ReciptPage() {
                   )}
                   {ordine.discountAmount !== 0 && (
                     <div className="mb-2">
-                      <b>Percentuale di sconto:</b> {ordine.discountAmount} %
+                      <b>Percentuale codice sconto applicato:</b>
+                      {ordine.discountAmount} %
                     </div>
                   )}
                   <div className="mb-2">
@@ -93,25 +92,3 @@ export default function ReciptPage() {
     </div>
   );
 }
-//                     Nessun prodotto acquistato.
-//                   </div>
-//                 )}
-//               </div>
-//             ) : (
-//               <div className="alert alert-danger">
-//                 Nessun ordine disponibile.
-//               </div>
-//             )}
-
-//             <div className="d-flex justify-content-center mt-4">
-//               <Link to={"/"} className="btn btn-primary">
-//                 <i className="fa-solid fa-house me-2"></i>
-//                 Torna alla Home
-//               </Link>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
