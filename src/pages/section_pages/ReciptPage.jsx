@@ -58,7 +58,7 @@ export default function ReciptPage() {
                       {(
                         Number(ordine.final_price) +
                         Number(ordine.shipping_price)
-                      ).toFixed(2)}
+                      ).toFixed(2)}{" "}
                       €
                     </span>
                   </div>
