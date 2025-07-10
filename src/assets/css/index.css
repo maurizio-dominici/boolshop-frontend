@@ -566,8 +566,6 @@ footer .input-group {
   cursor: pointer;
 }
 
-
-
 /* # FOOTER ON BOTTOM OF PAGE */
 #root {
   display: flex;
@@ -587,4 +585,20 @@ footer .input-group {
   color: var(--boolshop-primary-color); */
   opacity: 0.6;
   cursor: not-allowed !important;
+}
+
+/* ABOUT US */
+
+#about-page .about-list {
+  list-style: unset;
+}
+
+#about-page a {
+  color: var(--boolshop-primary-color);
+  font-weight: bold;
+}
+
+#about-page a:hover {
+  color: var(--boolshop-secondary-color);
+  transition: 200ms;
 }
