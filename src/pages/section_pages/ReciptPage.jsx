@@ -45,7 +45,7 @@ export default function ReciptPage() {
                   </div>
                   {ordine.shipping_price > 0 && (
                     <div className="mb-2">
-                      <b>Costo spedizione:</b> {ordine.shipping.price} €
+                      <b>Costo spedizione:</b> {ordine.shipping_price} €
                     </div>
                   )}
                   {ordine.discountAmount !== 0 && (
