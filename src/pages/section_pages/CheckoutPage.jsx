@@ -57,7 +57,6 @@ export default function Checkout() {
         clientInfo
       )
       .then((res) => {
-        console.log(res.data);
         setClientInfo(initialClientInfo);
         const ordine = res.data.orderRecap;
         const checkoutCart = res.data.checkoutCart;
