@@ -199,7 +199,7 @@ export default function SearchResults() {
       <div className="container mt-4">
         <div className="row mb-3 g-2">
           <div className="col-12 col-md-3">
-            <label htmlFor="order-by" className="form-label">
+            <label htmlFor="order-by" className="form-label fw-semibold">
               Ordina per
             </label>
             <select
@@ -219,7 +219,7 @@ export default function SearchResults() {
           </div>
 
           <div className="col-12 col-md-3">
-            <label htmlFor="discounted" className="form-label">
+            <label htmlFor="discounted" className="form-label fw-semibold">
               Sconto
             </label>
             <select
@@ -250,7 +250,10 @@ export default function SearchResults() {
             <div className="row row-cols-1 row-cols-md-3 g-3">
               {/* Filtro nome prodotto  */}
               <div className="col">
-                <label htmlFor="product-name" className="form-label">
+                <label
+                  htmlFor="product-name"
+                  className="form-label fw-semibold"
+                >
                   Nome prodotto
                 </label>
                 <input
@@ -265,7 +268,7 @@ export default function SearchResults() {
 
               {/* Filtro per size prodotto */}
               <div className="col">
-                <label htmlFor="brand-size" className="form-label">
+                <label htmlFor="brand-size" className="form-label fw-semibold">
                   Size
                 </label>
                 <select
@@ -286,7 +289,7 @@ export default function SearchResults() {
 
               {/* Filtro per marca */}
               <div className="col">
-                <label htmlFor="brand-slug" className="form-label">
+                <label htmlFor="brand-slug" className="form-label fw-semibold">
                   Marca
                 </label>
                 <select
@@ -305,7 +308,7 @@ export default function SearchResults() {
 
               {/* Filtro per genere  */}
               <div className="col">
-                <label htmlFor="gender" className="form-label">
+                <label htmlFor="gender" className="form-label fw-semibold">
                   Genere
                 </label>
                 <select
@@ -323,7 +326,7 @@ export default function SearchResults() {
 
               {/* Filtro per prezzo minimo */}
               <div className="col">
-                <label htmlFor="min-price" className="form-label">
+                <label htmlFor="min-price" className="form-label fw-semibold">
                   Prezzo minimo
                 </label>
                 <input
@@ -338,7 +341,7 @@ export default function SearchResults() {
 
               {/* Filtro per prezzo massimo */}
               <div className="col">
-                <label htmlFor="max-price" className="form-label">
+                <label htmlFor="max-price" className="form-label fw-semibold">
                   Prezzo massimo
                 </label>
                 <input

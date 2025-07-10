@@ -140,7 +140,7 @@ h6 {
   );
   padding: 2rem 0;
   font-family: "Segoe UI", sans-serif;
-  color: #2d4d3a;
+  color: var(--boolshop-primary-color);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -167,14 +167,14 @@ h6 {
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
-  color: #2d4d3a;
+  color: var(--boolshop-primary-color);
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
 }
 
 .hero-subtitle {
   font-size: 1.3rem;
-  color: #4c6653;
+  color: var(--boolshop-primary-color);
   margin-bottom: 2rem;
 }
 
@@ -189,7 +189,7 @@ h6 {
   box-shadow: 0 0 8px rgba(60, 179, 113, 0.2);
   padding: 1rem;
   font-size: 1.1rem;
-  color: #2d4d3a;
+
   width: 100%;
 }
 
@@ -200,7 +200,7 @@ h6 {
 
 .search-button {
   background-color: #ffffff;
-  color: #2d4d3a;
+  color: var(--boolshop-primary-color);
   font-weight: 600;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
@@ -235,7 +235,7 @@ section.bg-light {
 
 section h2.fw-bold {
   font-size: 2rem;
-  color: #2d4d3a;
+  color: var(--boolshop-primary-color);
   margin-bottom: 1rem;
 }
 
@@ -306,13 +306,23 @@ a {
 /* # POPUP CON IL CARRELLO */
 #CartPopup {
   /* ABBOZZATA PER ORA, NON RESPONSIVE */
-  width: 16vw;
+  /* width: 18rem; */
+  width: 100%;
   position: fixed;
-  top: 3.5rem;
+  top: 0;
   right: 0px;
   z-index: 1000;
   overflow: auto;
-  max-height: 90vh;
+  height: 100vh;
+}
+
+@media only screen and (min-width: 480px) {
+  #CartPopup {
+    width: 18rem;
+    top: 3.5rem;
+    max-height: 90vh;
+    height: auto;
+  }
 }
 
 #discount {
@@ -401,7 +411,7 @@ select.form-select:focus {
 
 .form-label {
   font-size: 1.07rem;
-  color: #2d4d3a;
+  color: var(--boolshop-primary-color);
   margin-bottom: 0.3rem;
   letter-spacing: 0.01em;
 }
@@ -441,7 +451,7 @@ select.form-select:focus {
 }
 
 .list-group-item .fw-semibold {
-  color: #2d4d3a;
+  color: var(--boolshop-primary-color);
 }
 
 .list-group-item .text-success {
@@ -585,20 +595,4 @@ footer .input-group {
   color: var(--boolshop-primary-color); */
   opacity: 0.6;
   cursor: not-allowed !important;
-}
-
-/* ABOUT US */
-
-#about-page .about-list {
-  list-style: unset;
-}
-
-#about-page a {
-  color: var(--boolshop-primary-color);
-  font-weight: bold;
-}
-
-#about-page a:hover {
-  color: var(--boolshop-secondary-color);
-  transition: 200ms;
 }

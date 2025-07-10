@@ -55,7 +55,7 @@ export default function CartPopup() {
     <>
       {data.show && (
         <div id="CartPopup" className="card">
-          <div className="card-header d-flex justify-content-between mt-1">
+          <div className="border-bottom pb-2 d-flex justify-content-between mt-1">
             <h2 className="card-title fs-5">Il tuo carrello</h2>
             <button
               onClick={hideCartPopup}
@@ -77,28 +77,29 @@ export default function CartPopup() {
                       <br />
                       {/* parte nuova */}
 
-                      <div>
-                        <strong>{cartItem.name} : </strong>
+                      <div className="mb-2">
+                        <strong>{cartItem.name} </strong>
+                        <br />
                         {cartItem.quantity} x <span> </span>
                         {getFinalPrice(cartItem)} €
                       </div>
 
-                      <div className="d-flex align-items-center">
+                      <div className="d-flex gap-1 align-items-center">
                         <button
-                          className="btn "
+                          className="btn btn-sm btn-outline-primary"
                           onClick={() => removeItem(cartItem)}
                         >
                           <i className="bi bi-trash"></i>{" "}
                         </button>
                         <button
-                          className="btn "
+                          className="btn btn-sm btn-secondary "
                           onClick={() => updateQuantity(cartItem, -1)}
                           disabled={cartItem.quantity <= 1}
                         >
                           -
                         </button>
                         <button
-                          className="btn "
+                          className="btn btn-sm btn-secondary"
                           onClick={() => updateQuantity(cartItem, 1)}
                         >
                           +
