@@ -132,7 +132,7 @@ export default function CartPage() {
                       )}
                     </div>
                     {/* CONTROLLO QUANTITÁ */}
-                    <div className="col-12 col-md-4 d-flex align-items-center justify-content-md-end justify-content-start gap-2 gap-md-3 mt-3 mt-md-0">
+                    <div className="col-md-6 col-xl-4 d-flex align-items-center justify-content-md-end justify-content-start gap-2 gap-md-3 mt-3 mt-md-0">
                       <button
                         className="btn btn-outline-secondary"
                         onClick={() => updateQuantity(item, -1)}
