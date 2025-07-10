@@ -52,79 +52,86 @@ export default function ProductListVisualizationItem({ item }) {
 
   return (
     <div className="card product-card mb-3">
-      <Link to={`/product/${item.slug}`} className="text-decoration-none">
         <div className="row g-0">
           <div className="col-md-2">
-            <img
-              src={item.image}
-              alt={item.name}
-              style={{ maxHeight: "200px", objectFit: "contain" }}
-              className="card-img-top pt-3 img-fluid"
-            />
+            <Link to={`/product/${item.slug}`} className="text-decoration-none">
+              <img
+                src={item.image}
+                alt={item.name}
+                style={{ maxHeight: "200px", objectFit: "contain" }}
+                className="card-img-top pt-3 img-fluid"
+              />
+            </Link>
           </div>
 
           <div className="col-md-5">
-            <div className="card-body">
-              <h5 className="card-title">{item.name}</h5>
-              <p className="card-text">{item.description}</p>
-              <p className="card-text">
-                <small className="text-body-secondary">
-                  <strong>Brand: </strong>
-                  {item.brand.brand_name}
-                </small>
-              </p>
-            </div>
+            <Link to={`/product/${item.slug}`} className="text-decoration-none">
+              <div className="card-body">
+                <h5 className="card-title">{item.name}</h5>
+                <p className="card-text">{item.description}</p>
+                <p className="card-text">
+                  <small className="text-body-secondary">
+                    <strong>Brand: </strong>
+                    {item.brand.brand_name}
+                  </small>
+                </p>
+              </div>
+            </Link>
           </div>
           <div className="col-md-5">
             <div className="card-body">
-              <p className="card-text">
-                <strong>Gender:</strong> {item.gender}
-              </p>
-              <p className="card-text">
-                {/* <small> */}
-                <strong>Prezzo: </strong>
+              <Link to={`/product/${item.slug}`} className="text-decoration-none">
+                <p className="card-text">
+                  <strong>Gender:</strong> {item.gender}
+                </p>
+                <p className="card-text">
+                  {/* <small> */}
+                  <strong>Prezzo: </strong>
 
-                {item.discount.discount_amount !== 0 ? (
-                  <>
-                    <del className="old-price">{getOriginalPrice(item)} € </del>{" "}
-                    <span className="new-price">{getFinalPrice(item)} €</span>
-                  </>
-                ) : (
-                  <>{getOriginalPrice(item)} € </>
-                )}
-                {/* </small> */}
-              </p>
-              <p className="card-text">
-                {item.discount.discount_amount !== 0 ? (
-                  <span id="discount" className="badge">
-                    {item.discount.discount_amount} %
-                  </span>
-                ) : (
-                  <></>
-                )}
-              </p>
-              <p className="card-text">
-                <strong>Formato: </strong>
-                {item.size_ml} ml ({item.size_name})
-              </p>
+                  {item.discount.discount_amount !== 0 ? (
+                    <>
+                      <del className="old-price">{getOriginalPrice(item)} € </del>{" "}
+                      <span className="new-price">{getFinalPrice(item)} €</span>
+                    </>
+                  ) : (
+                    <>{getOriginalPrice(item)} € </>
+                  )}
+                  {/* </small> */}
+                </p>
+                <p className="card-text">
+                  {item.discount.discount_amount !== 0 ? (
+                    <span id="discount" className="badge">
+                      {item.discount.discount_amount} %
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </p>
+                <p className="card-text">
+                  <strong>Formato: </strong>
+                  {item.size_ml} ml ({item.size_name})
+                </p>
+              </Link>
 
               <button
                 className="btn btn-primary z-1 d-block d-md-none"
                 onClick={() => cartAdd(item)}
               >
-                <i className="bi bi-cart3 m-3 icon-m"></i>
+                <i className="bi bi-cart3 icon-m"></i>
               </button>
 
 
             </div>
           </div>
         </div>
-      </Link>
+
+
+
       <button
         className="btn btn-primary hovered z-1"
         onClick={() => cartAdd(item)}
       >
-        <i className="bi bi-cart3 m-3 icon-m"></i>
+        <i className="bi bi-cart3 icon-m"></i>
       </button>
     </div>
   );
