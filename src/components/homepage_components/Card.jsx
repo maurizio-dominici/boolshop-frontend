@@ -52,37 +52,41 @@ export default function Card({ item }) {
 
   return (
     <div className="card h-100 text-center product-card">
-      <Link to={`/product/${item.slug}`} className="text-decoration-none">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="card-img-top img-fluid pt-3"
-          style={{ maxHeight: "200px", objectFit: "contain" }}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{item.name}</h5>
+      {/* <Link to={`/product/${item.slug}`} className="text-decoration-none"> */}
+        <Link to={`/product/${item.slug}`} className="text-decoration-none mb-0">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="card-img-top img-fluid pt-3"
+            style={{ maxHeight: "200px", objectFit: "contain" }}
+          />
+        </Link>
+        <div className="card-body mb-0">
+          <Link to={`/product/${item.slug}`} className="text-decoration-none mb-0">
+            <h5 className="card-title">{item.name}</h5>
 
-          <div className="card-text">{item.description}</div>
-          <div>
-            <strong>Brand:</strong> {item.brand.brand_name}
-          </div>
-          <div>
-            <strong>Gender:</strong> {item.gender}
-          </div>
-          <div>
+            <div className="card-text">{item.description}</div>
             <div>
-              <strong>Formato:</strong> {item.size_ml} ml
+              <strong>Brand:</strong> {item.brand.brand_name}
             </div>
-            <strong>Prezzo: </strong>
-            {item.discount.discount_amount !== 0 ? (
-              <>
-                <del className="old-price">{getOriginalPrice(item)} € </del>{" "}
-                <span className="new-price">{getFinalPrice(item)} €</span>
-              </>
-            ) : (
-              <>{getOriginalPrice(item)} €</>
-            )}
-          </div>
+            <div>
+              <strong>Gender:</strong> {item.gender}
+            </div>
+            <div>
+              <div>
+                <strong>Formato:</strong> {item.size_ml} ml
+              </div>
+              <strong>Prezzo: </strong>
+              {item.discount.discount_amount !== 0 ? (
+                <>
+                  <del className="old-price">{getOriginalPrice(item)} € </del>{" "}
+                  <span className="new-price">{getFinalPrice(item)} €</span>
+                </>
+              ) : (
+                <>{getOriginalPrice(item)} €</>
+              )}
+            </div>
+          </Link>
 
 
           {/* <button
@@ -106,7 +110,7 @@ export default function Card({ item }) {
             <></>
           )}
         </div>
-      </Link>
+      {/* </Link> */}
       <button
         className="btn btn-primary hovered z-1"
         onClick={() => cartAdd(item)}
