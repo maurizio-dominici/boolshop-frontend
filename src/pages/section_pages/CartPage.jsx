@@ -159,7 +159,7 @@ export default function CartPage() {
                       </button> */}
                       <button
                         className="btn btn-sm btn-outline-primary"
-                        onClick={() => removeItem(cartItem)}
+                        onClick={() => removeItem(item)}
                       >
                         <i className="bi bi-trash"></i>
                       </button>

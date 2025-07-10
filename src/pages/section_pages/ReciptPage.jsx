@@ -19,7 +19,7 @@ export default function ReciptPage() {
             <div className="card shadow-sm border-0 rounded-4 p-4">
               <h1 className="mb-4 fw-bold d-flex align-items-center gap-2">
                 <i className="fa-solid fa-file-invoice-dollar text-primary"></i>
-                Ricevuta d'Ordine
+                Ricevuta dell'ordine
               </h1>
               {ordine ? (
                 <div>
@@ -41,11 +41,13 @@ export default function ReciptPage() {
                     <b>ID Ordine:</b> {ordine.orderId}
                   </div> */}
                   <div className="mb-2">
-                    <b>Totale:</b> {ordine.total_price} €
+                    <b>Prezzo iniziale:</b> {ordine.total_price} €
                   </div>
-                  <div className="mb-2">
-                    <b>Spese di spedizione:</b> {ordine.shipping_price} €
-                  </div>
+                  {ordine.shipping_price > 0 && (
+                    <div className="mb-2">
+                      <b>Costo spedizione:</b> {ordine.shipping.price} €
+                    </div>
+                  )}
                   {ordine.discountAmount !== 0 && (
                     <div className="mb-2">
                       <b>Percentuale di sconto:</b> {ordine.discountAmount} %
