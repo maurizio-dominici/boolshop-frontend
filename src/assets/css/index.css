@@ -142,7 +142,9 @@ h6 {
 }
 
 .logo {
-  width: 100px;
+  /* width: 100px; */
+  width: 80px;
+  padding-block: 0.25rem;
 }
 
 /* HOMEPAGE */
