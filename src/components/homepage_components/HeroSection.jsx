@@ -58,8 +58,8 @@ export default function HeroSection() {
             <i class="bi bi-search-heart"></i> Cerca
           </button>
           <small>
-            <i class="bi bi-box hero-box"></i> Spedizione gratuita per ordini
-            superiori a 100 €
+            <i class="bi bi-box hero-box"></i> Spedizione gratuita per ordini a
+            partire da 100 €
           </small>
         </form>
       </div>
