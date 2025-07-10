@@ -1,20 +1,11 @@
 import { Link } from "react-router-dom";
 import Card from "./Card";
 
-export default function ProductList({
-  title,
-  products,
-  loading,
-  error,
-  backLink,
-}) {
+export default function ProductList({ products, loading, error, backLink }) {
   return (
     <div className="container mt-4">
-      <h2 className="fw-bold mb-4">{title}</h2>
-
       {loading && <p>Caricamento...</p>}
       {error && <p>Errore nel caricamento dei profumi.</p>}
-
 
       {backLink && (
         <div className="mb-3">

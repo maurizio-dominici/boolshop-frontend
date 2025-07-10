@@ -22,10 +22,10 @@ export default function Homepage() {
   }, []);
 
   return (
-    <div className="container my-3">
+    <>
       {/* Creazione Sezione Componenti della Homepage */}
       <HeroSection />
-
+      {/* <div className="container my-3"> */}
       {visualization === "grid" ? (
         <BestSellersSection />
       ) : (
@@ -51,6 +51,7 @@ export default function Homepage() {
       )}
 
       <VisualizationButton />
-    </div>
+      {/* </div> */}
+    </>
   );
 }

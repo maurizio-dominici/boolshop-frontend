@@ -16,7 +16,7 @@ export default function BestSellersSectionListPage() {
   return (
     <section className="py-5 bg-light min-vh-100">
       <div className="container">
-        <h1 className="text-center fw-bold mb-4 text-danger display-5">
+        <h1 className="text-center fw-bold mb-3 display-5 ">
           Tutti i nostri Best Sellers
         </h1>
         {visualization === "grid" ? (

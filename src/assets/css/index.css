@@ -17,6 +17,15 @@ nav a {
   color: white !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--boolshop-primary-color);
+}
+
 /* BOTTONI PRIMARY */
 .btn.btn-primary {
   background-color: var(--boolshop-primary-color);
@@ -91,13 +100,27 @@ nav a {
   border: 1px solid white;
 }
 
-.navbar-toggler:focus {
+#hamburger-menu .navbar-toggler {
   box-shadow: none;
+  background-color: var(--boolshop-secondary-color);
+}
+
+.nav-link:hover {
+  color: var(--boolshop-secondary-color) !important;
+  cursor: pointer;
 }
 
 #hamburger-menu::before {
   color: white;
   border: none;
+}
+
+.navbar-toggler:hover #hamburger-menu::before {
+  color: var(--boolshop-secondary-color);
+}
+
+.navbar-toggler:hover {
+  border: 1px solid var(--boolshop-secondary-color);
 }
 
 .logo {
@@ -111,7 +134,8 @@ nav a {
   background: linear-gradient(
     to right,
     var(--boolshop-primary-color-hover),
-    #fed6e3 /* usare colore piú visibile forse?
+    #fed6e3
+      /* usare colore piú visibile forse?
     /* var(--boolshop-secondary-color) */
   );
   padding: 2rem 0;
@@ -121,6 +145,18 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero-area .input-group {
+  background: linear-gradient(
+    to right,
+    var(--boolshop-primary-color-hover),
+    #fed6e3
+  );
+}
+
+.input-group > .form-control {
+  border: none;
 }
 
 .hero-content {
@@ -499,4 +535,29 @@ ul.list-group {
 /* Migliora margin tra sezioni form */
 .card .row.g-3 > [class^="col-"] {
   margin-bottom: 1rem;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--boolshop-primary-color);
+  color: white;
+}
+
+.footer-list {
+  padding-left: 0;
+}
+
+footer .input-group {
+  background-color: var(--boolshop-primary-color);
+}
+
+#footer-btn {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.footer-list li a:hover {
+  color: var(--boolshop-secondary-color);
+  cursor: pointer;
 }
