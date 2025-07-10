@@ -4,7 +4,9 @@ import { ParfumeAPIContext } from "../../../context/ParfumesContext";
 import Card from "../../../components/homepage_components/Card";
 import ProductListVisualization from "../../../components/ui/ProductListVisualization";
 import VisualizationButton from "../../../components/ui/VisualizationButton";
+import { useTopMessage } from "../../../context/TopMessageContext";
 export default function SearchResults() {
+  const { showTopMessage } = useTopMessage();
   const { parfumes, loading, error, searchParfumes, visualization } =
     useContext(ParfumeAPIContext);
   const location = useLocation();
@@ -61,32 +63,38 @@ export default function SearchResults() {
   const handleApplyFilters = () => {
     // Validazione del filtro per price
     if (tempMinPrice && isNaN(tempMinPrice)) {
-      alert("Il prezzo minimo deve essere un numero.");
+      showTopMessage("Il prezzo minimo deve essere un numero.", "danger");
       return;
     }
 
     if (tempMinPrice && Number(tempMinPrice) < 0) {
-      alert("Il prezzo minimo non può essere minore di 0.");
+      showTopMessage("Il prezzo minimo non può essere minore di 0.", "danger");
       return;
     }
 
     if (tempMinPrice && Number(tempMinPrice) > 1000) {
-      alert("Il prezzo minimo non può essere maggiore di 1000.");
+      showTopMessage(
+        "Il prezzo minimo non può essere maggiore di 1000.",
+        "danger"
+      );
       return;
     }
 
     if (tempMaxPrice && isNaN(tempMaxPrice)) {
-      alert("Il prezzo massimo deve essere un numero.");
+      showTopMessage("Il prezzo massimo deve essere un numero.", "danger");
       return;
     }
 
     if (tempMaxPrice && Number(tempMaxPrice) < 0) {
-      alert("Il prezzo massimo non può essere minore di 0.");
+      showTopMessage("Il prezzo massimo non può essere minore di 0.", "danger");
       return;
     }
 
     if (tempMaxPrice && Number(tempMaxPrice) > 1000) {
-      alert("Il prezzo massimo non può essere maggiore di 1000.");
+      showTopMessage(
+        "Il prezzo massimo non può essere maggiore di 1000.",
+        "danger"
+      );
       return;
     }
 
@@ -95,13 +103,19 @@ export default function SearchResults() {
       tempMaxPrice &&
       parseFloat(tempMinPrice) > parseFloat(tempMaxPrice)
     ) {
-      alert("Il prezzo minimo non può essere maggiore del prezzo massimo.");
+      showTopMessage(
+        "Il prezzo minimo non può essere maggiore del prezzo massimo.",
+        "danger"
+      );
       return;
     }
 
     // Validazione del filtro nome del prodotto
     if (tempProductName && tempProductName.length > 50) {
-      alert("Il nome del prodotto non può essere più lungo di 50 caratteri.");
+      showTopMessage(
+        "Il nome del prodotto non può essere più lungo di 50 caratteri.",
+        "danger"
+      );
       return;
     }
 
@@ -112,21 +126,28 @@ export default function SearchResults() {
         tempBrandSlug
       )
     ) {
-      alert(
-        "Marca non valida. Scegli tra una di queste: Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents."
+      showTopMessage(
+        "Marca non valida. Scegli tra una di queste: Dior, Chanel, Calvin Klein, Giorgio Armani, Maison Lumière, Nordica Scents.",
+        "danger"
       );
       return;
     }
 
     // Validazione del filtro size
     if (tempSize && !["xs", "s", "m", "l", "xl", "xxl"].includes(tempSize)) {
-      alert("Formato non valido. Scegli tra xs, s, m, l, xl, xxl.");
+      showTopMessage(
+        "Formato non valido. Scegli tra xs, s, m, l, xl, xxl.",
+        "danger"
+      );
       return;
     }
 
     // Validazione del filtro genere
     if (tempGender && !["male", "female", "unisex"].includes(tempGender)) {
-      alert("Genere non valido. Scegli tra Uomo, Donna o Unisex.");
+      showTopMessage(
+        "Genere non valido. Scegli tra Uomo, Donna o Unisex.",
+        "danger"
+      );
       return;
     }
 
@@ -141,7 +162,7 @@ export default function SearchResults() {
       "products.size_ml DESC",
     ];
     if (tempOrderBy && !validOrderBy.includes(tempOrderBy)) {
-      alert("Ordinamento non valido.");
+      showTopMessage("Ordinamento non valido.", "danger");
       return;
     }
     // Aggiorna parametri della URL in base ai filtri selezionati
