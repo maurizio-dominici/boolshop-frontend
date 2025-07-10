@@ -64,7 +64,7 @@ export default function CartPage() {
             {cart.map((item) => (
               <div className="col-12" key={item.id}>
                 <div className="card shadow-sm p-3 h-100">
-                  <div className="row align-items-center g-3">
+                  <div className="row align-items-center gx-3">
                     {/* CI VA L'IMG */}
                     <div className="col-4 col-md-2 text-center">
                       <img
@@ -79,7 +79,7 @@ export default function CartPage() {
                       />
                     </div>
                     {/* DETTAGLI PRODOTTO */}
-                    <div className="col-8 col-md-3">
+                    <div className="col-8  col-md-3">
                       <ul className="mb-0 list-unstyled small">
                         <li>
                           <b>Nome Prodotto:</b>{" "}
@@ -102,7 +102,7 @@ export default function CartPage() {
                       </ul>
                     </div>
                     {/* MOSTRA PREZZI */}
-                    <div className="col-12 col-md-3 mt-3 mt-md-0">
+                    <div className="col-12  h-100 col-md-3 mt-3 mt-md-0">
                       {item.discount.discount_amount > 0 ? (
                         <ul className="mb-0 list-unstyled">
                           <li>
@@ -149,13 +149,19 @@ export default function CartPage() {
                       >
                         +
                       </button>
-                      <button
+                      {/* <button
                         // className="btn btn-secondary ms-2"
                         className="btn btn-outline-primary ms-2"
                         onClick={() => removeItem(item)}
                         aria-label="Elimina prodotto"
                       >
-                        ELIMINA
+                        RIMUOVI
+                      </button> */}
+                      <button
+                        className="btn btn-sm btn-outline-primary"
+                        onClick={() => removeItem(cartItem)}
+                      >
+                        <i className="bi bi-trash"></i>{" "}
                       </button>
                     </div>
                   </div>

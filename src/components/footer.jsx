@@ -73,7 +73,7 @@ export default function Footer() {
               </a>
             </div>
             {/* da chiedere se si puo mettere */}
-            <form>
+            {/* <form>
               <label htmlFor="newsletter" className="label-form">
                 Iscriviti alla newsletter
               </label>
@@ -92,7 +92,7 @@ export default function Footer() {
                   Iscriviti
                 </button>
               </div>
-            </form>
+            </form> */}
           </div>
         </div>
 
