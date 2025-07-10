@@ -24,7 +24,8 @@ export default function Navbar() {
 
             <button
               onClick={() => {
-                const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
+                const cart =
+                  JSON.parse(window.localStorage.getItem("cart")) || [];
                 showCartPopup(cart);
                 console.log("cart", cart);
               }}
@@ -48,8 +49,6 @@ export default function Navbar() {
             <i id="hamburger-menu" className="bi bi-list"></i>
           </button>
         </div>
-
-
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -85,9 +84,8 @@ export default function Navbar() {
       <div className="d-none d-lg-flex align-items-center gap-1">
         <NavLink
           to={"/parfumes"}
-          // className="nav-link"
+          className="nav-link py-2 px-3"
           // className="btn btn-outline-secondary py-2 px-3"
-          className="btn btn-primary py-2 px-3"
         >
           <i className="bi bi-search icon-xl"></i>
         </NavLink>

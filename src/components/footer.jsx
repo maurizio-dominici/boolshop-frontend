@@ -67,6 +67,7 @@ export default function Footer() {
                 <i className="bi bi-youtube"></i>
               </a>
             </div>
+            {/* da chiedere se si puo mettere */}
             <form>
               <label htmlFor="newsletter" className="label-form">
                 Iscriviti alla newsletter
