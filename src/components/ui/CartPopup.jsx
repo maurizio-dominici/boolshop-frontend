@@ -84,7 +84,7 @@ export default function CartPopup() {
                         {getFinalPrice(cartItem)} €
                       </div>
 
-                      <div className="d-flex gap-1 align-items-center">
+                      <div className="d-flex gap-1 align-items-center gap-3">
                         <button
                           className="btn btn-sm btn-outline-primary"
                           onClick={() => removeItem(cartItem)}
