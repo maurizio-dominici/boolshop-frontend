@@ -125,7 +125,7 @@ export default function CartPage() {
                       ) : (
                         <ul className="mb-0 list-unstyled">
                           <li>
-                            <b>Prezzo originale: </b>
+                            <b>Prezzo unitario: </b>
                             <span>{getOriginalPrice(item)} €</span>
                           </li>
                         </ul>

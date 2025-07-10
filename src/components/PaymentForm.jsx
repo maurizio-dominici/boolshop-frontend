@@ -8,6 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function PaymentForm({ ordine }) {
   const stripe = useStripe();
@@ -48,14 +49,21 @@ export default function PaymentForm({ ordine }) {
     <form className="container" onSubmit={handleSubmit}>
       <PaymentElement />
 
-      <button
-        className="btn btn-primary mt-3"
-        type="submit"
-        disabled={!stripe || loading}
-      >
-        {loading ? "Pagamento in corso..." : "Paga"}
-      </button>
-      {error && <div className="text-danger mt-2">{error}</div>}
+      <div className="d-flex flex-column flex-md-row justify-content-between gap-3">
+        <Link to={"/checkout"} className="btn btn-secondary mt-3">
+          <i className="fa-solid fa-arrow-left me-2"></i>
+          Torna al checkout
+        </Link>
+
+        <button
+          className="btn btn-primary mt-3"
+          type="submit"
+          disabled={!stripe || loading}
+        >
+          {loading ? "Pagamento in corso..." : "Paga"}
+        </button>
+        {error && <div className="text-danger mt-2">{error}</div>}
+      </div>
     </form>
   );
 }
