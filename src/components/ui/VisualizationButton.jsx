@@ -38,7 +38,7 @@ export default function VisualizationButton() {
             setVisualization("grid");
           }}
         >
-          <i className="bi bi-grid-3x2 m-3 icon-xl"></i>
+          <i className="bi bi-grid-3x2 icon-xl"></i>
         </button>
         <button
           type="button"
@@ -48,7 +48,7 @@ export default function VisualizationButton() {
             setVisualization("list");
           }}
         >
-          <i className="bi bi-card-list m-3 icon-xl"></i>
+          <i className="bi bi-card-list icon-xl"></i>
         </button>
       </div>
     ) : (

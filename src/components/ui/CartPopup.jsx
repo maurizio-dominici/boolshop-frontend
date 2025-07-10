@@ -54,7 +54,7 @@ export default function CartPopup() {
   return (
     <>
       {data.show && (
-        <div id="CartPopup" className="card shadow">
+        <div id="CartPopup" className="card shadow p-3">
           <div className="border-bottom d-flex justify-content-between mb-0 pb-3">
             <h2 className="card-title fs-5 m-0">Il tuo carrello</h2>
             <button
@@ -63,7 +63,7 @@ export default function CartPopup() {
               className="btn btn-close"
             ></button>
           </div>
-          <div className="card-body">
+          <div className="card-body px-0">
             <div className="card-text">
               <strong>Riepilogo del carrello:</strong>
             </div>
