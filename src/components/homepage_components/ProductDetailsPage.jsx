@@ -16,7 +16,10 @@ export default function ProductDetailsPage() {
   useEffect(() => {
     axios
       .get(`http://localhost:3000/parfumes/${slug}`)
-      .then((res) => setProduct(res.data[0]))
+      .then((res) => {
+        const prod = res.data[0];
+        setProduct({ ...prod, quantity: prod.quantity ?? 1 });
+      })
       .catch((err) => console.error("Errore nel caricamento:", err));
   }, [slug]);
 
@@ -67,7 +70,10 @@ export default function ProductDetailsPage() {
         ? false
         : true;
 
-    if (!product.quantity) product.quantity = 1;
+    if (Number(product.quantity) < 1) {
+      showTopMessage("La quantità deve essere almeno 1", "danger");
+      return;
+    }
 
     let addedItem = {};
     if (isProductInCart) {
@@ -179,6 +185,7 @@ export default function ProductDetailsPage() {
                     pattern="\d"
                     maxLength={2}
                     defaultValue={1}
+                    min={1}
                   />
                   <button
                     onClick={() => cartAdd(product)}
