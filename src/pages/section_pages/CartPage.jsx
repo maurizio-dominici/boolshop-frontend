@@ -106,13 +106,13 @@ export default function CartPage() {
                       {item.discount.discount_amount > 0 ? (
                         <ul className="mb-0 list-unstyled">
                           <li>
-                            <b>Prezzo originale: </b>
+                            <b>Prezzo unitario: </b>
                             <del className="old-price">
                               {getOriginalPrice(item)} €
                             </del>
                           </li>
                           <li>
-                            <b>Sconto applicato: </b>{" "}
+                            <b>Sconto applicato: </b>
                             {item.discount.discount_amount}%
                           </li>
                           <li>
@@ -125,7 +125,7 @@ export default function CartPage() {
                       ) : (
                         <ul className="mb-0 list-unstyled">
                           <li>
-                            <b>Prezzo originale: </b>{" "}
+                            <b>Prezzo originale: </b>
                             <span>{getOriginalPrice(item)} €</span>
                           </li>
                         </ul>

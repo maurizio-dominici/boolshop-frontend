@@ -140,7 +140,10 @@ export default function PaymentPage() {
                 <li className="list-group-item d-flex justify-content-between">
                   <span className="fw-semibold">Totale finale:</span>
                   <span className="text-success fw-bold">
-                    {ordine.final_price} €
+                    {(
+                      Number(ordine.final_price) + Number(ordine.shipping_price)
+                    ).toFixed(2)}
+                    €
                   </span>
                 </li>
               </ul>

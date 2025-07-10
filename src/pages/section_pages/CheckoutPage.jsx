@@ -113,7 +113,10 @@ export default function Checkout() {
               <div className="row g-3">
                 {/* NOME */}
                 <div className="col-12 col-md-6 col-lg-3">
-                  <label htmlFor="first_name" className="form-label fw-semibold">
+                  <label
+                    htmlFor="first_name"
+                    className="form-label fw-semibold"
+                  >
                     Nome
                   </label>
                   <input
@@ -193,7 +196,10 @@ export default function Checkout() {
                 </div>
                 {/* CODICE POSTALE */}
                 <div className="col-12 col-md-4">
-                  <label htmlFor="postal_code" className="form-label fw-semibold">
+                  <label
+                    htmlFor="postal_code"
+                    className="form-label fw-semibold"
+                  >
                     Codice Postale
                   </label>
                   <input
@@ -281,7 +287,7 @@ export default function Checkout() {
                       <tr>
                         <th className="text-center">Prodotto</th>
                         <th className="text-center">Quantità</th>
-                        <th className="text-center">Prezzo originale</th>
+                        <th className="text-center">Prezzo unitario</th>
                         {/* Mostra colonna "Prezzo scontato" solo se almeno un prodotto ha sconto */}
                         {clientInfo.cart.some(
                           (item) => item.discount.discount_amount > 0
@@ -292,7 +298,9 @@ export default function Checkout() {
                     <tbody>
                       {clientInfo.cart.map((item) => (
                         <tr key={item.id} className="cart-row">
-                          <td className="text-center fw-semibold">{item.name}</td>
+                          <td className="text-center fw-semibold">
+                            {item.name}
+                          </td>
                           <td className="text-center">{item.quantity}</td>
                           <td className="text-center">
                             {item.discount.discount_amount > 0 ? (
@@ -364,10 +372,7 @@ export default function Checkout() {
           {/* BOTTONI */}
           <div className="col-12">
             <div className="d-flex flex-column flex-md-row justify-content-between gap-3">
-              <Link
-                to={"/cart"}
-                className="btn btn-secondary w-100 w-md-auto"
-              >
+              <Link to={"/cart"} className="btn btn-secondary w-100 w-md-auto">
                 <i className="fa-solid fa-arrow-left me-2"></i>
                 Torna al carrello
               </Link>

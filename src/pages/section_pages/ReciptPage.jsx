@@ -37,11 +37,14 @@ export default function ReciptPage() {
                     <i className="fa-solid fa-clipboard-list text-secondary"></i>
                     Dettagli Ordine
                   </h4>
-                  <div className="mb-2">
+                  {/* <div className="mb-2">
                     <b>ID Ordine:</b> {ordine.orderId}
-                  </div>
+                  </div> */}
                   <div className="mb-2">
                     <b>Totale:</b> {ordine.total_price} €
+                  </div>
+                  <div className="mb-2">
+                    <b>Spese di spedizione:</b> {ordine.shipping_price} €
                   </div>
                   {ordine.discountAmount !== 0 && (
                     <div className="mb-2">
@@ -49,8 +52,14 @@ export default function ReciptPage() {
                     </div>
                   )}
                   <div className="mb-2">
-                    <b>Prezzo finale pagato:</b>{" "}
-                    <span className="text-success">{ordine.final_price} €</span>
+                    <b>Prezzo finale pagato: </b>
+                    <span className="text-success">
+                      {(
+                        Number(ordine.final_price) +
+                        Number(ordine.shipping_price)
+                      ).toFixed(2)}
+                      €
+                    </span>
                   </div>
                   <div className="alert alert-info mt-4">
                     Riceverai una mail di conferma con tutti i dettagli
