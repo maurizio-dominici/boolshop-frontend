@@ -66,6 +66,9 @@ export default function Card({ item }) {
             <h5 className="card-title">{item.name}</h5>
 
             <div className="card-text">{item.description}</div>
+            <div className="mt-2 mb-1">
+              <img src={item.brand.brand_logo} alt={item.brand.brand_name} className="brand-logo"/>
+            </div>
             <div>
               <strong>Brand:</strong> {item.brand.brand_name}
             </div>

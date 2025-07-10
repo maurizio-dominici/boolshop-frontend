@@ -144,6 +144,9 @@ export default function ProductDetailsPage() {
                 <h2>{product.name}</h2>
                 <div>{product.description}</div>
 
+                <div className="my-3">
+                  <img src={product.brand.brand_logo} alt={product.brand.brand_name} className="brand-logo"/>
+                </div>
                 <div>
                   <strong>Brand:</strong>{" "}
                   {product.brand?.brand_name || "Sconosciuto"}

@@ -164,7 +164,7 @@ export default function CartPage() {
           </div>
 
           <div className="row justify-content-end mt-4">
-            <div className="col-12 col-md-6">
+            <div className="col-12">
               <div className="card p-3 shadow-sm d-flex flex-column">
                 <h4 className="mb-3 text-end">
                   Totale carrello:

@@ -655,3 +655,17 @@ footer .input-group {
   color: var(--boolshop-secondary-color);
   transition: 200ms;
 }
+
+
+
+/* Logo del brand in card e tutte le pagine tranne carrello */
+.brand-logo {
+  display: inline-block;
+  max-width: 10rem;
+  max-height: 2rem;
+}
+
+/* Nav-link attivo */
+.nav-link.active {
+  color: var(--boolshop-secondary-color) !important;
+}

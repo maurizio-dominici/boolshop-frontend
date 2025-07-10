@@ -69,12 +69,15 @@ export default function ProductListVisualizationItem({ item }) {
               <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
                 <p className="card-text">{item.description}</p>
-                <p className="card-text">
+                {/* <p className="card-text">
                   <small className="text-body-secondary">
                     <strong>Brand: </strong>
                     {item.brand.brand_name}
                   </small>
-                </p>
+                </p> */}
+                <div>
+                  <img src={item.brand.brand_logo} alt={item.brand.brand_name} className="brand-logo"/>
+                </div>
               </div>
             </Link>
           </div>
