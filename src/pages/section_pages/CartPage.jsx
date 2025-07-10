@@ -166,7 +166,7 @@ export default function CartPage() {
 
           <div className="row justify-content-end mt-4">
             <div className="col-12 col-md-6">
-              <div className="card p-3 shadow-sm">
+              <div className="card p-3 shadow-sm d-flex flex-column">
                 <h4 className="mb-3 text-end">
                   Totale carrello:
                   <span className="ms-2 fw-bold">
@@ -176,10 +176,30 @@ export default function CartPage() {
                           sum + getFinalPrice(item) * item.quantity,
                         0
                       )
-                      .toFixed(2)}{" "}
+                      .toFixed(2)}
                     €
                   </span>
                 </h4>
+                <div className="text-end mb-3 align-self-end">
+                  <div id="info-shipping" className="text-end">
+                    {JSON.parse(window.localStorage.getItem("cart"))
+                      .reduce(
+                        (sum, item) =>
+                          sum + getFinalPrice(item) * item.quantity,
+                        0
+                      )
+                      .toFixed(2) > 100.0 ? (
+                      <span>
+                        Complimenti! Hai diritto alla spedizione gratuita.
+                      </span>
+                    ) : (
+                      <span>
+                        Ricorda che se il totale supera i 100€ puoi ottenere la
+                        spedizione gratuita!
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
