@@ -16,6 +16,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromise } from "./assets/stripe";
 import PaymentPage from "./pages/section_pages/PaymentPage";
+import ScrollToTop from "./utils/ScrollToTop";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
       <CartPopupProvider>
         <ParfumeAPIProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <Elements stripe={stripePromise}>
               <Routes>
                 <Route element={<DefaultLayout />}>
