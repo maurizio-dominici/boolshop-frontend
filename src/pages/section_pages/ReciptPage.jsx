@@ -66,7 +66,7 @@ export default function ReciptPage() {
               )}
 
               <div className="d-flex justify-content-center gap-3 mt-4">
-                <Link to={"/"} className="btn btn-outline-secondary">
+                <Link to={"/"} className="btn btn-secondary">
                   <i className="fa-solid fa-house me-2"></i>
                   Torna alla Home
                 </Link>

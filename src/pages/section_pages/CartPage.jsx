@@ -184,7 +184,7 @@ export default function CartPage() {
             </div>
           </div>
           <div className="card-footer bg-transparent border-0 d-flex flex-md-row justify-content-between align-items-center gap-2 px-0">
-            <Link to={-1} className="btn btn-outline-primary">
+            <Link to={-1} className="btn btn-secondary">
               Torna indietro
             </Link>
             <Link to="/checkout" className="btn btn-primary">
