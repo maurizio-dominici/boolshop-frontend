@@ -565,3 +565,16 @@ footer .input-group {
   color: var(--boolshop-secondary-color);
   cursor: pointer;
 }
+
+
+
+/* # FOOTER ON BOTTOM OF PAGE */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root > .page-container {
+  flex-grow: 1;
+}

@@ -12,32 +12,34 @@ export default function LatestArrivalsSectionListPage() {
   }, []);
 
   return (
-    <section className="py-5 bg-light min-vh-100">
-      <div className="container">
-        <h1 className="text-center fw-bold mb-3 display-5">
-          Tutti i nostri Ultimi Arrivi
-        </h1>
+    <div className="page-container">
+      <section className="py-5 bg-light min-vh-100">
+        <div className="container">
+          <h1 className="text-center fw-bold mb-3 display-5">
+            Tutti i nostri Ultimi Arrivi
+          </h1>
 
-        {visualization === "grid" ? (
-          <ProductList
-            title="Tutti i nostri Ultimi Arrivi"
-            products={recents}
-            loading={loading}
-            error={error}
-            // backLink="/"
-            backLink={-1}
-          />
-        ) : (
-          <ProductListVisualization
-            products={recents}
-            link={"/recents"}
-            title={"I nostri Ultimi Arrivi"}
-            text={"Scoprili tutti"}
-          />
-        )}
-      </div>
+          {visualization === "grid" ? (
+            <ProductList
+              title="Tutti i nostri Ultimi Arrivi"
+              products={recents}
+              loading={loading}
+              error={error}
+              // backLink="/"
+              backLink={-1}
+            />
+          ) : (
+            <ProductListVisualization
+              products={recents}
+              link={"/recents"}
+              title={"I nostri Ultimi Arrivi"}
+              text={"Scoprili tutti"}
+            />
+          )}
+        </div>
 
-      <VisualizationButton />
-    </section>
+        <VisualizationButton />
+      </section>
+    </div>
   );
 }

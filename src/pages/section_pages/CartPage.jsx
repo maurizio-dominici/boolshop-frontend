@@ -56,7 +56,7 @@ export default function CartPage() {
   }
 
   return (
-    <>
+    <div className="page-container">
       {cart?.length ? (
         <div className="container py-4">
           <h1 className="mb-4 text-center fw-bold">IL TUO CARRELLO</h1>
@@ -200,6 +200,6 @@ export default function CartPage() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }

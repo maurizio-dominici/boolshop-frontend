@@ -14,31 +14,33 @@ export default function BestSellersSectionListPage() {
   }, []);
 
   return (
-    <section className="py-5 bg-light min-vh-100">
-      <div className="container">
-        <h1 className="text-center fw-bold mb-3 display-5 ">
-          Tutti i nostri Best Sellers
-        </h1>
-        {visualization === "grid" ? (
-          <ProductList
-            title="Tutti i nostri Best Sellers"
-            products={bestSellers}
-            loading={loading}
-            error={error}
-            // backLink="/"
-            backLink={-1}
-          />
-        ) : (
-          <ProductListVisualization
-            products={bestSellers}
-            link={"/bestsellers"}
-            title={"I nostri Best Seller"}
-            text={"Scoprili tutti"}
-          />
-        )}
-      </div>
+    <div className="page-container">
+      <section className="py-5 bg-light min-vh-100">
+        <div className="container">
+          <h1 className="text-center fw-bold mb-3 display-5 ">
+            Tutti i nostri Best Sellers
+          </h1>
+          {visualization === "grid" ? (
+            <ProductList
+              title="Tutti i nostri Best Sellers"
+              products={bestSellers}
+              loading={loading}
+              error={error}
+              // backLink="/"
+              backLink={-1}
+            />
+          ) : (
+            <ProductListVisualization
+              products={bestSellers}
+              link={"/bestsellers"}
+              title={"I nostri Best Seller"}
+              text={"Scoprili tutti"}
+            />
+          )}
+        </div>
 
-      <VisualizationButton />
-    </section>
+        <VisualizationButton />
+      </section>
+    </div>
   );
 }

@@ -22,7 +22,7 @@ export default function Homepage() {
   }, []);
 
   return (
-    <>
+    <div className="page-container">
       {/* Creazione Sezione Componenti della Homepage */}
       <HeroSection />
       {/* <div className="container my-3"> */}
@@ -52,6 +52,6 @@ export default function Homepage() {
 
       <VisualizationButton />
       {/* </div> */}
-    </>
+    </div>
   );
 }

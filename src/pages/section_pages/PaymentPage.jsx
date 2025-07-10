@@ -52,105 +52,107 @@ export default function PaymentPage() {
   if (!ordine || !clientSecret) return null;
 
   return (
-    <div className="container py-5">
-      <div className="row justify-content-center">
-        <div className="col-12 col-lg-10">
-          <div className="card shadow-sm border-0 rounded-4 p-4">
-            <h1 className="mb-4 fw-bold d-flex align-items-center gap-2">
-              <i className="fa-solid fa-file-invoice-dollar text-primary"></i>
-              Riepilogo Ordine & Pagamento
-            </h1>
-            {/* Dati Cliente */}
-            <div className="mb-4">
-              <table className="table table-borderless mb-0">
-                <tbody>
-                  <tr>
-                    <th className="text-end" style={{ width: "180px" }}>
-                      Nome:
-                    </th>
-                    <td>
-                      {ordine.first_name} {ordine.last_name}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th className="text-end">Email:</th>
-                    <td>{ordine.email}</td>
-                  </tr>
-                  <tr>
-                    <th className="text-end">Paese:</th>
-                    <td>{ordine.country}</td>
-                  </tr>
-                  <tr>
-                    <th className="text-end">Città:</th>
-                    <td>{ordine.city}</td>
-                  </tr>
-                  <tr>
-                    <th className="text-end">CAP:</th>
-                    <td>{ordine.postal_code}</td>
-                  </tr>
-                  <tr>
-                    <th className="text-end">Indirizzo:</th>
-                    <td>
-                      {ordine.street} {ordine.civic_number}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            {/* Tabella prodotti */}
-            <div className="table-responsive mb-4">
-              <table className="table cart-table-modern align-middle">
-                <thead>
-                  <tr>
-                    <th>Prodotto</th>
-                    <th>Quantità</th>
-                    <th>Prezzo unitario</th>
-                    <th>Totale</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {checkoutCart.cartProducts.map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.productName}</td>
-                      <td>{item.quantity}</td>
-                      <td>{getOriginalPrice(item)} €</td>
-                      <td>{getFinalPrice(item)} €</td>
+    <div className="page-container">
+      <div className="container py-5">
+        <div className="row justify-content-center">
+          <div className="col-12 col-lg-10">
+            <div className="card shadow-sm border-0 rounded-4 p-4">
+              <h1 className="mb-4 fw-bold d-flex align-items-center gap-2">
+                <i className="fa-solid fa-file-invoice-dollar text-primary"></i>
+                Riepilogo Ordine & Pagamento
+              </h1>
+              {/* Dati Cliente */}
+              <div className="mb-4">
+                <table className="table table-borderless mb-0">
+                  <tbody>
+                    <tr>
+                      <th className="text-end" style={{ width: "180px" }}>
+                        Nome:
+                      </th>
+                      <td>
+                        {ordine.first_name} {ordine.last_name}
+                      </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            {/* Totali riepilogo */}
-            <ul className="list-group mb-4">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-semibold">Totale prodotti:</span>
-                <span>{ordine.total_price} €</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-semibold">Spedizione:</span>
-                <span>{ordine.shipping_price} €</span>
-              </li>
-              {ordine.discountAmount !== 0 && (
+                    <tr>
+                      <th className="text-end">Email:</th>
+                      <td>{ordine.email}</td>
+                    </tr>
+                    <tr>
+                      <th className="text-end">Paese:</th>
+                      <td>{ordine.country}</td>
+                    </tr>
+                    <tr>
+                      <th className="text-end">Città:</th>
+                      <td>{ordine.city}</td>
+                    </tr>
+                    <tr>
+                      <th className="text-end">CAP:</th>
+                      <td>{ordine.postal_code}</td>
+                    </tr>
+                    <tr>
+                      <th className="text-end">Indirizzo:</th>
+                      <td>
+                        {ordine.street} {ordine.civic_number}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              {/* Tabella prodotti */}
+              <div className="table-responsive mb-4">
+                <table className="table cart-table-modern align-middle">
+                  <thead>
+                    <tr>
+                      <th>Prodotto</th>
+                      <th>Quantità</th>
+                      <th>Prezzo unitario</th>
+                      <th>Totale</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {checkoutCart.cartProducts.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.productName}</td>
+                        <td>{item.quantity}</td>
+                        <td>{getOriginalPrice(item)} €</td>
+                        <td>{getFinalPrice(item)} €</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* Totali riepilogo */}
+              <ul className="list-group mb-4">
                 <li className="list-group-item d-flex justify-content-between">
-                  <span className="fw-semibold">Sconto:</span>
-                  <span>{ordine.discountAmount} %</span>
+                  <span className="fw-semibold">Totale prodotti:</span>
+                  <span>{ordine.total_price} €</span>
                 </li>
-              )}
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-semibold">Totale finale:</span>
-                <span className="text-success fw-bold">
-                  {ordine.final_price} €
-                </span>
-              </li>
-            </ul>
-            {/* Form pagamento Stripe */}
-            <div className="mt-4">
-              <Elements
-                stripe={stripePromise}
-                options={{ clientSecret, appearance }}
-              >
-                <PaymentForm ordine={ordine} />
-              </Elements>
+                <li className="list-group-item d-flex justify-content-between">
+                  <span className="fw-semibold">Spedizione:</span>
+                  <span>{ordine.shipping_price} €</span>
+                </li>
+                {ordine.discountAmount !== 0 && (
+                  <li className="list-group-item d-flex justify-content-between">
+                    <span className="fw-semibold">Sconto:</span>
+                    <span>{ordine.discountAmount} %</span>
+                  </li>
+                )}
+                <li className="list-group-item d-flex justify-content-between">
+                  <span className="fw-semibold">Totale finale:</span>
+                  <span className="text-success fw-bold">
+                    {ordine.final_price} €
+                  </span>
+                </li>
+              </ul>
+              {/* Form pagamento Stripe */}
+              <div className="mt-4">
+                <Elements
+                  stripe={stripePromise}
+                  options={{ clientSecret, appearance }}
+                >
+                  <PaymentForm ordine={ordine} />
+                </Elements>
+              </div>
             </div>
           </div>
         </div>

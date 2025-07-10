@@ -103,88 +103,90 @@ export default function ProductDetailsPage() {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="d-flex justify-content-between mb-3">
-        <Link to={-1} className="btn btn-secondary">
-          Torna indietro
-        </Link>
-        <Link to="/" className="btn btn-primary">
-          Vai alla Home
-        </Link>
-      </div>
-      {/* <div className="card shadow row"> */}
-      <div className="card shadow">
-        <div className="row">
-          <div className="col-12 col-md-4">
-            {product.image ? (
-              <img
-                src={product.image}
-                alt={product.name}
-                // className="card-img-top d-block col-12 col-md-6"
-                className="card-img-top img-fluid pt-3"
-                style={{ maxHeight: "300px", objectFit: "contain" }}
-              />
-            ) : (
-              // <div className="bg-secondary text-white text-center py-5 col-12 col-md-6">
-              <div className="bg-secondary text-white text-center py-5">
-                Nessuna immagine disponibile
-              </div>
-            )}
-          </div>
-          <div className="col-12 col-md-8">
-            {/* <div className="card-body col-12 col-md-6"> */}
-            <div className="card-body">
-              <h2>{product.name}</h2>
-              <div>{product.description}</div>
-
-              <div>
-                <strong>Brand:</strong>{" "}
-                {product.brand?.brand_name || "Sconosciuto"}
-              </div>
-
-              <div>
-                <div>
-                  <strong>Formato:</strong> {product.size_ml} ml
-                </div>
-                <strong>Prezzo: </strong>
-                {product.discount.discount_amount !== 0 ? (
-                  <>
-                    <del className="old-price">
-                      {getOriginalPrice(product)} €{" "}
-                    </del>{" "}
-                    <span className="new-price">
-                      {getFinalPrice(product)} €
-                    </span>
-                  </>
-                ) : (
-                  <>{getOriginalPrice(product)} €</>
-                )}
-              </div>
-
-              {product.discount.discount_amount !== 0 ? (
-                <span id="discount" className="badge">
-                  {product.discount.discount_amount} %
-                </span>
-              ) : (
-                <></>
-              )}
-              <div className="d-flex gap-3 align-items-center mt-3">
-                <input
-                  type="text"
-                  id="quantity"
-                  value={product.quantity}
-                  onChange={handleInputChange}
-                  placeholder="1"
-                  pattern="\d"
-                  maxLength={2}
-                  defaultValue={1}
+    <div className="page-container">
+      <div className="container mt-5">
+        <div className="d-flex justify-content-between mb-3">
+          <Link to={-1} className="btn btn-secondary">
+            Torna indietro
+          </Link>
+          <Link to="/" className="btn btn-primary">
+            Vai alla Home
+          </Link>
+        </div>
+        {/* <div className="card shadow row"> */}
+        <div className="card shadow">
+          <div className="row">
+            <div className="col-12 col-md-4">
+              {product.image ? (
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  // className="card-img-top d-block col-12 col-md-6"
+                  className="card-img-top img-fluid pt-3"
+                  style={{ maxHeight: "300px", objectFit: "contain" }}
                 />
-                <button
-                  onClick={() => cartAdd(product)}
-                  className="btn btn-primary"
-                >
-                  Aggiungi al carrello
-                </button>
+              ) : (
+                // <div className="bg-secondary text-white text-center py-5 col-12 col-md-6">
+                <div className="bg-secondary text-white text-center py-5">
+                  Nessuna immagine disponibile
+                </div>
+              )}
+            </div>
+            <div className="col-12 col-md-8">
+              {/* <div className="card-body col-12 col-md-6"> */}
+              <div className="card-body">
+                <h2>{product.name}</h2>
+                <div>{product.description}</div>
+
+                <div>
+                  <strong>Brand:</strong>{" "}
+                  {product.brand?.brand_name || "Sconosciuto"}
+                </div>
+
+                <div>
+                  <div>
+                    <strong>Formato:</strong> {product.size_ml} ml
+                  </div>
+                  <strong>Prezzo: </strong>
+                  {product.discount.discount_amount !== 0 ? (
+                    <>
+                      <del className="old-price">
+                        {getOriginalPrice(product)} €{" "}
+                      </del>{" "}
+                      <span className="new-price">
+                        {getFinalPrice(product)} €
+                      </span>
+                    </>
+                  ) : (
+                    <>{getOriginalPrice(product)} €</>
+                  )}
+                </div>
+
+                {product.discount.discount_amount !== 0 ? (
+                  <span id="discount" className="badge">
+                    {product.discount.discount_amount} %
+                  </span>
+                ) : (
+                  <></>
+                )}
+                <div className="d-flex gap-3 align-items-center mt-3">
+                  <input
+                    type="text"
+                    id="quantity"
+                    value={product.quantity}
+                    onChange={handleInputChange}
+                    placeholder="1"
+                    pattern="\d"
+                    maxLength={2}
+                    defaultValue={1}
+                  />
+                  <button
+                    onClick={() => cartAdd(product)}
+                    className="btn btn-primary"
+                  >
+                    Aggiungi al carrello
+                  </button>
+                </div>
               </div>
             </div>
           </div>
