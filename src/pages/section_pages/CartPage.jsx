@@ -149,17 +149,10 @@ export default function CartPage() {
                       >
                         <i className="bi bi-plus"></i>
                       </button>
-                      {/* <button
-                        // className="btn btn-secondary ms-2"
-                        className="btn btn-outline-primary ms-2"
-                        onClick={() => removeItem(item)}
-                        aria-label="Elimina prodotto"
-                      >
-                        RIMUOVI
-                      </button> */}
+
                       <button
                         className="btn btn-sm btn-outline-primary"
-                        onClick={() => removeItem(cartItem)}
+                        onClick={() => removeItem(item)}
                       >
                         <i className="bi bi-trash"></i>
                       </button>
