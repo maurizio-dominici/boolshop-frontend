@@ -5,16 +5,21 @@ export default function Footer() {
         <div className="row">
           {/*  Brand & Description  */}
           <div className="col-md-3 mb-4">
-            <h5>Boolshop Parfumes</h5>
+            <h5 className="text-white">Boolshop Parfumes</h5>
             <p>
               Fragranze esclusive, eleganza senza tempo. Scopri il tuo profumo
               ideale con noi.
             </p>
+            <img
+              className="logo d-block mx-auto"
+              src="/boolshop-parfumes-logo.jpg"
+              alt="Logo"
+            />
           </div>
 
           {/*  Link Utili  */}
           <div className="col-md-3 mb-4">
-            <h6>Informazioni</h6>
+            <h6 className="text-white">Informazioni</h6>
             <ul className="footer-list">
               <li>
                 <a className="text-decoration-none">Chi siamo</a>
@@ -36,7 +41,7 @@ export default function Footer() {
 
           {/*  Servizi  */}
           <div className="col-md-3 mb-4">
-            <h6>Servizi</h6>
+            <h6 className="text-white">Servizi</h6>
             <ul className="footer-list">
               <li>
                 <a className="text-decoration-none">Spedizione</a>
@@ -55,7 +60,7 @@ export default function Footer() {
 
           {/*  Social & Newsletter  */}
           <div className="col-md-3 mb-4">
-            <h6>Seguici</h6>
+            <h6 className="text-white">Seguici</h6>
             <div className="mb-2">
               <a className="me-2">
                 <i className="bi bi-facebook"></i>

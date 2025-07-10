@@ -544,6 +544,10 @@ footer {
   color: white;
 }
 
+footer .logo {
+  width: 160px;
+}
+
 .footer-list {
   padding-left: 0;
 }
