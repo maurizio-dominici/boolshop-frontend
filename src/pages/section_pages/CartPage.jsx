@@ -64,7 +64,7 @@ export default function CartPage() {
             {cart.map((item) => (
               <div className="col-12" key={item.id}>
                 <div className="card shadow-sm p-3 h-md-100">
-                  <div className="row align-items-center gx-3">
+                  <div className="row gx-3">
                     {/* CI VA L'IMG */}
                     <div className="col-4 col-md-2 text-center">
                       <img
@@ -132,7 +132,7 @@ export default function CartPage() {
                       )}
                     </div>
                     {/* CONTROLLO QUANTITÁ */}
-                    <div className="col-md-6 col-xl-4 d-flex align-items-center justify-content-md-end justify-content-start gap-2 gap-md-3 mt-3 mt-md-0">
+                    <div className="col-md-6 col-xl-4 d-flex align-items-center justify-content-md-end justify-content-start gap-2 gap-md-3 mt-3 mt-md-0 align-self-center">
                       <button
                         className="btn btn-secondary"
                         onClick={() => updateQuantity(item, -1)}

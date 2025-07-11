@@ -66,7 +66,7 @@ export default function Footer() {
                 src="/boolshop-parfumes-logo.jpg"
                 alt="Logo"
               />
-              <h5 className="text-white mb-1">Seguici</h5>
+              <h5 className="text-white mb-1 mt-3">Seguici</h5>
               <div className="d-flex align-items-center justify-content-center gap-2 mb-3">
                 <a href="#">
                   <i className="bi bi-facebook fs-4"></i>
