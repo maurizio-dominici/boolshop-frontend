@@ -206,7 +206,7 @@ export default function SearchResults() {
   };
 
   return (
-    <div className="page-container">
+    <div className="page-container bg-light">
       <div className="container mt-4">
         <div className="row mb-3 g-2 align-items-end">
           <div className="col-12 col-md-3">
